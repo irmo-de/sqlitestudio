@@ -1,4 +1,6 @@
-# SQLiteStudio
+# Apple Silicon (Apple M1 / M2) build of SQLiteStudio
+Fork of SQLiteStudio build for AArch64/ARM64 (Apple Silicon)
+
 A free, open source, multi-platform SQLite database manager written in C++, with use of Qt framework.
 
 # Download
