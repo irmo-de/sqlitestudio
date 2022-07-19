@@ -7,7 +7,7 @@ A free, open source, multi-platform SQLite database manager written in C++, with
 
 https://github.com/irmo-de/sqlitestudio/releases/tag/3.3.3
 
-# Download
+# Download Intel variant
 
 - Most recent packages are available at Releases page: https://github.com/pawelsalawa/sqlitestudio/releases
 - Older versions (3.x.x) can be fetched from [this dropbox folder](https://www.dropbox.com/sh/ao4nz2qjfsz2yuy/AABwiiss3do7n0wNecuk-uyna?dl=0)
