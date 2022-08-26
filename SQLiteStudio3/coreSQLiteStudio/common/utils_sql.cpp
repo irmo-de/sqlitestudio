@@ -4,14 +4,13 @@
 #include "parser/token.h"
 #include "parser/lexer.h"
 #include "parser/keywords.h"
-#include "log.h"
 #include <QHash>
 #include <QPair>
 #include <QString>
 #include <QDebug>
 #include <QMetaType>
 
-QString invalidIdCharacters = "[]()\"'@*.,+-=/%&|:; \t\n<>";
+QString invalidIdCharacters = "[]()\"'@*.,+-=/#$%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
@@ -41,8 +40,11 @@ bool doesObjectNeedWrapping(const QString& str)
     if (str.isEmpty())
         return true;
 
-    if (isObjWrapped(str))
-        return false;
+    // It used to return false if object name looked to be wrapped already,
+    // but actually name [abc] is proper name that needs to be wrapped (i.e. "[abc]").
+    // Bug reported for this was #4362
+    //if (isObjWrapped(str))
+    //    return false;
 
     if (isKeyword(str))
         return true;
@@ -848,4 +850,16 @@ SqliteDataType toSqliteDataType(const QString& typeStr)
         return SqliteDataType::_NULL;
 
     return SqliteDataType::UNKNOWN;
+}
+
+QByteArray blobFromLiteral(const QString& value)
+{
+    if (value.length() <= 3)
+    {
+        qCritical() << "Call to blobFromLiteral() with blob literal shorter or equal to 3 characters:" << value;
+        return QByteArray();
+    }
+
+    QString hex = value.mid(2, value.length() - 3);
+    return QByteArray::fromHex(hex.toLatin1());
 }

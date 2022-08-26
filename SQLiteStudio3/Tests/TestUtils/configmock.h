@@ -9,7 +9,6 @@ class ConfigMock : public Config
 {
     public:
         void init();
-        void cleanUp();
         const QString& getConfigDir();
         void beginMassSave();
         void commitMassSave();
@@ -51,8 +50,6 @@ class ConfigMock : public Config
         void begin();
         void commit();
         void rollback();
-        bool setCollations(const QList<CollationManager::CollationPtr>&);
-        QList<CollationManager::CollationPtr> getCollations() const;
         const QString &getConfigDir() const;
         QString getConfigFilePath() const;
         bool isMassSaving() const;

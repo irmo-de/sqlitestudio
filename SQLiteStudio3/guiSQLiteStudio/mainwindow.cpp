@@ -4,8 +4,6 @@
 #include "dbtree/dbtreemodel.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
-#include "windows/tablewindow.h"
-#include "windows/viewwindow.h"
 #include "windows/functionseditor.h"
 #include "windows/collationseditor.h"
 #include "windows/ddlhistorywindow.h"
@@ -13,8 +11,6 @@
 #include "mdiarea.h"
 #include "statusfield.h"
 #include "uiconfig.h"
-#include "common/extaction.h"
-#include "dbobjectdialogs.h"
 #include "services/notifymanager.h"
 #include "dialogs/configdialog.h"
 #include "services/pluginmanager.h"
@@ -35,12 +31,12 @@
 #include "dialogs/aboutdialog.h"
 #include "dialogs/newversiondialog.h"
 #include "dialogs/quitconfirmdialog.h"
-#include "common/widgetcover.h"
 #include "dialogs/cssdebugdialog.h"
 #include "themetuner.h"
 #include "style.h"
 #include "services/codeformatter.h"
 #include "common/compatibility.h"
+#include "windows/codesnippeteditor.h"
 #include "uiutils.h"
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -254,9 +250,13 @@ void MainWindow::closeEvent(QCloseEvent* event)
         return;
     }
 
+    saveSessionTimer->stop();
+    safe_delete(saveSessionTimer);
+
     closingApp = true;
     closeNonSessionWindows();
     saveSession(true);
+    SQLITESTUDIO->cleanUp();
     QMainWindow::closeEvent(event);
 }
 
@@ -265,6 +265,7 @@ void MainWindow::createActions()
     createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL &editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL &functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_SNIPPETS_EDITOR, ICONS.CODE_SNIPPET, tr("Open code &snippets editor"), this, SLOT(openCodeSnippetsEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
@@ -400,6 +401,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_SQL_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_DDL_HISTORY]);
     toolsMenu->addAction(actionMap[OPEN_FUNCTION_EDITOR]);
+    toolsMenu->addAction(actionMap[OPEN_SNIPPETS_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
@@ -479,7 +481,14 @@ void MainWindow::restoreSession()
     }
 
     if (sessionValue.contains("style"))
-        setStyle(sessionValue["style"].toString());
+    {
+        QString styleName = sessionValue["style"].toString();
+        if (!setStyle(styleName))
+        {
+            styleName = currentStyle();
+            CFG_UI.General.Style.set(styleName);
+        }
+    }
     else
         THEME_TUNER->tuneCurrentTheme();
 
@@ -564,22 +573,24 @@ MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
     {
         window->setCloseWithoutSessionSaving(true);
         delete window;
+        return nullptr;
     }
 
     return window;
 }
 
-void MainWindow::setStyle(const QString& styleName)
+bool MainWindow::setStyle(const QString& styleName)
 {
     QStyle* style = QStyleFactory::create(styleName);
     if (!style)
     {
         notifyWarn(tr("Could not set style: %1", "main window").arg(styleName));
-        return;
+        return false;
     }
 
     STYLE->setStyle(style, styleName);
     statusField->refreshColors();
+    return true;
 }
 
 QString MainWindow::currentStyle() const
@@ -617,7 +628,8 @@ void MainWindow::saveSession()
 
 void MainWindow::scheduleSessionSave()
 {
-    saveSessionTimer->start(saveSessionDelayMs);
+    if (saveSessionTimer)
+        saveSessionTimer->start(saveSessionDelayMs);
 }
 
 void MainWindow::closeNonSessionWindows()
@@ -682,6 +694,11 @@ void MainWindow::openDdlHistorySlot()
 void MainWindow::openFunctionEditorSlot()
 {
     openFunctionEditor();
+}
+
+void MainWindow::openCodeSnippetsEditorSlot()
+{
+    openCodeSnippetEditor();
 }
 
 void MainWindow::openCollationEditorSlot()
@@ -919,6 +936,11 @@ DdlHistoryWindow* MainWindow::openDdlHistory()
 FunctionsEditor* MainWindow::openFunctionEditor()
 {
     return openMdiWindow<FunctionsEditor>();
+}
+
+CodeSnippetEditor* MainWindow::openCodeSnippetEditor()
+{
+    return openMdiWindow<CodeSnippetEditor>();
 }
 
 CollationsEditor* MainWindow::openCollationEditor()

@@ -22,10 +22,10 @@ void loadTranslation(const QString& baseName)
     QStringList filters = QStringList({baseName+"_"+lang+".qm"});
     QDir dir;
 
-    for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
+    for (QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
         dir.setPath(dirPath);
-        for (const QString& f : dir.entryList(filters))
+        for (QString& f : dir.entryList(filters))
         {
             res = translator->load(f, dirPath);
             if (res)
@@ -40,7 +40,10 @@ void loadTranslation(const QString& baseName)
     }
 
     if (!res)
+    {
+        delete translator;
         return;
+    }
 
     qApp->installTranslator(translator);
     SQLITESTUDIO_TRANSLATIONS[baseName] = translator;
@@ -66,15 +69,15 @@ void loadTranslations(const QStringList& baseNames)
 
 QStringList getAvailableTranslations()
 {
+    static QRegularExpression re("[^\\_]+\\_(\\w+)\\.qm");
     QSet<QString> locales;
-    QRegularExpression re("[^\\_]+\\_(\\w+)\\.qm");
     QRegularExpressionMatch match;
     QDir dir;
     QStringList filters = QStringList({"*_*.qm"});
-    for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
+    for (QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
         dir.setPath(dirPath);
-        for (const QString& f : dir.entryList(filters))
+        for (QString& f : dir.entryList(filters))
         {
             match = re.match(f);
             if (!match.isValid())
@@ -84,6 +87,10 @@ QStringList getAvailableTranslations()
         }
     }
     locales << "en";
+
+    // #4278 - the en_us translation as explicit qm file is unnecessary,
+    // but produced by CrowdIn. The "en" is default and used for American English.
+    locales.remove("en_us");
 
     return locales.values();
 }

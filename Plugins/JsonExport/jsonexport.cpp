@@ -95,7 +95,8 @@ bool JsonExport::exportTable(const QString& database, const QString& table, cons
     writeValue("type", "table");
     writeValue("database", database);
     writeValue("name", table);
-    writeValue("withoutRowId", createTable->withOutRowId.isNull());
+    writeValue("withoutRowId", createTable->withOutRowId);
+    writeValue("strict", createTable->strict);
     writeValue("ddl", ddl);
 
     beginArray("columns");
@@ -266,13 +267,13 @@ bool JsonExport::beforeExport()
 
 bool JsonExport::init()
 {
-    Q_INIT_RESOURCE(jsonexport);
+    SQLS_INIT_RESOURCE(jsonexport);
     return GenericExportPlugin::init();
 }
 
 void JsonExport::deinit()
 {
-    Q_CLEANUP_RESOURCE(jsonexport);
+    SQLS_CLEANUP_RESOURCE(jsonexport);
 }
 
 void JsonExport::setupConfig()

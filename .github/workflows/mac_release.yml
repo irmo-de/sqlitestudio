@@ -1,24 +1,26 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3350500'
-    SQLITE_RELEASE_YEAR: '2021'
+    SQLITE_VERSION: '3390200'
+    SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-osx-installer.dmg
 
 name: MacOSX release build
 
 on:
+    workflow_dispatch:
+        inputs:
     schedule:
-        - cron: '0 3 * * *' # run at 3 AM UTC
+        - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
         types: [mac_release]
 
 jobs:
     build:
-        runs-on: macos-10.15
+        runs-on: macos-11
 
         steps:
             # - name: Debug
@@ -87,6 +89,28 @@ jobs:
                 sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
+            - name: Compile additional SQLite3 extensions
+              shell: bash
+              run: |
+                cd ..
+                mkdir ext
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                ls -l
+                unzip sqlite-src-$SQLITE_VERSION.zip
+                ls -l
+                cd sqlite-src-$SQLITE_VERSION/ext
+                ls -l
+                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
+                for f in compress; do
+                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
+                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
+                done
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
+                    gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib
+                done
+                ls -l ../../ext/
+
             - name: Install Tcl
               run: |
                 brew install tcl-tk
@@ -112,6 +136,11 @@ jobs:
               run: |
                 qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
+
+            - name: Copy SQLite extensions to output dir
+              shell: bash
+              run: |
+                cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
 
             - name: Build packages
               working-directory: output/build

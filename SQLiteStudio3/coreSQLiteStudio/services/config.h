@@ -3,8 +3,6 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "config_builder.h"
-#include "services/functionmanager.h"
-#include "collationmanager.h"
 #include "sqlitestudio.h"
 #include "common/utils.h"
 #include <QObject>
@@ -34,11 +32,16 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(QVariantList, Functions,               QVariantList())
         CFG_ENTRY(QVariantList, Collations,              QVariantList())
         CFG_ENTRY(QVariantList, Extensions,              QVariantList())
+        CFG_ENTRY(QVariantList, CodeSnippets,            QVariantList())
         CFG_ENTRY(QString,      BugReportUser,           QString())
         CFG_ENTRY(QString,      BugReportPassword,       QString())
         CFG_ENTRY(QString,      BugReportRecentTitle,    QString())
         CFG_ENTRY(QString,      BugReportRecentContents, QString())
         CFG_ENTRY(bool,         BugReportRecentError,    false)
+        CFG_ENTRY(bool,         DefaultSnippetsCreated,  false)
+    )
+    CFG_CATEGORY(CodeAssistant,
+        CFG_ENTRY(bool,         AutoTrigger,             true)
     )
 )
 
@@ -115,7 +118,6 @@ class API_EXPORT Config : public QObject
         static void setAskUserForConfigDirFunc(const AskUserForConfigDirFunc& value);
 
         virtual void init() = 0;
-        virtual void cleanUp() = 0;
         virtual const QString& getConfigDir() const = 0;
         virtual QString getConfigFilePath() const = 0;
         virtual bool isInMemory() const = 0;

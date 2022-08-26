@@ -1,18 +1,20 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3350500'
-    SQLITE_RELEASE_YEAR: '2021'
+    SQLITE_VERSION: '3390200'
+    SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-linux-x64-installer.run
 
 name: Linux release build
 
 on:
+    workflow_dispatch:
+        inputs:
     schedule:
-        - cron: '30 3 * * *' # run at 3:30 AM UTC
+        - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
     repository_dispatch:
         types: [lin_release]
 
@@ -51,6 +53,12 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Pre-download SQLite vanilla sourcecode
+              shell: bash
+              run: |
+                cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+
             - name: Install SQLite3
               run: |
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
@@ -73,6 +81,24 @@ jobs:
                 strip libsqlite3.so
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
+
+            - name: Compile additional SQLite3 extensions
+              shell: bash
+              run: |
+                cd ..
+                mkdir ext
+                unzip sqlite-src-$SQLITE_VERSION.zip
+                cd sqlite-src-$SQLITE_VERSION/ext
+                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                for f in compress; do
+                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so"
+                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so
+                done
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
+                    gcc misc/$f.c $FLAGS -o ../../ext/$f.so
+                done
+                ls -l ../../ext/
 
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
@@ -101,6 +127,11 @@ jobs:
               run: |
                 qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
+
+            - name: Copy SQLite extensions to output dir
+              shell: bash
+              run: |
+                cp -R ../ext output/SQLiteStudio/extensions
               
             - name: Prepare portable dir
               working-directory: output
@@ -111,6 +142,13 @@ jobs:
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
+
+            - name: Copy libcrypto to portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
+                REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
+                cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}

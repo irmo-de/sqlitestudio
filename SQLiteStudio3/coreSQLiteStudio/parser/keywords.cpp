@@ -118,6 +118,7 @@ void initKeywords()
     keywords3["LIKE"] = TK3_LIKE_KW;
     keywords3["LIMIT"] = TK3_LIMIT;
     keywords3["MATCH"] = TK3_MATCH;
+    keywords3["MATERIALIZED"] = TK3_MATERIALIZED;
     keywords3["NATURAL"] = TK3_JOIN_KW;
     keywords3["NO"] = TK3_NO;
     keywords3["NOT"] = TK3_NOT;
@@ -149,6 +150,7 @@ void initKeywords()
     keywords3["RENAME"] = TK3_RENAME;
     keywords3["REPLACE"] = TK3_REPLACE;
     keywords3["RESTRICT"] = TK3_RESTRICT;
+    keywords3["RETURNING"] = TK3_RETURNING;
     keywords3["RIGHT"] = TK3_JOIN_KW;
     keywords3["ROLLBACK"] = TK3_ROLLBACK;
     keywords3["ROW"] = TK3_ROW;
@@ -192,11 +194,11 @@ void initKeywords()
     softKeywords3 << "ABORT" << "ACTION" << "AFTER" << "ALWAYS" << "ANALYZE" << "ASC" << "ATTACH" << "BEFORE" << "BEGIN" << "BY" << "CASCADE"
                   << "CAST" << "COLUMNKW" << "CONFLICT" << "CURRENT" << "DATABASE" << "DEFERRED" << "DESC" << "DETACH" << "DO" << "EACH"
                   << "END" << "EXCLUDE" << "EXCLUSIVE" << "EXPLAIN" << "FAIL" << "FIRST" << "FOLLOWING" << "FOR" << "GENERATED" << "GROUPS"
-                  << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "NO" << "NULLS"
-                  << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE" << "RANGE"
-                  << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP" << "TIES"
-                  << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME" << "IF"
-                  << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
+                  << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "MATERIALIZED" << "NO"
+                  << "NULLS" << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE"
+                  << "RANGE" << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP"
+                  << "TIES" << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME"
+                  << "IF" << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
 }
 
 

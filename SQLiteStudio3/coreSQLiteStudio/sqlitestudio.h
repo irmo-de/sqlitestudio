@@ -10,6 +10,7 @@
 
 class DbManager;
 class Config;
+class CollationManager;
 class QProcessEnvironment;
 class PluginManager;
 class QThreadPool;
@@ -29,6 +30,8 @@ class UpdateManager;
 #endif
 class ExtraLicenseManager;
 class SqliteExtensionManager;
+class Db;
+class CodeSnippetManager;
 
 /** @file */
 
@@ -125,6 +128,9 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* getExportManager() const;
         void setExportManager(ExportManager* value);
 
+        CodeSnippetManager* getCodeSnippetManager() const;
+        void setCodeSnippetManager(CodeSnippetManager* newCodeSnippetManager);
+
         int getVersion() const;
         QString getVersionString() const;
 
@@ -215,26 +221,28 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
+        CodeSnippetManager* codeSnippetManager = nullptr;
 #ifdef PORTABLE_CONFIG
         UpdateManager* updateManager = nullptr;
 #endif
         ExtraLicenseManager* extraLicenseManager = nullptr;
         QString currentLang;
         QStringList initialTranslationFiles;
+        bool finalCleanupDone = false;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);
         void pluginToBeUnloaded(Plugin* plugin,PluginType* pluginType);
         void pluginUnloaded(const QString& pluginName,PluginType* pluginType);
 
+    public slots:
         /**
          * @brief Cleans up all internal objects.
          *
-         * Deletes all internal objects. It's called from destructor.
+         * Deletes all internal objects. It's called from qApp signal or from UI window closing event.
          */
         void cleanUp();
 
-    public slots:
         /**
          * @brief Updates code formatter with available plugins.
          *

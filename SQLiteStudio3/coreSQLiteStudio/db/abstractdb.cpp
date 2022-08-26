@@ -1,15 +1,13 @@
 #include "abstractdb.h"
-#include "services/dbmanager.h"
+#include "services/collationmanager.h"
 #include "common/utils.h"
 #include "asyncqueryrunner.h"
 #include "sqlresultsrow.h"
 #include "common/utils_sql.h"
-#include "services/config.h"
 #include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
 #include "services/notifymanager.h"
 #include "services/sqliteextensionmanager.h"
-#include "log.h"
 #include "parser/lexer.h"
 #include "common/compatibility.h"
 #include <QDebug>
@@ -25,10 +23,12 @@ quint32 AbstractDb::asyncId = 1;
 AbstractDb::AbstractDb(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions) :
     name(name), path(path), connOptions(connOptions)
 {
+    connect(SQLITESTUDIO, SIGNAL(aboutToQuit()), this, SLOT(appIsAboutToQuit()));
 }
 
 AbstractDb::~AbstractDb()
 {
+    disconnect(SQLITESTUDIO, SIGNAL(aboutToQuit()), this, SLOT(appIsAboutToQuit()));
 }
 
 bool AbstractDb::open()
@@ -47,7 +47,11 @@ bool AbstractDb::close()
     if (deny)
         return false;
 
-    bool res = !isOpen() || closeQuiet();
+    bool open = isOpen();
+    if (open)
+        flushWal();
+
+    bool res = !open || closeQuiet();
     if (res)
         emit disconnected();
 
@@ -618,6 +622,12 @@ void AbstractDb::asyncQueryFinished(AsyncQueryRunner *runner)
         emit idle();
 }
 
+void AbstractDb::appIsAboutToQuit()
+{
+    if (isOpen())
+        flushWal();
+}
+
 QString AbstractDb::attach(Db* otherDb, bool silent)
 {
     QWriteLocker locker(&dbOperLock);
@@ -718,7 +728,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
     QSet<QString> existingNames;
     SqlQueryPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));
 
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
         existingNames << row->value(0).toString();
 
     return randStrNotIn(16, existingNames, false);
@@ -888,6 +898,12 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
         registeredFunctions << function;
     else
         qCritical() << "Could not register SQL function:" << function.name << function.argCount << function.type;
+}
+
+void AbstractDb::flushWal()
+{
+    if (!flushWalInternal())
+        notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 
 int qHash(const AbstractDb::RegisteredFunction& fn)

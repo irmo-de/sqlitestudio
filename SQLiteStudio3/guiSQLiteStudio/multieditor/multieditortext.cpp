@@ -1,5 +1,6 @@
 #include "multieditortext.h"
 #include "common/unused.h"
+#include "iconmanager.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>
@@ -173,6 +174,7 @@ int MultiEditorTextPlugin::getPriority(const DataType& dataType)
         case DataType::TEXT:
         case DataType::CHAR:
         case DataType::VARCHAR:
+        case DataType::ANY:
         case DataType::unknown:
             break;
     }

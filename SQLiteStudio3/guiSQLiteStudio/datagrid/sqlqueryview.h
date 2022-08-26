@@ -5,7 +5,6 @@
 #include "common/extactioncontainer.h"
 #include "db/queryexecutor.h"
 #include "guiSQLiteStudio_global.h"
-#include "common/table.h"
 #include <QTableView>
 #include <QHeaderView>
 
@@ -35,8 +34,7 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
 
 class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -58,12 +56,12 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             OPEN_VALUE_EDITOR,
             SORT_DIALOG,
             RESET_SORTING,
-            LOAD_FULL_VALUES,
             GENERATE_SELECT,
             GENERATE_INSERT,
             GENERATE_UPDATE,
             GENERATE_DELETE
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {
@@ -86,7 +84,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
     protected:
         void scrollContentsBy(int dx, int dy);
-        void mouseMoveEvent(QMouseEvent *event);
 
     private:
         class Header : public QHeaderView
@@ -125,8 +122,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool simpleBrowserMode = false;
         bool ignoreColumnWidthChanges = false;
         int beforeExecutionHorizontalPosition = -1;
-        int headerContextMenuSection = -1;
-        QModelIndex indexUnderCursor;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);
@@ -141,7 +136,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void generateInsert();
         void generateUpdate();
         void generateDelete();
-        void loadFullValuesForColumn();
 
     public slots:
         void executionStarted();

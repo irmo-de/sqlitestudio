@@ -36,8 +36,22 @@ void FormatCreateTable::formatInternal()
 
         withParDefRight();
 
-        if (!createTable->withOutRowId.isNull())
+        markAndKeepIndent("tableOptions");
+        bool atLeastOneOption = false;
+        if (createTable->withOutRowId)
+        {
             withKeyword("WITHOUT").withId("ROWID");
+            atLeastOneOption = true;
+        }
+
+        if (createTable->strict)
+        {
+            if (atLeastOneOption)
+                withListComma(FormatToken::NO_SPACE_BEFORE);
+
+            withId("STRICT");
+            //atLeastOneOption = true; // to uncomment if there are further options down below
+        }
     }
 
     withSemicolon();
@@ -206,12 +220,12 @@ void FormatCreateTableConstraint::formatInternal()
     {
         case SqliteCreateTable::Constraint::PRIMARY_KEY:
         {
-            withKeyword("PRIMARY").withKeyword("KEY").withParDefLeft().withStatementList(constr->indexedColumns).withParDefRight();
+            withKeyword("PRIMARY").withKeyword("KEY").withParDefLeft().withStatementList(constr->indexedColumns);
 
             if (constr->autoincrKw)
                 withKeyword("AUTOINCREMENT");
 
-            withConflict(constr->onConflict);
+            withParDefRight().withConflict(constr->onConflict);
             break;
         }
         case SqliteCreateTable::Constraint::UNIQUE:

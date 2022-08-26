@@ -136,8 +136,11 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
 
     writeTagWithValue("database", database);
     writeTagWithValue("name", table);
-    if (!createTable->withOutRowId.isNull())
+    if (createTable->withOutRowId)
         writeln("<withoutRowId>true</withoutRowId>");
+
+    if (createTable->strict)
+        writeln("<strict>true</strict>");
 
     writeTagWithValue("ddl", ddl);
 
@@ -478,11 +481,11 @@ QString XmlExport::toString(bool value)
 
 bool XmlExport::init()
 {
-    Q_INIT_RESOURCE(xmlexport);
+    SQLS_INIT_RESOURCE(xmlexport);
     return GenericExportPlugin::init();
 }
 
 void XmlExport::deinit()
 {
-    Q_CLEANUP_RESOURCE(xmlexport);
+    SQLS_CLEANUP_RESOURCE(xmlexport);
 }

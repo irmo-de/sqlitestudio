@@ -2,21 +2,16 @@
 #include "ui_tablewindow.h"
 #include "services/dbmanager.h"
 #include "services/notifymanager.h"
-#include "sqlitestudio.h"
 #include "common/unused.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
-#include "common/intvalidator.h"
-#include "common/extlineedit.h"
 #include "datagrid/sqltablemodel.h"
-#include "common/extaction.h"
 #include "mainwindow.h"
 #include "tablestructuremodel.h"
 #include "tableconstraintsmodel.h"
 #include "dialogs/columndialog.h"
 #include "dialogs/constraintdialog.h"
 #include "mdiarea.h"
-#include "sqlitesyntaxhighlighter.h"
 #include "dialogs/newconstraintdialog.h"
 #include "db/chainexecutor.h"
 #include "common/widgetcover.h"
@@ -37,7 +32,6 @@
 #include "themetuner.h"
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
-#include "datagrid/sqlqueryitem.h"
 #include "common/dbcombobox.h"
 #include <QMenu>
 #include <QToolButton>
@@ -567,6 +561,7 @@ void TableWindow::initDbAndTable()
     ui->constraintsView->setModel(constraintTabModel);
 
     connect(ui->withoutRowIdCheck, SIGNAL(clicked()), this, SLOT(withOutRowIdChanged()));
+    connect(ui->strictTableCheck, SIGNAL(clicked()), this, SLOT(strictChanged()));
 
     parseDdl();
     updateIndexes();
@@ -614,7 +609,8 @@ void TableWindow::parseDdl()
     structureModel->setCreateTable(createTable.data());
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
-    ui->withoutRowIdCheck->setChecked(!createTable->withOutRowId.isNull());
+    ui->withoutRowIdCheck->setChecked(createTable->withOutRowId);
+    ui->strictTableCheck->setChecked(createTable->strict);
     ui->tableConstraintsView->resizeColumnsToContents();
     ui->structureView->resizeColumnsToContents();
     ui->constraintsView->resizeColumnsToContents();
@@ -759,6 +755,7 @@ void TableWindow::checkIfTableDeleted(const QString& database, const QString& ob
     if (object.compare(table, Qt::CaseInsensitive) == 0)
     {
         dbClosedFinalCleanup();
+        MDIAREA->enforceCurrentTaskSelectionAfterWindowClose();
         getMdiWindow()->close();
     }
 }
@@ -885,7 +882,8 @@ void TableWindow::rollbackStructure()
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
     ui->tableNameEdit->setText(createTable->table);
-    ui->withoutRowIdCheck->setChecked(!createTable->withOutRowId.isNull());
+    ui->withoutRowIdCheck->setChecked(createTable->withOutRowId);
+    ui->strictTableCheck->setChecked(createTable->strict);
 
     updateStructureCommitState();
     updateStructureToolbarState();
@@ -1043,6 +1041,26 @@ bool TableWindow::validate(bool skipWarning)
         }
     }
 
+    if (ui->strictTableCheck->isChecked())
+    {
+        QStringList nonStrictColumns;
+        for (SqliteCreateTable::Column* column : createTable->columns)
+        {
+            if (DataType::isStrict(column->type->name))
+                continue;
+
+            nonStrictColumns << column->name;
+        }
+
+        if (!nonStrictColumns.isEmpty())
+        {
+            notifyError(tr("Following columns have non-strict data type: %1."
+                           " Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2")
+                            .arg(nonStrictColumns.join(", "), DataType::getStrictValueNames().join(", ")));
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -1052,7 +1070,8 @@ bool TableWindow::isModified() const
             (structureConstraintsModel && structureConstraintsModel->isModified()) ||
             (originalCreateTable &&
                 (originalCreateTable->table != ui->tableNameEdit->text() ||
-                 originalCreateTable->withOutRowId != createTable->withOutRowId)
+                 originalCreateTable->withOutRowId != createTable->withOutRowId ||
+                 originalCreateTable->strict != createTable->strict)
             ) ||
             !existingTable;
 }
@@ -1358,7 +1377,26 @@ void TableWindow::withOutRowIdChanged()
     if (!createTable)
         return;
 
-    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked() ? QStringLiteral("ROWID") : QString();
+    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked();
+    updateDdlTab();
+    emit modifyStatusChanged();
+}
+
+void TableWindow::strictChanged()
+{
+    if (!createTable)
+        return;
+
+    createTable->strict = ui->strictTableCheck->isChecked();
+    if (createTable->strict)
+    {
+        for (SqliteCreateTable::Column* column : createTable->columns)
+        {
+            column->type->precision = QVariant();
+            column->type->scale = QVariant();
+        }
+    }
+
     updateDdlTab();
     emit modifyStatusChanged();
 }

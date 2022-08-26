@@ -78,6 +78,11 @@ void FormatExpr::formatInternal()
                 withDecrIndent();
             break;
         }
+        case SqliteExpr::Mode::PTR_OP:
+        {
+            withStatement(expr->expr1).withOperator(expr->ptrOp).withStatement(expr->expr2);
+            break;
+        }
         case SqliteExpr::Mode::FUNCTION:
         {
             withFuncId(expr->function).withParFuncLeft();
@@ -163,6 +168,16 @@ void FormatExpr::formatInternal()
                 withKeyword("NOT");
 
             withStatement(expr->expr2, "is");
+            break;
+        }
+        case SqliteExpr::Mode::DISTINCT:
+        {
+            withStatement(expr->expr1).withKeyword("IS");
+            if (expr->notKw)
+                withKeyword("NOT");
+
+            withKeyword("DISTINCT").withKeyword("FROM");
+            withStatement(expr->expr2, "isDistinct");
             break;
         }
         case SqliteExpr::Mode::BETWEEN:

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../dirs.pri)
+include($$PWD/../common.pri)
 include($$PWD/../utils.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
@@ -54,11 +54,8 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG  += c++17 lrelease embed_translations
+CONFIG  += c++17
 QMAKE_CXXFLAGS += -pedantic
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += sqlitestudio.cpp \
     chillout/chillout.cpp \
@@ -72,6 +69,7 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
     returncode.cpp \
+    services/codesnippetmanager.cpp \
     services/config.cpp \
     common/nulldevice.cpp \
     parser/lexer_low_lev.cpp \
@@ -109,7 +107,6 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqliteselect.cpp \
     parser/ast/sqliteupdate.cpp \
     parser/ast/sqlitevacuum.cpp \
-    parser/ast/sqlitecopy.cpp \
     parser/ast/sqliteemptyquery.cpp \
     parser/parser_helper_stubs.cpp \
     parser/ast/sqliteexpr.cpp \
@@ -144,7 +141,6 @@ SOURCES += sqlitestudio.cpp \
     db/queryexecutorsteps/queryexecutoraddrowids.cpp \
     db/queryexecutorsteps/queryexecutorlimit.cpp \
     db/queryexecutorsteps/queryexecutorcolumns.cpp \
-    db/queryexecutorsteps/queryexecutorcellsize.cpp \
     db/queryexecutorsteps/queryexecutororder.cpp \
     db/sqlerrorcodes.cpp \
     common/readwritelocker.cpp \
@@ -251,6 +247,7 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqlitenulls.h \
     parser/ast/sqlitewindowdefinition.h \
     returncode.h \
+    services/codesnippetmanager.h \
     services/config.h \
     common/nulldevice.h \
     parser/lexer_low_lev.h \
@@ -288,7 +285,6 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqliteselect.h \
     parser/ast/sqliteupdate.h \
     parser/ast/sqlitevacuum.h \
-    parser/ast/sqlitecopy.h \
     parser/ast/sqlitequerytype.h \
     parser/ast/sqliteemptyquery.h \
     parser/parser_helper_stubs.h \
@@ -332,7 +328,6 @@ HEADERS += sqlitestudio.h\
     db/queryexecutorsteps/queryexecutoraddrowids.h \
     db/queryexecutorsteps/queryexecutorlimit.h \
     db/queryexecutorsteps/queryexecutorcolumns.h \
-    db/queryexecutorsteps/queryexecutorcellsize.h \
     common/unused.h \
     db/queryexecutorsteps/queryexecutororder.h \
     common/readwritelocker.h \

@@ -1,6 +1,9 @@
 #include "completionhelper.h"
 #include "completioncomparer.h"
 #include "db/db.h"
+#include "parser/ast/sqlitedelete.h"
+#include "parser/ast/sqliteinsert.h"
+#include "parser/ast/sqliteupdate.h"
 #include "parser/keywords.h"
 #include "parser/parser.h"
 #include "parser/lexer.h"
@@ -147,6 +150,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
     switch (token->type)
     {
         case Token::CTX_ROWID_KW:
+        case Token::CTX_STRICT_KW:
             results += getExpectedToken(ExpectedToken::KEYWORD, token->value);
             break;
         case Token::CTX_NEW_KW:
@@ -497,6 +501,16 @@ QList<ExpectedTokenPtr> CompletionHelper::getObjects(ExpectedToken::Type type, c
 QList<ExpectedTokenPtr> CompletionHelper::getColumns()
 {
     QList<ExpectedTokenPtr> results;
+    switch (context) {
+        case Context::UPDATE_RETURNING:
+        case Context::INSERT_RETURNING:
+        case Context::DELETE_RETURNING:
+            results += getExpectedToken(ExpectedToken::OPERATOR, "*", QString(), QString(), 1);
+            break;
+        default:
+            break;
+    }
+
     if (previousId)
     {
         if (twoIdsBack)
@@ -896,6 +910,7 @@ void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, cons
             case Token::CTX_FK_MATCH:
             case Token::CTX_PRAGMA:
             case Token::CTX_ROWID_KW:
+            case Token::CTX_STRICT_KW:
             case Token::CTX_NEW_KW:
             case Token::CTX_OLD_KW:
             case Token::CTX_ERROR_MESSAGE:
@@ -1055,6 +1070,21 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::EXPR;
     }
+    else if (isInUpdateReturning())
+    {
+        context = Context::UPDATE_RETURNING;
+        extractUpdateAvailableColumnsAndTables();
+    }
+    else if (isInInsertReturning())
+    {
+        context = Context::INSERT_RETURNING;
+        extractInsertAvailableColumnsAndTables();
+    }
+    else if (isInDeleteReturning())
+    {
+        context = Context::DELETE_RETURNING;
+        extractDeleteAvailableColumnsAndTables();
+    }
 }
 
 void CompletionHelper::detectSelectContext()
@@ -1132,6 +1162,21 @@ bool CompletionHelper::isInCreateTrigger()
         return false;
 
     return true;
+}
+
+bool CompletionHelper::isInUpdateReturning()
+{
+    return isIn(SqliteQueryType::Update, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInDeleteReturning()
+{
+    return isIn(SqliteQueryType::Delete, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInInsertReturning()
+{
+    return isIn(SqliteQueryType::Insert, "returning", "RETURNING");
 }
 
 bool CompletionHelper::isIn(SqliteQueryType queryType, const QString &tokenMapKey, const QString &prefixKeyword)
@@ -1266,7 +1311,8 @@ void CompletionHelper::initFunctions(Db* db)
                      << "lag(expr)" << "lag(expr, offset)" << "lag(expr, offset, default)"
                      << "lead(expr)" << "lead(expr, offset)" << "lead(expr, offset, default)"
                      << "first_value(expr)" << "last_value(expr)" << "nth_value(expr, N)"
-                     << "substring(X,Y,Z)" << "substring(X,Y)";
+                     << "substring(X,Y,Z)" << "substring(X,Y)" << "unixepoch(mod,mod,...)"
+                     << "printf(format,...)" << "format(format,...)";
 
     if (!db->isOpen())
         return;
@@ -1274,7 +1320,7 @@ void CompletionHelper::initFunctions(Db* db)
     // Parse what we already have
     QSet<QString> handledSignatures;
     static_qstring(sigTpl, "%1_%2");
-    for (const QString& fn : sqlite3Functions)
+    for (QString& fn : sqlite3Functions)
     {
         int argStart = fn.lastIndexOf("(");
         int argEnd = fn.lastIndexOf(")");
@@ -1405,9 +1451,42 @@ void CompletionHelper::extractSelectAvailableColumnsAndTables()
     }
 }
 
+void CompletionHelper::extractInsertAvailableColumnsAndTables()
+{
+    auto insert = parsedQuery.dynamicCast<SqliteInsert>();
+    extractAvailableColumnsAndTables(insert->database, insert->table);
+}
+
+void CompletionHelper::extractDeleteAvailableColumnsAndTables()
+{
+    auto del = parsedQuery.dynamicCast<SqliteDelete>();
+    extractAvailableColumnsAndTables(del->database, del->table);
+}
+
+void CompletionHelper::extractUpdateAvailableColumnsAndTables()
+{
+    auto update = parsedQuery.dynamicCast<SqliteUpdate>();
+    theFromAvailableColumns = selectResolver->resolveAvailableColumns(update ->from);
+    theFromAvailableTables = selectResolver->resolveTables(update ->from);
+}
+
+void CompletionHelper::extractAvailableColumnsAndTables(const QString& database, const QString& table)
+{
+    QStringList columnNames = schemaResolver->getTableColumns(database, table);
+    for (QString& colName : columnNames) {
+        SelectResolver::Column column;
+        column.type = SelectResolver::Column::COLUMN;
+        column.database = database;
+        column.table = table;
+        column.column = colName;
+        theFromAvailableColumns << column;
+        theFromAvailableTables << column.getTable();
+    }
+}
+
 void CompletionHelper::extractTableAliasMap()
 {
-    for (SelectResolver::Column column : selectAvailableColumns)
+    for (SelectResolver::Column& column : selectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1423,7 +1502,7 @@ void CompletionHelper::extractTableAliasMap()
     // Given the above, we can extract table aliases in an order from deepest
     // to shallowest, skipping any duplicates, becase the deeper alias is mentioned,
     // the higher is its priority.
-    for (SelectResolver::Column column : parentSelectAvailableColumns)
+    for (SelectResolver::Column& column : parentSelectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1445,7 +1524,7 @@ void CompletionHelper::extractCreateTableColumns()
         return;
 
     SqliteCreateTablePtr createTable = parsedQuery.dynamicCast<SqliteCreateTable>();
-    for (SqliteCreateTable::Column* col : createTable->columns)
+    for (SqliteCreateTable::Column*& col : createTable->columns)
         favoredColumnNames << col->name;
 }
 

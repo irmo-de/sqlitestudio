@@ -4,10 +4,6 @@ void ConfigMock::init()
 {
 }
 
-void ConfigMock::cleanUp()
-{
-}
-
 const QString& ConfigMock::getConfigDir()
 {
     static const QString cfg;
@@ -192,16 +188,6 @@ void ConfigMock::commit()
 
 void ConfigMock::rollback()
 {
-}
-
-bool ConfigMock::setCollations(const QList<CollationManager::CollationPtr>&)
-{
-    return true;
-}
-
-QList<CollationManager::CollationPtr> ConfigMock::getCollations() const
-{
-    return QList<CollationManager::CollationPtr>();
 }
 
 const QString &ConfigMock::getConfigDir() const

@@ -2,7 +2,6 @@
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqliteinsert.h"
-#include "parser/ast/sqlitewith.h"
 #include "parser/ast/sqliteupdate.h"
 #include "parser/keywords.h"
 #include "parser/lexer.h"
@@ -59,8 +58,14 @@ class ParserTest : public QObject
         void testGeneratedColumn();
         void testWindowClause();
         void testFilterClause();
+        void testFilterAsId();
         void testUpdateFrom();
         void testStringAsTableId();
+        void testJsonPtrOp();
+        void testUnfinishedSelectWithAliasForCompleter();
+        void testUnfinishedSelectWithAliasStrict();
+        void testBlobLiteral();
+        void testBigDec();
 };
 
 ParserTest::ParserTest()
@@ -646,6 +651,18 @@ void ParserTest::testFilterClause()
     QVERIFY(resCol->expr->filterOver->over->window->mode == SqliteWindowDefinition::Window::Mode::ORDER_BY);
 }
 
+void ParserTest::testFilterAsId()
+{
+    QString sql = "CREATE TABLE aa2 (sdfsdfdf, filter)";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteCreateTablePtr create = parser3->getQueries().first().dynamicCast<SqliteCreateTable>();
+    QCOMPARE(create->columns.size(), 2);
+    QCOMPARE(create->columns[1]->name, "filter");
+}
+
 void ParserTest::testUpdateFrom()
 {
     QString sql = "UPDATE inventory"
@@ -672,6 +689,68 @@ void ParserTest::testStringAsTableId()
     bool res = parser3->parse(sql);
     QVERIFY(res);
     QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testJsonPtrOp()
+{
+    QString sql = "SELECT '[\"a11\", \"a22\", {\"x\":\"a33\"}]' -> 2,"
+                  "       '[\"a11\", \"a22\", {\"x\":\"a33\"}]' ->> 2";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testUnfinishedSelectWithAliasForCompleter()
+{
+    QString sql = "select * from a1 x where x.";
+    bool res = parser3->parse(sql, true);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testUnfinishedSelectWithAliasStrict()
+{
+    QString sql = "select * from a1 x where x.";
+    bool res = parser3->parse(sql);
+    QVERIFY(!res);
+    QVERIFY(!parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testBlobLiteral()
+{
+    QString sql = "insert into tab1 values (X'010e0F', 'string''with''quotes')";
+    bool res = parser3->parse(sql);
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteInsertPtr insert = parser3->getQueries().first().dynamicCast<SqliteInsert>();
+    SqliteSelect::Core* core = insert->select->coreSelects[0];
+    QCOMPARE(core->resultColumns.size(), 2);
+
+    QCOMPARE(core->resultColumns[0]->expr->mode, SqliteExpr::Mode::LITERAL_VALUE);
+    QCOMPARE(core->resultColumns[0]->expr->literalValue.type(), QVariant::ByteArray);
+    QCOMPARE(core->resultColumns[0]->expr->literalValue.toByteArray().toHex(), "010e0f");
+    QCOMPARE(core->resultColumns[1]->expr->mode, SqliteExpr::Mode::LITERAL_VALUE);
+    QCOMPARE(core->resultColumns[1]->expr->literalValue.type(), QVariant::String);
+    QCOMPARE(core->resultColumns[1]->expr->literalValue.toString(), "string''with''quotes");
+
+    core->resultColumns[0]->expr->rebuildTokens();
+    QCOMPARE(core->resultColumns[0]->expr->tokens[0]->value, "X'010e0f'");
+}
+
+void ParserTest::testBigDec()
+{
+    QString sql = "select 9999999999999999999 + 9999999999999999999, 9999999999999999999.1 + 9999999999999999999.2, 9999.1 + 9999.2;";
+    bool res = parser3->parse(sql);
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+    SqliteSelectPtr select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
+    SqliteSelect::Core* core = select->coreSelects[0];
+    QCOMPARE(core->resultColumns[0]->expr->expr1->literalValue.type(), QVariant::Double);
+    QCOMPARE(core->resultColumns[1]->expr->expr1->literalValue.type(), QVariant::Double);
+    QCOMPARE(core->resultColumns[2]->expr->expr1->literalValue.type(), QVariant::Double);
 }
 
 void ParserTest::initTestCase()

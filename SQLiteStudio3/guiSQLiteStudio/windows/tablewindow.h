@@ -53,8 +53,7 @@ CFG_KEY_LIST(TableWindow, QObject::tr("Table window"),
 
 class GUI_API_EXPORT TableWindow : public MdiChild
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -98,6 +97,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
             NEXT_TAB,
             PREV_TAB
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {
@@ -230,6 +230,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void constraintsViewDoubleClicked(const QModelIndex &index);
         void nameChanged();
         void withOutRowIdChanged();
+        void strictChanged();
         void addIndex();
         void editCurrentIndex();
         void indexViewDoubleClicked(const QModelIndex& idx);

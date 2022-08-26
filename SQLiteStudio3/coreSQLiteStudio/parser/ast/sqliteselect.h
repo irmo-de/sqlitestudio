@@ -123,9 +123,6 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 
                     protected:
                         TokenList rebuildTokensFromContents();
-
-                    private:
-                        TokenList rebuildTokensForSqlite3();
                 };
 
                 class API_EXPORT JoinConstraint : public SqliteStatement
@@ -232,5 +229,6 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 };
 
 typedef QSharedPointer<SqliteSelect> SqliteSelectPtr;
+typedef SqliteSelect::Core::ResultColumn SqliteResultColumn;
 
 #endif // SQLITESELECT_H

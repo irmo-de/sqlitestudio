@@ -231,6 +231,19 @@ void SqliteExpr::initUnaryOp(SqliteExpr *expr, const QString& op)
         expr->setParent(this);
 }
 
+void SqliteExpr::initPtrOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2)
+{
+    mode = SqliteExpr::Mode::PTR_OP;
+    this->expr1 = expr1;
+    this->expr2 = expr2;
+    ptrOp = op;
+    if (expr1)
+        expr1->setParent(this);
+
+    if (expr2)
+        expr2->setParent(this);
+}
+
 void SqliteExpr::initLike(SqliteExpr *expr1, bool notKw, LikeOp likeOp, SqliteExpr *expr2, SqliteExpr *expr3)
 {
     mode = SqliteExpr::Mode::LIKE;
@@ -261,6 +274,19 @@ void SqliteExpr::initNull(SqliteExpr *expr, const QString& value)
 void SqliteExpr::initIs(SqliteExpr *expr1, bool notKw, SqliteExpr *expr2)
 {
     mode = SqliteExpr::Mode::IS;
+    this->expr1 = expr1;
+    this->notKw = notKw;
+    this->expr2 = expr2;
+    if (expr1)
+        expr1->setParent(this);
+
+    if (expr2)
+        expr2->setParent(this);
+}
+
+void SqliteExpr::initDistinct(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2)
+{
+    mode = SqliteExpr::Mode::DISTINCT;
     this->expr1 = expr1;
     this->notKw = notKw;
     this->expr2 = expr2;
@@ -549,6 +575,9 @@ TokenList SqliteExpr::rebuildTokensFromContents()
         case SqliteExpr::Mode::BINARY_OP:
             builder.withStatement(expr1).withSpace().withOperator(binaryOp).withSpace().withStatement(expr2);
             break;
+        case SqliteExpr::Mode::PTR_OP:
+            builder.withStatement(expr1).withSpace().withOperator(ptrOp).withSpace().withStatement(expr2);
+            break;
         case SqliteExpr::Mode::FUNCTION:
             builder.withOther(function).withParLeft();
             if (distinctKw)
@@ -597,6 +626,9 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             break;
         case SqliteExpr::Mode::IS:
             builder.withTokens(rebuildIs());
+            break;
+        case SqliteExpr::Mode::DISTINCT:
+            builder.withTokens(rebuildDistinct());
             break;
         case SqliteExpr::Mode::BETWEEN:
             builder.withTokens(rebuildBetween());
@@ -688,6 +720,17 @@ TokenList SqliteExpr::rebuildIs()
         builder.withSpace().withKeyword("NOT");
 
     builder.withStatement(expr2);
+    return builder.build();
+}
+
+TokenList SqliteExpr::rebuildDistinct()
+{
+    StatementTokenBuilder builder;
+    builder.withStatement(expr1).withSpace().withKeyword("IS");
+    if (notKw)
+        builder.withSpace().withKeyword("NOT");
+
+    builder.withSpace().withKeyword("DISTINCT").withSpace().withKeyword("FROM").withSpace().withStatement(expr2);
     return builder.build();
 }
 

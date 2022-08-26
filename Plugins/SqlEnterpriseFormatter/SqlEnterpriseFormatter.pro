@@ -33,7 +33,6 @@ SOURCES += sqlenterpriseformatter.cpp \
     formatattach.cpp \
     formatbegintrans.cpp \
     formatcommittrans.cpp \
-    formatcopy.cpp \
     formatcreateindex.cpp \
     formatcreatetrigger.cpp \
     formatdelete.cpp \
@@ -75,7 +74,6 @@ HEADERS += sqlenterpriseformatter.h\
     formatattach.h \
     formatbegintrans.h \
     formatcommittrans.h \
-    formatcopy.h \
     formatcreateindex.h \
     formatcreatetrigger.h \
     formatdelete.h \
@@ -104,15 +102,6 @@ FORMS += \
 
 RESOURCES += \
     sqlenterpriseformatter.qrc
-
-CONFIG += lrelease embed_translations
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)
-
-
-
-
 
 
 
