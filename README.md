@@ -3,12 +3,14 @@ Fork of SQLiteStudio for AArch64/ARM64 (Apple Silicon)
 
 A free, open source, multi-platform SQLite database manager written in C++, with use of Qt framework.
 
-# Download MacOS M1/M2 ARM64
+# Download prebuild binary for MacOS M1/M2 ARM64
 
 _Latest version_
+
 https://github.com/irmo-de/sqlitestudio-osx-arm64/releases/tag/3.3.4
 
 History
+
 https://github.com/irmo-de/sqlitestudio/releases/tag/3.3.3
 
 # Download Intel variant
