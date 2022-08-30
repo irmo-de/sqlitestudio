@@ -9,7 +9,6 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "uiconfig.h"
 #include "datagrid/sqlqueryview.h"
-#include "datagrid/sqlqueryrownummodel.h"
 #include "services/dbmanager.h"
 #include "querygenerator.h"
 #include "parser/lexer.h"
@@ -1497,28 +1496,42 @@ void SqlQueryModel::changeSorting(int logicalIndex, Qt::SortOrder order)
     if (!reloadAvailable)
         return;
 
+    QueryExecutor::SortList sortList = QueryExecutor::SortList();
+    if (logicalIndex > -1)
+        sortList = {QueryExecutor::Sort(order, logicalIndex)};
+
     queryExecutor->setSkipRowCounting(true);
-    queryExecutor->setSortOrder({QueryExecutor::Sort(order, logicalIndex)});
+    queryExecutor->setSortOrder(sortList);
     reloadInternal();
 }
 
 void SqlQueryModel::changeSorting(int logicalIndex)
 {
     Qt::SortOrder newOrder = Qt::AscendingOrder;
-    if (sortOrder.size() == 1)
+    if (sortOrder.size() != 1)
     {
-        switch (sortOrder.first().order)
-        {
-            case QueryExecutor::Sort::ASC:
-                newOrder = Qt::DescendingOrder;
-                break;
-            case QueryExecutor::Sort::DESC:
-                newOrder = Qt::AscendingOrder;
-                break;
-            case QueryExecutor::Sort::NONE:
-                newOrder = Qt::AscendingOrder;
-                break;
-        }
+        changeSorting(logicalIndex, newOrder);
+        return;
+    }
+
+    QueryExecutor::Sort singleOrder = sortOrder.first();
+    if (singleOrder.column != logicalIndex)
+    {
+        changeSorting(logicalIndex, newOrder);
+        return;
+    }
+
+    switch (singleOrder.order)
+    {
+        case QueryExecutor::Sort::ASC:
+            newOrder = Qt::DescendingOrder;
+            break;
+        case QueryExecutor::Sort::DESC:
+            logicalIndex = -1;
+            break;
+        case QueryExecutor::Sort::NONE:
+            newOrder = Qt::AscendingOrder;
+            break;
     }
     changeSorting(logicalIndex, newOrder);
 }

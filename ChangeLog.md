@@ -17,6 +17,8 @@
 - ADDED: #4006 Colors configuration for syntax highlighting is reintroduced in a new, improved form.
 - ADDED: #3793 Close windows on the left/right options added to the View menu and Taskbar context menu. Also renamed 'all but selected' to 'other'.
 - ADDED: #4065 Code Snippets - define in dedicated window, use it from the code assistant (hit the assistant hotkey twice).
+- ADDED: #4402 Added context menu option to adjust height of rows according to their contents. Also added single-row adjusting by double-clicking on the row header section on the left.
+- ADDED: #3942 Added option to SQL Export plugin to add IF NOT EXISTS clause to CREATE statements.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
@@ -29,6 +31,8 @@
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
 - CHANGE: #4240 #4458 #4419 #4129 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues (refer to GitHub issues mentioned for this ChangeLog item), that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
+- CHANGE: #4435 Changed data griv view behavior, so when user clicks once, it will select column/row and if double-clicks, the sorting order is applied.
+- CHANGE: #4088 Changed F2 hotkey, so it enters inline editing of a cell (no longer it opens the config dialog, which now is under F10 key). View Window, Collation Editor, Functions Editor, and Extensions Editor got now Ctrl+S hotkey to commit pending changes.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
@@ -49,7 +53,7 @@
 - BUGFIX: #4386 Fixed handling database password with an apostrophe.
 - BUGFIX: #4369 WAL mode is now handled properly upon application quit or database disconnection.
 - BUGFIX: #4340 Fixed crash when populating two columns with random text.
-- BUGFIX: #4362 #4363 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
+- BUGFIX: #4362 #4363 #4239 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
 - BUGFIX: #4356 Fixed resolving column names by SelectResolver in rare cases, when the column name is undefined and should be left for SQLite engine to determin.
 - BUGFIX: #4331 Fixed handling object names with # and $ inside.
 - BUGFIX: #4306 Fixed parsing BLOB literals and formatting it back to SQL statements from internal AST.
