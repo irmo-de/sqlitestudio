@@ -19,6 +19,8 @@
 - ADDED: #4065 Code Snippets - define in dedicated window, use it from the code assistant (hit the assistant hotkey twice).
 - ADDED: #4402 Added context menu option to adjust height of rows according to their contents. Also added single-row adjusting by double-clicking on the row header section on the left.
 - ADDED: #3942 Added option to SQL Export plugin to add IF NOT EXISTS clause to CREATE statements.
+- ADDED: #4249 Added tooltips for WITHOUT ROWID and STRICT checkboxes in the Table Window.
+- ADDED: #4264 Added svg icon to portable packages.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
@@ -33,6 +35,7 @@
 - CHANGE: #4240 #4458 #4419 #4129 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues (refer to GitHub issues mentioned for this ChangeLog item), that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
 - CHANGE: #4435 Changed data griv view behavior, so when user clicks once, it will select column/row and if double-clicks, the sorting order is applied.
 - CHANGE: #4088 Changed F2 hotkey, so it enters inline editing of a cell (no longer it opens the config dialog, which now is under F10 key). View Window, Collation Editor, Functions Editor, and Extensions Editor got now Ctrl+S hotkey to commit pending changes.
+- CHANGE: #4341 When testing or accepting database connection in Database Dialog, in case of error, the message is displayed in status field properly, but also shows up in tooltip of the connection error icon.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.

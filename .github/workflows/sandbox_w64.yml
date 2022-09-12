@@ -1,0 +1,144 @@
+env:
+    PYTHON_VERSION: '3.9'
+
+name: Sandbox/playground
+
+on:
+    workflow_dispatch:
+        inputs:
+
+jobs:
+    win:
+        runs-on: windows-2019
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                ls -l $pythonLocation
+
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath='${{ env.pythonLocation }}'
+                pythonPath=${pythonPath//\\/\/}
+                pythonPath=${pythonPath/c:/\/c}
+                ver=${{ env.PYTHON_VERSION }}
+                7z a -r python${ver//./}.zip $pythonPath/lib/encodings
+                7z a python${ver//./}.zip \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/python${ver//./}.dll .
+                cp $pythonPath/vcruntime140.dll .
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: win.zip
+                path: .
+    mac:
+        runs-on: macos-11
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                zip --help
+                ls -l $pythonLocation/lib
+                ls -l $pythonLocation/lib/python${{ env.PYTHON_VERSION }}
+                
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
+                zip -r python${ver//./}.zip \
+                    $libDir/encodings \
+                    $libDir/_collections_abc.py \
+                    $libDir/_sitebuiltins.py \
+                    $libDir/abc.py \
+                    $libDir/codecs.py \
+                    $libDir/genericpath.py \
+                    $libDir/io.py \
+                    $libDir/ntpath.py \
+                    $libDir/os.py \
+                    $libDir/site.py \
+                    $libDir/stat.py \
+                    -x "**/__pycache__/*"
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: mac.zip
+                path: .
+
+    linux:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                ls -l $pythonLocation/lib
+
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
+                zip -r python${ver//./}.zip \
+                    $libDir/encodings \
+                    $libDir/_collections_abc.py \
+                    $libDir/_sitebuiltins.py \
+                    $libDir/abc.py \
+                    $libDir/codecs.py \
+                    $libDir/genericpath.py \
+                    $libDir/io.py \
+                    $libDir/ntpath.py \
+                    $libDir/os.py \
+                    $libDir/site.py \
+                    $libDir/stat.py \
+                    -x "**/__pycache__/*"
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
+
+            - name: Create python files in output dir2
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
+                zip -r python${ver//./}.zip \
+                    $libDir/* \
+                    -x "**/__pycache__/*"
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: lin.zip
+                path: .

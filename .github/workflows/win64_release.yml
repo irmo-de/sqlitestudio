@@ -4,7 +4,6 @@ env:
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win64_mingw81'
     PYTHON_VERSION: '3.9'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
@@ -132,7 +131,7 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/
-              
+
             - name: Prepare portable dir
               shell: bash
               working-directory: output
@@ -176,6 +175,7 @@ jobs:
               shell: bash
               run: |
                 cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg "${{ env.PORTABLE_DIR }}"/appicon.svg
 
             - name: Determine SQLiteStudio version
               shell: bash

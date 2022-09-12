@@ -141,7 +141,7 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
-
+                
             - name: Build packages
               working-directory: output/build
               run: |
