@@ -14,6 +14,7 @@
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
 #include "common/utils_sql.h"
+#include "common/mouseshortcut.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QGridLayout>
@@ -66,6 +67,9 @@ void SqlQueryView::init()
         getModel()->setDesiredColumnWidth(section, newSize);
     });
     connect(verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(adjustRowToContents(int)));
+    MouseShortcut::forWheel(Qt::ControlModifier,
+                            this, SLOT(fontSizeChangeRequested(int)),
+                            viewport());
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -96,6 +100,7 @@ void SqlQueryView::createActions()
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
+    createAction(EDIT_CURRENT, tr("Edit current cell inline"), this, SLOT(editCurrent()), this);
     createAction(GENERATE_SELECT, "SELECT", this, SLOT(generateSelect()), this);
     createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsert()), this);
     createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdate()), this);
@@ -109,12 +114,15 @@ void SqlQueryView::createActions()
     actionMap[ADJUST_ROWS_SIZE]->setCheckable(true);
     actionMap[ADJUST_ROWS_SIZE]->setChecked(false);
     actionMap[RESET_SORTING]->setEnabled(false);
+    createAction(INCR_FONT_SIZE, tr("Increase font size", "data view"), this, SLOT(incrFontSize()), this);
+    createAction(DECR_FONT_SIZE, tr("Decrease font size", "data view"), this, SLOT(decrFontSize()), this);
+    createAction(INVERT_SELECTION, ICONS.SELECTION_INVERT, tr("Invert selection", "data view"), this, SLOT(invertSelection()), this);
 }
 
 void SqlQueryView::setupDefShortcuts()
 {
     setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, COPY, COPY_AS,
-                       PASTE, PASTE_AS, ADJUST_ROWS_SIZE}, Qt::WidgetWithChildrenShortcut);
+                       PASTE, PASTE_AS, ADJUST_ROWS_SIZE, INCR_FONT_SIZE, DECR_FONT_SIZE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlQueryView, Action);
 }
@@ -185,7 +193,6 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
             generateQueryMenu->addAction(actionMap[GENERATE_DELETE]);
         }
 
-
         contextMenu->addSeparator();
         contextMenu->addAction(actionMap[COPY]);
         contextMenu->addAction(actionMap[COPY_WITH_HEADER]);
@@ -194,11 +201,12 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         //contextMenu->addAction(actionMap[PASTE_AS]); // TODO uncomment when implemented
     }
     contextMenu->addSeparator();
+    contextMenu->addAction(actionMap[INVERT_SELECTION]);
     contextMenu->addAction(actionMap[ADJUST_ROWS_SIZE]);
     if (additionalActions.size() > 0)
     {
         contextMenu->addSeparator();
-        for (QAction* action : additionalActions)
+        for (QAction*& action : additionalActions)
             contextMenu->addAction(action);
     }
 }
@@ -353,6 +361,39 @@ void SqlQueryView::adjustRowToContents(int section)
     verticalHeader()->setSectionResizeMode(section, QHeaderView::ResizeToContents);
 }
 
+void SqlQueryView::fontSizeChangeRequested(int delta)
+{
+    changeFontSize(delta >= 0 ? 1 : -1);
+}
+
+void SqlQueryView::incrFontSize()
+{
+    changeFontSize(1);
+}
+
+void SqlQueryView::decrFontSize()
+{
+    changeFontSize(-1);
+}
+
+void SqlQueryView::invertSelection()
+{
+    SqlQueryModel* model = getModel();
+    int rows = model->rowCount();
+    int cols = model->columnCount();
+    QItemSelectionModel* selection = selectionModel();
+    for (int r = 0; r < rows; r++)
+        for (int c = 0; c < cols; c++)
+            selection->select(model->index(r, c), QItemSelectionModel::Toggle);
+
+    if (!selection->isSelected(currentIndex()))
+    {
+        QModelIndexList idxList = selection->selectedIndexes();
+        if (!idxList.isEmpty())
+            selection->setCurrentIndex(selection->selectedIndexes().first(), QItemSelectionModel::NoUpdate);
+    }
+}
+
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
     if (item->getColumn()->dataType.getType() == DataType::BLOB)
@@ -458,7 +499,7 @@ bool SqlQueryView::validatePasting(QSet<QString>& warnedColumns, bool& warnedRow
         if (!warnedColumns.contains(colName))
         {
             warnedColumns << colName;
-            notifyWarn(tr("Cannot paste to column %1. Details: %2").arg(colName).arg(item->getColumn()->getEditionForbiddenReason()));
+            notifyWarn(tr("Cannot paste to column %1. Details: %2").arg(colName, item->getColumn()->getEditionForbiddenReason()));
         }
         return false;
     }
@@ -588,6 +629,13 @@ void SqlQueryView::copy(bool withHeader)
     qApp->clipboard()->setMimeData(mimeData);
 }
 
+void SqlQueryView::changeFontSize(int factor)
+{
+    auto f = CFG_UI.Fonts.DataView.get();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.DataView.set(f);
+}
+
 bool SqlQueryView::getSimpleBrowserMode() const
 {
     return simpleBrowserMode;
@@ -677,6 +725,8 @@ void SqlQueryView::updateFont()
     QFont f = CFG_UI.Fonts.DataView.get();
     QFontMetrics fm(f);
     verticalHeader()->setDefaultSectionSize(fm.height() + 4);
+    if (getModel())
+        getModel()->repaintAllItems();
 }
 
 void SqlQueryView::executionStarted()
@@ -864,11 +914,17 @@ void SqlQueryView::openValueEditor(SqlQueryItem* item)
         return;
     }
 
+    SqlQueryModelColumn* column = item->getColumn();
+
     MultiEditorDialog editor(this);
+    if (!column->getFkConstraints().isEmpty())
+        editor.enableFk(getModel()->getDb(), column);
+
+    editor.setDataType(column->dataType);
     editor.setWindowTitle(tr("Edit value"));
-    editor.setDataType(item->getColumn()->dataType);
     editor.setValue(item->getValue());
-    editor.setReadOnly(!item->getColumn()->canEdit());
+    editor.setReadOnly(!column->canEdit());
+
     if (editor.exec() == QDialog::Rejected)
         return;
 

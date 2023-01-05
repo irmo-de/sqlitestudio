@@ -180,6 +180,23 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
     return strList.join(" ");
 }
 
+void ConfigDialog::showEvent(QShowEvent* event)
+{
+    UNUSED(event);
+    ui->categoriesTree->resizeColumnToContents(0);
+    int adjustedColumnWidth = ui->categoriesTree->columnWidth(0) + 4;
+    if (adjustedColumnWidth > ui->categoriesTree->width()) {
+        if (adjustedColumnWidth > (width() / 2))
+            adjustedColumnWidth = width() / 2;
+
+        QList<int> sizes = ui->splitter->sizes();
+        int rightPartSize = sizes[0] + sizes[1] - adjustedColumnWidth;
+        sizes[0] = adjustedColumnWidth;
+        sizes[1] = rightPartSize;
+        ui->splitter->setSizes(sizes);
+    }
+}
+
 void ConfigDialog::init()
 {
     ui->setupUi(this);
@@ -227,6 +244,7 @@ void ConfigDialog::init()
     QStringList styles = QStyleFactory::keys();
     styles.sort(Qt::CaseInsensitive);
     ui->activeStyleCombo->addItems(styles);
+    ui->activeStyleCombo->setCurrentText(STYLE->name());
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
 
@@ -894,7 +912,7 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
 
 void ConfigDialog::failedToLoadPlugin(const QString& pluginName)
 {
-    QTreeWidgetItem* theItem = itemToPluginNameMap.valueByRight(pluginName);
+    QTreeWidgetItem* theItem = pluginListItemToPluginNameMap.valueByRight(pluginName);
     if (!theItem)
     {
         qWarning() << "Plugin" << pluginName << "failed to load, but it could not be found on the plugins list in ConfigDialog.";
@@ -919,7 +937,7 @@ void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
     if (column != 0)
         return;
 
-    QString pluginName = itemToPluginNameMap.valueByLeft(item);
+    QString pluginName = pluginListItemToPluginNameMap.valueByLeft(item);
     if (PLUGINS->isBuiltIn(pluginName))
         return;
 
@@ -973,6 +991,10 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfi
     if (type->isForPluginType<SyntaxHighlighterPlugin>())
         highlighterPluginLoaded(dynamic_cast<SyntaxHighlighterPlugin*>(plugin));
 
+    QTreeWidgetItem* listItem = pluginListItemToPluginNameMap.valueByRight(plugin->getName());
+    if (listItem && listItem->checkState(0) == Qt::Unchecked)
+        listItem->setCheckState(0, Qt::Checked);
+
     // Init page
     if (!initPluginPage(plugin, skipConfigLoading))
         return;
@@ -995,7 +1017,9 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfi
 
 void ConfigDialog::pluginUnloaded(const QString& pluginName, PluginType* type)
 {
-    UNUSED(pluginName);
+    QTreeWidgetItem* item = pluginListItemToPluginNameMap.valueByRight(pluginName);
+    if (item && item->checkState(0) == Qt::Checked)
+        item->setCheckState(0, Qt::Unchecked);
 
     // Update formatters page
     if (type->isForPluginType<CodeFormatterPlugin>())
@@ -1012,7 +1036,7 @@ void ConfigDialog::updatePluginCategoriesVisibility()
 void ConfigDialog::updateBuiltInPluginsVisibility()
 {
     bool hideBuiltIn = ui->hideBuiltInPluginsCheck->isChecked();
-    QHashIterator<QTreeWidgetItem*,QString> it = itemToPluginNameMap.iterator();
+    QHashIterator<QTreeWidgetItem*,QString> it = pluginListItemToPluginNameMap.iterator();
     while (it.hasNext())
     {
         it.next();
@@ -1185,7 +1209,7 @@ void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryIte
 QString ConfigDialog::collectLoadedPlugins() const
 {
     QStringList loaded;
-    QHashIterator<QTreeWidgetItem*,QString> it = itemToPluginNameMap.iterator();
+    QHashIterator<QTreeWidgetItem*,QString> it = pluginListItemToPluginNameMap.iterator();
     while (it.hasNext())
     {
         it.next();
@@ -1499,7 +1523,7 @@ void ConfigDialog::initPluginsPage()
 
             category->addChild(item);
 
-            itemToPluginNameMap.insert(item, pluginName);
+            pluginListItemToPluginNameMap.insert(item, pluginName);
 
             // Details button
             detailsLabel = new QLabel(QString("<a href='%1'>%2</a> ").arg(pluginName, tr("Details")), ui->pluginsList);

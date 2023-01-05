@@ -4,8 +4,8 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../sqlenterpriseformatter.cpp" line="91"/>
-      <location filename="../sqlenterpriseformatter.cpp" line="98"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="90"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
       <translation>nome</translation>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="422"/>
       <source>After opening parenthesis</source>
-      <translation>Dopo l'apertura della parentesi</translation>
+      <translation>Dopo l&apos;apertura della parentesi</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="432"/>
@@ -147,17 +147,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation>Nessuno spazio tra il nome della funzione SQL e l'apertura della parentesi</translation>
+      <translation>Nessuno spazio tra il nome della funzione SQL e l&apos;apertura della parentesi</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation>Prima dell'operatore punto (nel percorso dell'oggetto database)</translation>
+      <translation>Prima dell&apos;operatore punto (nel percorso dell&apos;oggetto database)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation>Dopo l'operatore punto (nel percorso dell'oggetto database)</translation>
+      <translation>Dopo l&apos;operatore punto (nel percorso dell&apos;oggetto database)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>

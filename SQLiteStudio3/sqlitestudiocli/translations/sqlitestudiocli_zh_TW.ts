@@ -19,17 +19,17 @@
       <translation>輸入 %1 獲取幫助</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="253"/>
+      <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>透過命令列引數傳入的資料庫(%1)已在清單中，名為：%2</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="260"/>
+      <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
       <translation>未將資料庫“%1”新增到清單。</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="286"/>
+      <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
       <translation>已關閉</translation>
     </message>
@@ -430,23 +430,23 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>呼叫不提供引數時，列出當前的查詢結果輸出格式。傳入&lt;模式&gt;時，按提供的引數更改模式。支援的模式如下：
-- CLASSIC - 經典：列使用逗號分隔，不對齊。
-- FIXED   - 固定：所有列使用同等的列寬，始終按終端視窗寬度適配，可能裁剪列中的資料。
-- COLUMNS - 列：類似 FIXED，但更智慧(不適合大型結果集，詳見下文)。
-- ROW     - 行：每個行的每個列都顯示為一行，因此能顯示完整的資料。
+      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
+- CLASSIC - columns are separated by a comma, not aligned,
+- FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
+- COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
+- ROW     - each column from the row is displayed in new line, so the full data is displayed.
 
-CLASSIC 模式適合檢視完整的資料而不為每個列浪費行數。每行輸出會為每個列顯示完整的資料，因此各輸出行的列可能不會對齊。CLASSIC 模式不關心終端(控制檯)視窗的寬度，因此如果列的值比視窗寬度還長，會自動折行到下一行顯示。
+The CLASSIC mode is recommended if you want to see all the data, but you don&apos;t want to waste lines for each column. Each row will display full data for every column, but this also means, that columns will not be aligned to each other in next rows. The CLASSIC mode also doesn&apos;t respect the width of your terminal (console) window, so if values in columns are wider than the window, the row will be continued in next lines.
 
-FIXED 模式提供更美觀的資料展示，但不提供長資料的完整值。各列會彼此對齊，使輸出形成一個美觀的表格。列寬度根據控制檯視窗的寬度及列數計算。
+The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
-COLUMNS 模式類似 FIXED 模式，但會智慧將短值的列更窄，長值的列更長。首先收縮最長標題的列(因此列名稱會被裁切)，然後是最長值的列，直至所有列的總計寬度適合終端視窗。
-注意！COLUMNS 模式需一次性讀取查詢的全部結果以評估列的寬度，因此對大型資料集使用此模式存在風險，它會將整個結果集載入到記憶體！
+The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
-ROW 模式適合沒有太多行且想要檢視完整值的需求。該模式會為每個列輸出一行，所以只有 1 個數據行但有 10 個數據列的資料會輸出 10 行；而如果有 10 個數據行，輸出會產生 100 行(及每個資料行之間還會有一行間隔)。</translation>
+The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
     </message>
   </context>
   <context>
@@ -798,34 +798,79 @@ Expected one of: %2</source>
       <translation>字串</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="22"/>
+      <location filename="../main.cpp" line="28"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>SQLite 管理工具 SQLiteStudio 的命令列介面。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="26"/>
+      <location filename="../main.cpp" line="32"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>啟用除錯訊息輸出到標準錯誤輸出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="27"/>
+      <location filename="../main.cpp" line="33"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>啟用 SQL 程式碼助手的 Lemon 解析器除錯訊息。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>列出 SQLiteStudio 中已安裝的外掛然後退出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="36"/>
+      <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="39"/>
+      <source>SQL file</source>
+      <translation type="unfinished">SQL file</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="40"/>
+      <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="43"/>
+      <source>codec</source>
+      <translation type="unfinished">codec</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="44"/>
+      <source>Lists available codecs to be used with -c option and quits.</source>
+      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="46"/>
+      <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="57"/>
       <source>file</source>
       <translation>檔案</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
       <translation>要開啟的資料庫檔案</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="78"/>
+      <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="108"/>
+      <source>Database file argument is mandatory when executing SQL file.</source>
+      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>

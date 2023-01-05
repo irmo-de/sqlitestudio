@@ -21,19 +21,23 @@ class ViewWindow;
 class UserInputFilter;
 class DbTreeView;
 
+
+class SqlFileExecutor;
 namespace Ui {
     class DbTree;
 }
 
 CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
-    CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,         QObject::tr("Delete selected item"))
-    CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,         QObject::tr("Clear filter contents"))
-    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,             QObject::tr("Refresh schema"))
-    CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5, QObject::tr("Refresh all schemas"))
-    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL + Qt::Key_O,   QObject::tr("Add database"))
-    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL + Qt::Key_A,   QObject::tr("Select all items"))
-    CFG_KEY_ENTRY(COPY,            Qt::CTRL + Qt::Key_C,   QObject::tr("Copy selected item(s)"))
-    CFG_KEY_ENTRY(PASTE,           Qt::CTRL + Qt::Key_V,   QObject::tr("Paste from clipboard"))
+    CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,           QObject::tr("Delete selected item"))
+    CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,           QObject::tr("Clear filter contents"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,               QObject::tr("Refresh schema"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5,   QObject::tr("Refresh all schemas"))
+    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL + Qt::Key_O,     QObject::tr("Add database"))
+    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL + Qt::Key_A,     QObject::tr("Select all items"))
+    CFG_KEY_ENTRY(COPY,            Qt::CTRL + Qt::Key_C,     QObject::tr("Copy selected item(s)"))
+    CFG_KEY_ENTRY(PASTE,           Qt::CTRL + Qt::Key_V,     QObject::tr("Paste from clipboard"))
+    CFG_KEY_ENTRY(INCR_FONT_SIZE,  Qt::CTRL + Qt::Key_Plus,  QObject::tr("Increase font size", "database list"))
+    CFG_KEY_ENTRY(DECR_FONT_SIZE,  Qt::CTRL + Qt::Key_Minus, QObject::tr("Decrease font size", "database list"))
 )
 
 class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
@@ -91,6 +95,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             GENERATE_DELETE,
             OPEN_DB_DIRECTORY,
             EXEC_SQL_FROM_FILE,
+            INCR_FONT_SIZE,
+            DECR_FONT_SIZE,
             _separator // Never use it directly, it's just for menu setup
         };
         Q_ENUM(Action)
@@ -138,7 +144,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         ViewWindow* newView(Db* db);
         void editIndex(DbTreeItem* item);
         void editTrigger(DbTreeItem* item);
-        void delSelectedObject();
+//        void delSelectedObject();
         void filterUndeletableItems(QList<DbTreeItem*>& items);
         void filterItemsWithParentInList(QList<DbTreeItem*>& items);
         void deleteItem(DbTreeItem* item);
@@ -151,11 +157,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QString getSelectedViewName() const;
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
-        void execFromFileAsync(const QString& path, Db* db, bool ignoreErrors, const QString& codec);
-        bool execQueryFromFile(Db* db, const QString& sql);
-        void handleFileQueryExecution(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis);
-        QList<QPair<QString, QString>> executeFileQueries(Db* db, QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, bool ignoreErrors, qint64 fileSize);
-        bool shouldSkipQueryFromFileExecution(const QString& sql);
+        void changeFontSize(int factor);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
@@ -165,8 +167,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         DbTreeModel* treeModel = nullptr;
         WidgetCover* treeRefreshWidgetCover = nullptr;
         WidgetCover* fileExecWidgetCover = nullptr;
-        QAtomicInt executingQueriesFromFile = 0;
-        Db* executingQueriesFromFileDb = nullptr;
+        SqlFileExecutor* fileExecutor = nullptr;
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
@@ -235,12 +236,14 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void setFileExecProgress(int newValue);
         void hideFileExecCover();
         void showFileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
+        void fontSizeChangeRequested(int delta);
+        void incrFontSize();
+        void decrFontSize();
 
     signals:
         void updateFileExecProgress(int value);
         void fileExecCoverToBeClosed();
         void fileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
-        void schemaNeedsRefreshing(Db* db);
         void sessionValueChanged();
 };
 

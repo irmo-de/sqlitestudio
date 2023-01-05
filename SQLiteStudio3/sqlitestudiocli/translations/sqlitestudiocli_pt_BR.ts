@@ -19,17 +19,17 @@
       <translation>Digite %1 para ajuda</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="253"/>
+      <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="260"/>
+      <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
       <translation>Não foi possível adicionar o banco de dados %1 à lista.</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="286"/>
+      <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
       <translation>fechado</translation>
     </message>
@@ -430,20 +430,23 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>Quando chamado sem argumento, informa o formato de saída atual para obter resultados de consulta. Quando o modo é passado, o modo é alterado para o dado. Os modos suportados são:
-- CLASSIC - as colunas são separadas por uma vírgula, não alinhadas,
-- FIXED - as colunas têm largura igual e fixa, sempre se encaixam na largura da janela do terminal, mas os dados nas colunas podem ser cortados,
-- COLUMNS - como FIXO, mas mais inteligente (não use com conjuntos de resultados enormes, veja detalhes abaixo),
-- ROW - cada coluna da linha é exibida em nova linha, de modo que os dados completos são exibidos.
-O modo CLASSIC é recomendado se você quiser ver todos os dados, mas você não quer desperdiçar linhas para cada coluna. Cada linha exibirá dados completos para cada coluna, mas isso também significa que as colunas não estarão alinhadas umas com as outras nas próximas linhas. O modo CLASSIC também não respeita a largura da janela do terminal (console), portanto, se os valores nas colunas forem mais amplos que a janela, a linha será continuada nas próximas linhas.
-O modo FIXED é recomendado se você quiser uma saída legível e não se importar com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e de várias colunas.
-O modo COLUMNS é semelhante ao modo FIXED, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto colunas com valores mais longos ganham mais espaço. Primeiro para encolher são colunas com cabeçalhos mais longos (de modo que os nomes do cabeçalho devem ser cortados como primeiro), em seguida, colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas se encaixam na janela do terminal.
-ATENÇÃO! O modo COLUMNS lê todos os resultados da consulta de uma só vez para avaliar WIDHTS de coluna, portanto é perigoso usar esse modo ao trabalhar com conjuntos de resultados enormes. Tenha em mente que este modo carregará todo o resultado definido na memória.
-O modo ROW é recomendado se você precisar ver valores inteiros e você não espera que muitas linhas sejam exibidas, pois este modo exibe uma linha de saída por cada coluna, então você terá 10 linhas para uma única linha com 10 colunas, então se você tiver 10 dessas linhas, você terá 100 linhas de saída (+1 linha extra por cada linha,  para separar fileiras um do outro).
-</translation>
+      <translation>Quando chamado sem argumento, informa o formato de saída atual para os resultados de uma consulta. Quando o &lt;mode&gt; é passado, o modo é alterado para o dado. Os modos suportados são:
+- CLASSIC - as colunas são separadas por vírgula, não alinhadas,
+- FIXED - as colunas têm largura igual e fixa, sempre cabem na largura da janela do terminal, mas os dados nas colunas podem ser cortados,
+- COLUMNS - como FIXED, mas mais inteligente (não use com grandes conjuntos de resultados, veja os detalhes abaixo),
+- ROW - cada coluna da linha é exibida em nova linha, portanto, os dados completos são exibidos.
+
+O modo CLASSIC é recomendado se você quiser ver todos os dados, mas não quer desperdiçar linhas para cada coluna. Cada linha exibirá dados completos para cada coluna, mas isso também significa que as colunas não serão alinhadas entre si nas próximas linhas. O modo CLASSIC também não respeita a largura da janela do seu terminal (console), portanto, se os valores nas colunas forem mais largos que a janela, a linha será continuada nas próximas linhas.
+
+O modo FIXED é recomendado se você deseja uma saída legível e não se preocupa com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e um número de colunas.
+
+O modo COLUMNS é semelhante ao modo FIXED, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto as colunas com valores mais longos obtêm mais espaço. As primeiras a encolher são as colunas com cabeçalhos mais longos (portanto, os nomes dos cabeçalhos devem ser cortados primeiro), depois as colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas cabem na janela do terminal.
+ATENÇÃO! O modo COLUMNS lê todos os resultados da consulta de uma vez para avaliar as larguras das colunas, portanto, é perigoso usar esse modo ao trabalhar com grandes conjuntos de resultados. Lembre-se de que este modo carregará todo o conjunto de resultados na memória.
+
+O modo ROW é recomendado se você precisa ver valores inteiros e não espera que muitas linhas sejam exibidas, porque este modo exibe uma linha de saída por cada coluna, então você obterá 10 linhas para uma única linha com 10 colunas, então, se você tiver 10 dessas linhas, obterá 100 linhas de saída (+1 linha extra por cada linha, para separar as linhas umas das outras).</translation>
     </message>
   </context>
   <context>
@@ -796,34 +799,79 @@ Espera-se um de: %2</translation>
       <translation>string</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="22"/>
+      <location filename="../main.cpp" line="28"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Interface da linha de comando para SQLiteStudio, um gerenciador para SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="26"/>
+      <location filename="../main.cpp" line="32"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Habilita mensagens de depuração padrão na saída de erro.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="27"/>
+      <location filename="../main.cpp" line="33"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Habilita mensagens de depuração do analisador Lemon no assistente de código SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Lista os plugins instalados no SQLiteStudio e encerrados.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="36"/>
+      <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+      <translation>Executa o arquivo SQL fornecido (incluindo todos os recursos avançados do executor de consulta SQLiteStudio &apos;s) no arquivo de banco de dados especificado e fecha a rotina. O parâmetro do banco de dados torna-se obrigatório se esta opção for utilizada.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="39"/>
+      <source>SQL file</source>
+      <translation>Arquivo SQL</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="40"/>
+      <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+      <translation>Codificação de caracteres utilizada ao ler o arquivo SQL (-e option). Use -cl para listar os codecs disponíveis. O padrão é %1.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="43"/>
+      <source>codec</source>
+      <translation>Codec</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="44"/>
+      <source>Lists available codecs to be used with -c option and quits.</source>
+      <translation>Lista de codecs disponíveis para serem usados com opção -c e encerramento.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="46"/>
+      <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+      <translation>Quando usado em conjunto com a opção -e, a execução não parará em um erro, mas sim continuará até o fim, ignorando erros.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="57"/>
       <source>file</source>
       <translation>arquivo</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
       <translation>Arquivo do banco de dados para abrir</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="78"/>
+      <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+      <translation>Codec inválido: %1. Use a opção -cl para listar codecs disponíveis.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="108"/>
+      <source>Database file argument is mandatory when executing SQL file.</source>
+      <translation>O argumento do arquivo de banco de dados é obrigatório para executar arquivo SQL.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Tente usar a opção -d para descobrir mais detalhes.</translation>
     </message>
   </context>
 </TS>

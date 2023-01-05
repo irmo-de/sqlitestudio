@@ -1,6 +1,7 @@
 #ifndef SQLEDITOR_H
 #define SQLEDITOR_H
 
+#include "common/strhash.h"
 #include "guiSQLiteStudio_global.h"
 #include "common/extactioncontainer.h"
 #include "sqlitesyntaxhighlighter.h"
@@ -48,6 +49,8 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down, QObject::tr("Copy selected block of text and paste it a line below"))
     CFG_KEY_ENTRY(COPY_BLOCK_UP,   Qt::ALT + Qt::CTRL + Qt::Key_Up,   QObject::tr("Copy selected block of text and paste it a line above"))
     CFG_KEY_ENTRY(TOGGLE_COMMENT,  Qt::CTRL + Qt::Key_Slash,          QObject::tr("Toggle comment"))
+    CFG_KEY_ENTRY(INCR_FONT_SIZE,  Qt::CTRL + Qt::Key_Plus,           QObject::tr("Increase font size", "sql editor"))
+    CFG_KEY_ENTRY(DECR_FONT_SIZE,  Qt::CTRL + Qt::Key_Minus,          QObject::tr("Decrease font size", "sql editor"))
 )
 
 class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContainer
@@ -79,7 +82,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             FIND_PREV,
             REPLACE,
             TOGGLE_COMMENT,
-            WORD_WRAP
+            WORD_WRAP,
+            INCR_FONT_SIZE,
+            DECR_FONT_SIZE
         };
         Q_ENUM(Action)
 
@@ -126,8 +131,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void mouseMoveEvent(QMouseEvent* e);
         void mousePressEvent(QMouseEvent* e);
         void resizeEvent(QResizeEvent *e);
-        void changeEvent(QEvent*e);
+        void changeEvent(QEvent* e);
         void showEvent(QShowEvent* event);
+        void dropEvent(QDropEvent* e);
 
     private:
         class LineNumberArea : public QWidget
@@ -173,7 +179,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
          */
         void markErrorAt(int start, int end, bool limitedDamage = false);
         void deletePreviousChars(int length = 1);
-        void refreshValidObjects();
         void checkForSyntaxErrors();
         void checkForValidObjects();
         void setObjectLinks(bool enabled);
@@ -199,7 +204,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void replaceSelectedText(const QString& newText);
         QString getSelectedText() const;
         void openObject(const QString& database, const QString& name);
-        void highlightSyntax();
 
         /**
          * @brief getValidObjectForPosition
@@ -224,8 +228,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool deletionKeyPressed = false;
         LazyTrigger* queryParserTrigger = nullptr;
         Parser* queryParser = nullptr;
-        QHash<QString,QStringList> objectsInNamedDb;
-        QMutex objectsInNamedDbMutex;
+        StrHash<QStringList> objectsInNamedDb;
         bool objectLinksEnabled = false;
         QList<DbObject> validDbObjects;
         QWidget* lineNumberArea = nullptr;
@@ -262,12 +265,14 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool virtualSqlCompleteSemicolon = false;
         QString createTriggerTable;
         QString loadedFile;
-        QFuture<void> objectsInNamedDbFuture;
+        QFutureWatcher<QHash<QString,QStringList>>* objectsInNamedDbWatcher = nullptr;
+        void changeFontSize(int factor);
 
         static const int autoCompleterDelay = 300;
         static const int queryParserDelay = 500;
 
     private slots:
+        void highlightSyntax();
         void customContextMenuRequested(const QPoint& pos);
         void updateUndoAction(bool enabled);
         void updateRedoAction(bool enabled);
@@ -285,7 +290,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void completerLeftPressed();
         void completerRightPressed();
         void parseContents();
-        void scheduleQueryParser(bool force = false);
+        void scheduleQueryParserForSchemaRefresh();
+        void scheduleQueryParser(bool force = false, bool skipCompleter = false);
         void updateLineNumberAreaWidth();
         void updateLineNumberArea(const QRect&rect, int dy);
         void cursorMoved();
@@ -310,9 +316,14 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void toggleComment();
         void wordWrappingChanged(const QVariant& value);
         void currentCursorContextDelayedHighlight();
+        void fontSizeChangeRequested(int delta);
+        void incrFontSize();
+        void decrFontSize();
+        void moveCursorTo(int pos);
 
     public slots:
         void colorsConfigChanged();
+        void refreshValidObjects();
 
     signals:
         void errorsChecked(bool haveErrors);

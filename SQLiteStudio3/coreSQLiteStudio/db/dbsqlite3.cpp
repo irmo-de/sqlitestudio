@@ -14,3 +14,13 @@ bool DbSqlite3::complete(const QString& sql)
 {
     return Sqlite3::complete(sql.toUtf8().constData());
 }
+
+Db* DbSqlite3::clone() const
+{
+    return new DbSqlite3(name, path, connOptions);
+}
+
+QString DbSqlite3::getTypeClassName() const
+{
+    return "DbSqlite3";
+}

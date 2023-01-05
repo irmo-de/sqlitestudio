@@ -241,9 +241,14 @@ int InvalidDb::getErrorCode()
     return 0;
 }
 
-QString InvalidDb::getTypeLabel()
+QString InvalidDb::getTypeLabel() const
 {
     return QStringLiteral("INVALID");
+}
+
+QString InvalidDb::getTypeClassName() const
+{
+    return "InvalidDb";
 }
 
 bool InvalidDb::initAfterCreated()
@@ -339,6 +344,11 @@ bool InvalidDb::isComplete(const QString& sql) const
 {
     UNUSED(sql);
     return false;
+}
+
+Db* InvalidDb::clone() const
+{
+    return new InvalidDb(name, path, connOptions);
 }
 
 void InvalidDb::interrupt()

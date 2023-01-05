@@ -18,7 +18,7 @@ bool QueryExecutorColumns::exec()
     // Resolving result columns of the select
     SelectResolver resolver(db, queryExecutor->getOriginalQuery(), context->dbNameToAttach);
     resolver.resolveMultiCore = true;
-    QList<SelectResolver::Column> columns = resolver.resolve(select.data()).first();
+    QList<SelectResolver::Column> columns = resolver.resolve(select->coreSelects.first());
 
     if (resolver.hasErrors())
     {
@@ -34,22 +34,21 @@ bool QueryExecutorColumns::exec()
 
     // Deleting old result columns and defining new ones
     SqliteSelect::Core* core = select->coreSelects.first();
-    for (SqliteSelect::Core::ResultColumn* resCol : core->resultColumns)
+    for (SqliteSelect::Core::ResultColumn*& resCol : core->resultColumns)
         delete resCol;
 
     core->resultColumns.clear();
 
     // Count total rowId columns
-    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
         rowIdColNames += rowIdCol->queryExecutorAliasToColumn.keys();
 
     // Defining result columns
     QueryExecutor::ResultColumnPtr resultColumn;
     SqliteSelect::Core::ResultColumn* resultColumnForSelect = nullptr;
     bool rowIdColumn = false;
-    int i = 0;
     QSet<QString> usedAliases;
-    for (const SelectResolver::Column& col : columns)
+    for (SelectResolver::Column& col : columns)
     {
         // Convert column to QueryExecutor result column
         resultColumn = getResultColumn(col);
@@ -68,8 +67,6 @@ bool QueryExecutorColumns::exec()
 
         if (!rowIdColumn)
             context->resultColumns << resultColumn; // store it in context for later usage by any step
-
-        i++;
     }
 
 //    qDebug() << "before: " << context->processedQuery;
@@ -111,6 +108,9 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
         if (resolvedColumn.flags & SelectResolver::FROM_CTE_SELECT)
             resultColumn->editionForbiddenReasons << QueryExecutor::ColumnEditionForbiddenReason::COMM_TAB_EXPR;
 
+        if (resolvedColumn.flags & SelectResolver::FROM_VIEW)
+            resultColumn->editionForbiddenReasons << QueryExecutor::ColumnEditionForbiddenReason::VIEW_NOT_EXPANDED;
+
         resultColumn->database = resolvedColumn.originalDatabase;
         resultColumn->table = resolvedColumn.table;
         resultColumn->column = resolvedColumn.column;
@@ -146,6 +146,7 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         if (parser.getErrors().size() > 0)
             qWarning() << "The error was:" << parser.getErrors().first()->getFrom() << ":" << parser.getErrors().first()->getMessage();
 
+        delete selectResultColumn;
         return nullptr;
     }
 
@@ -186,7 +187,6 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         selectResultColumn->alias = aliasTpl.arg(aliasBase, QString::number(nextAliasCounter++));
 
     usedAliases += selectResultColumn->alias;
-    selectResultColumn->alias = wrapObjIfNeeded(selectResultColumn->alias);
 
     return selectResultColumn;
 }
@@ -201,7 +201,7 @@ QString QueryExecutorColumns::resolveAttachedDatabases(const QString &dbName)
 
 bool QueryExecutorColumns::isRowIdColumnAlias(const QString& alias)
 {
-    for (QueryExecutor::ResultRowIdColumnPtr rowIdColumn : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
     {
         if (rowIdColumn->queryExecutorAliasToColumn.keys().contains(alias))
             return true;
@@ -221,7 +221,7 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
     QString baseColName;
     QString colName;
     static_qstring(colNameTpl, "%1:%2");
-    for (const QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
+    for (QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
     {
         if (!first)
             outerColumns += sepTokens;
@@ -250,9 +250,9 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         first = false;
     }
 
-    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
     {
-        for (const QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
+        for (QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
         {
             if (!first)
                 outerColumns += sepTokens;

@@ -50,7 +50,7 @@ QList<AliasedColumn> DbAndroidInstance::columnsForQuery(const QString& query)
 
     QList<AliasedColumn> columns;
     AliasedColumn column;
-    for (const QString& colName : results->getColumnNames())
+    for (QString& colName : results->getColumnNames())
     {
         column.setAlias(colName);
         columns << column;
@@ -63,9 +63,14 @@ SqlQueryPtr DbAndroidInstance::prepare(const QString& query)
     return SqlQueryPtr(new SqlQueryAndroid(this, connection, query));
 }
 
-QString DbAndroidInstance::getTypeLabel()
+QString DbAndroidInstance::getTypeLabel() const
 {
     return plugin->getLabel();
+}
+
+QString DbAndroidInstance::getTypeClassName() const
+{
+    return "DbAndroidInstance";
 }
 
 bool DbAndroidInstance::deregisterFunction(const QString& name, int argCount)
@@ -112,6 +117,11 @@ bool DbAndroidInstance::loadExtension(const QString& filePath, const QString& in
 bool DbAndroidInstance::isComplete(const QString& sql) const
 {
     return DbSqlite3::complete(sql);
+}
+
+Db* DbAndroidInstance::clone() const
+{
+    return new DbAndroidInstance(plugin, name, path, connOptions);
 }
 
 bool DbAndroidInstance::isOpenInternal()

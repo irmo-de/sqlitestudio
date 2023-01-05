@@ -74,12 +74,12 @@ Would you like to select another one, or leave it unconfigured?</source>
   <context>
     <name>DbAndroidInstance</name>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="106"/>
+      <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
       <translation>Android SQLite 驱动程序不支持可加载的扩展。</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="188"/>
+      <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>与 Android 数据库 &apos;%1&apos; 的连接丢失。</translation>
     </message>
@@ -88,8 +88,8 @@ Would you like to select another one, or leave it unconfigured?</source>
     <name>DbAndroidJsonConnection</name>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation>无法连接设备 %1，它对您的计算机不可见。</translation>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
+      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -301,8 +301,8 @@ Android 设备拒绝或无法完成删除。</translation>
     <name>DbAndroidShellConnection</name>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation>无法连接设备 %1，您的计算机上看不到它。</translation>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
+      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>

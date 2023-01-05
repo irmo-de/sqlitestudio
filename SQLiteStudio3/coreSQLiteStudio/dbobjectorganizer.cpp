@@ -1,7 +1,6 @@
 #include "dbobjectorganizer.h"
 #include "db/db.h"
 #include "common/utils_sql.h"
-#include "datatype.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
 #include "common/compatibility.h"
@@ -198,7 +197,7 @@ bool DbObjectOrganizer::processAll()
 
     // Attaching target db if needed
     AttachGuard attach;
-    if (!(referencedTables + srcTables).isEmpty())
+    if (srcDb->getTypeClassName() == dstDb->getTypeClassName() && !(referencedTables + srcTables).isEmpty())
     {
         attach = srcDb->guardedAttach(dstDb, true);
         attachName = attach->getName();
@@ -431,12 +430,16 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 
 bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 {
-    QStringList srcColumns = srcResolver->getTableColumns(srcTable);
+    static_qstring(selectTpl, "SELECT %1 FROM %2");
+    static_qstring(insertTpl, "INSERT INTO %1 (%2) VALUES (%3)");
+
+    QStringList srcColumns = srcResolver->getTableColumns(srcTable, true);
+    QString srcColumnsStr = srcColumns.join(", ");
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable);
-    SqlQueryPtr results = srcDb->prepare("SELECT * FROM " + wrappedSrcTable);
+    SqlQueryPtr results = srcDb->prepare(selectTpl.arg(srcColumnsStr, wrappedSrcTable));
     if (!results->execute())
     {
-        notifyError(tr("Error while copying data for table %1: %2").arg(table).arg(results->getErrorText()));
+        notifyError(tr("Error while copying data for table %1: %2").arg(table, results->getErrorText()));
         return false;
     }
 
@@ -445,7 +448,7 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
         argPlaceholderList << "?";
 
     QString wrappedDstTable = wrapObjIfNeeded(table);
-    QString sql = "INSERT INTO " + wrappedDstTable + " VALUES (" + argPlaceholderList.join(", ") + ")";
+    QString sql = insertTpl.arg(wrappedDstTable, srcColumnsStr, argPlaceholderList.join(", "));
     SqlQueryPtr insertQuery = dstDb->prepare(sql);
 
     SqlResultsRowPtr row;
@@ -455,14 +458,14 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
         row = results->next();
         if (!row)
         {
-            notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(results->getErrorText()));
+            notifyError(tr("Error while copying data to table %1: %2").arg(table, results->getErrorText()));
             return false;
         }
 
         insertQuery->setArgs(row->valueList());
         if (!insertQuery->execute())
         {
-            notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(insertQuery->getErrorText()));
+            notifyError(tr("Error while copying data to table %1: %2").arg(table, insertQuery->getErrorText()));
             return false;
         }
 
@@ -480,12 +483,16 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 
 bool DbObjectOrganizer::copyDataUsingAttach(const QString& table)
 {
+    static_qstring(insertTpl, "INSERT INTO %1.%2 (%3) SELECT %3 FROM %4");
+
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable);
     QString wrappedDstTable = wrapObjIfNeeded(table);
-    SqlQueryPtr results = srcDb->exec("INSERT INTO " + attachName + "." + wrappedDstTable + " SELECT * FROM " + wrappedSrcTable);
+    QStringList srcColumns = srcResolver->getTableColumns(srcTable, true);
+    QString srcColumnsStr = srcColumns.join(", ");
+    SqlQueryPtr results = srcDb->exec(insertTpl.arg(attachName, wrappedDstTable, srcColumnsStr, wrappedSrcTable));
     if (results->isError())
     {
-        notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(results->getErrorText()));
+        notifyError(tr("Error while copying data to table %1: %2").arg(table, results->getErrorText()));
         return false;
     }
     return true;
@@ -508,46 +515,36 @@ void DbObjectOrganizer::dropObject(const QString& name, const QString& type)
     if (results->isError())
     {
         notifyWarn(tr("Error while dropping source view %1: %2\nTables, indexes, triggers and views copied to database %3 will remain.")
-                   .arg(name).arg(results->getErrorText()).arg(dstDb->getName()));
+                   .arg(name, results->getErrorText(), dstDb->getName()));
     }
 }
 
 bool DbObjectOrganizer::copyViewToDb(const QString& view)
 {
-    return copySimpleObjectToDb(view, tr("Error while creating view in target database: %1"));
+    return copySimpleObjectToDb(view, tr("Error while creating view in target database: %1"), SchemaResolver::VIEW);
 }
 
 bool DbObjectOrganizer::copyIndexToDb(const QString& index)
 {
-    return copySimpleObjectToDb(index, tr("Error while creating index in target database: %1"));
+    return copySimpleObjectToDb(index, tr("Error while creating index in target database: %1"),SchemaResolver::INDEX);
 }
 
 bool DbObjectOrganizer::copyTriggerToDb(const QString& trigger)
 {
-    return copySimpleObjectToDb(trigger, tr("Error while creating trigger in target database: %1"));
+    return copySimpleObjectToDb(trigger, tr("Error while creating trigger in target database: %1"), SchemaResolver::TRIGGER);
 }
 
-bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage)
+bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage, SchemaResolver::ObjectType objectType)
 {
-    QString ddl = srcResolver->getObjectDdl(name, SchemaResolver::ANY);
+    QString ddl = srcResolver->getObjectDdl(name, objectType);
     if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlQueryPtr result;
+    ddl = processSimpleObjectAttachNameAndRename(name, ddl);
+    if (ddl.isNull())
+        return false;
 
-    if (!attachName.isNull())
-    {
-        ddl = prefixSimpleObjectWithAttachName(name, ddl);
-        if (ddl.isNull())
-            return false;
-
-        result = srcDb->exec(ddl);
-    }
-    else
-    {
-        result = dstDb->exec(ddl);
-    }
-
+    SqlQueryPtr result = srcDb->exec(ddl);
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
@@ -572,7 +569,7 @@ void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrH
 {
     QList<SqliteCreateTablePtr> parsedTables;
     SqliteCreateTablePtr parsedTable;
-    for (SqliteQueryPtr query : allParsedObjects.values())
+    for (SqliteQueryPtr& query : allParsedObjects.values())
     {
         parsedTable = query.dynamicCast<SqliteCreateTable>();
         if (parsedTable)
@@ -670,8 +667,11 @@ bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& table
     return res;
 }
 
-QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl)
+QString DbObjectOrganizer::processSimpleObjectAttachNameAndRename(const QString& objName, const QString& ddl)
 {
+    if (attachName.isNull() && !renamed.contains(objName))
+        return ddl;
+
     Parser parser;
     if (!parser.parse(ddl))
     {
@@ -696,7 +696,12 @@ QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objNa
         return QString();
     }
 
-    ddlWithDb->setTargetDatabase(attachName);
+    if (!attachName.isNull())
+        ddlWithDb->setTargetDatabase(attachName);
+
+    if (renamed.contains(objName))
+        ddlWithDb->setObjectName(renamed[objName]);
+
     query->rebuildTokens();
     return query->tokens.detokenize();
 }

@@ -1,6 +1,6 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3390200'
+    SQLITE_VERSION: '3400000'
     SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -13,6 +13,7 @@ on:
             - master
             - 3.2
             - 3.3
+            - 3.4
         paths:
             - '**.cpp'
             - '**.hpp'
@@ -26,30 +27,36 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
 
         strategy:
             matrix:
-                QT_VERSION: ['5.12.10', '5.15.2']
+                QT_VERSION: ['5.15.2']
 
         steps:
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v1
+            - uses: actions/setup-python@v4
               with:
-                path: ${{ github.workspace }}/../Qt
-                key: ${{ runner.os }}-Qt-${{ matrix.QT_VERSION }}-Linux-Cache
-
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+              
+            - name: Qt installation dir
+              id: qt-installation-dir
+              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+              
             - name: Install Qt
-              uses: jurplel/install-qt-action@v2
+              uses: jurplel/install-qt-action@v3
               with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                cache: true
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
-                dir: '${{ github.workspace }}/..'
+                dir: '${{ steps.qt-installation-dir.DIR }}'
+                aqtversion: '==3.0.*'
+                py7zrversion: '==0.20.*'
+                setup-python: 'false'
+                extra: '--external 7z'
 
             - name: Clone repo
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                 ref: ${{ env.GITHUB_REF }}
 
@@ -83,11 +90,6 @@ jobs:
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
                 echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
-                
-            - uses: actions/setup-python@v2
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins

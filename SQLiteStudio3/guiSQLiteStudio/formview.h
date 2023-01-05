@@ -2,12 +2,11 @@
 #define FORMVIEW_H
 
 #include "guiSQLiteStudio_global.h"
-#include "datagrid/sqlquerymodelcolumn.h"
 #include "multieditor/multieditor.h"
+#include "common/extactioncontainer.h"
 #include <QWidget>
 #include <QPointer>
 #include <QScrollArea>
-#include <common/extactioncontainer.h>
 
 class SqlQueryModel;
 class SqlQueryView;
@@ -64,10 +63,11 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         QToolBar* getToolBar(int toolbar) const;
+        void showEvent(QShowEvent* event);
 
     private:
         void reloadInternal();
-        void addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly);
+        MultiEditor* addColumn(int colIdx, SqlQueryModelColumn* column);
         bool isCurrentRowModifiedInGrid();
         void updateDeletedState();
 
@@ -84,6 +84,8 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         QList<bool> readOnly;
         bool valueModified = false;
         bool currentIndexUpdating = false;
+        bool shouldReload = false;
+        int indexForReload = 0;
 
     private slots:
         void dataLoaded(bool successful);

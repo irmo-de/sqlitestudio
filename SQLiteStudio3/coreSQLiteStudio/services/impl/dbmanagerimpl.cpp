@@ -93,8 +93,6 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     nameToDb.remove(db->getName(), Qt::CaseInsensitive);
     pathToDb.remove(db->getPath());
 
-    bool pathDifferent = db->getPath() != normalizedPath;
-
     QString oldName = db->getName();
     db->setName(name);
     db->setPath(normalizedPath);
@@ -114,7 +112,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     InvalidDb* invalidDb = dynamic_cast<InvalidDb*>(db);
     bool wasReloaded = false;
     Db* reloadedDb = db;
-    if (pathDifferent && invalidDb)
+    if (invalidDb)
     {
         reloadedDb = tryToLoadDb(invalidDb, false);
         if (reloadedDb) // we need to know that, so we can emit dbLoaded() signal later, out of the listLock
@@ -136,7 +134,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     if (result && reloadedDb)
         emit dbUpdated(oldName, db);
     else if (reloadedDb) // database reloaded correctly, but update failed
-        notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName).arg(CFG->getLastErrorString()));
+        notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName, CFG->getLastErrorString()));
 
     return result;
 }
@@ -346,7 +344,7 @@ void DbManagerImpl::loadInitialDbList()
 {
     QUrl url;
     InvalidDb* db = nullptr;
-    for (const Config::CfgDbPtr& cfgDb : CFG->dbList())
+    for (Config::CfgDbPtr& cfgDb : CFG->dbList())
     {
         db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
 
@@ -372,7 +370,7 @@ void DbManagerImpl::scanForNewDatabasesInConfig()
 
     QUrl url;
     InvalidDb* db = nullptr;
-    for (const Config::CfgDbPtr& cfgDb : cfgDbList)
+    for (Config::CfgDbPtr& cfgDb : cfgDbList)
     {
         if (getByName(cfgDb->name) || getByPath(cfgDb->path))
             continue;
@@ -473,10 +471,6 @@ QList<Db*> DbManagerImpl::getInvalidDatabases() const
 
 Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
 {
-    QUrl url = QUrl::fromUserInput(invalidDb->getPath());
-    if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
-        return nullptr;
-
     Db* db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
     if (!db)
         return nullptr;

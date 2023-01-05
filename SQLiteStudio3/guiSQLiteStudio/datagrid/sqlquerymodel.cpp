@@ -313,9 +313,9 @@ QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(cons
     {
         if (item->getColumn())
         {
-            table.setDatabase(item->getColumn()->database.toLower());
-            table.setTable(item->getColumn()->table.toLower());
-            table.setTableAlias(item->getColumn()->tableAlias.toLower());
+            table.setDatabase(item->getColumn()->database);
+            table.setTable(item->getColumn()->table);
+            table.setTableAlias(item->getColumn()->tableAlias);
             itemsByTable[table] << item;
         }
         else
@@ -1491,6 +1491,16 @@ void SqlQueryModel::itemValueEdited(SqlQueryItem* item)
     emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
+void SqlQueryModel::repaintAllItems()
+{
+    QModelIndex startIdx = index(0, 0);
+    if (!startIdx.isValid())
+        return;
+
+    QModelIndex endIdx = index(rowCount() - 1, columnCount() - 1);
+    emit dataChanged(startIdx, endIdx, QVector<int>({Qt::DisplayRole, Qt::EditRole}));
+}
+
 void SqlQueryModel::changeSorting(int logicalIndex, Qt::SortOrder order)
 {
     if (!reloadAvailable)
@@ -2031,6 +2041,12 @@ void SqlQueryModel::applyStringFilter(const QString& value)
     // For custom query this is not supported.
 }
 
+void SqlQueryModel::applyStrictFilter(const QString& value)
+{
+    UNUSED(value);
+    // For custom query this is not supported.
+}
+
 void SqlQueryModel::applyRegExpFilter(const QString& value)
 {
     UNUSED(value);
@@ -2038,6 +2054,12 @@ void SqlQueryModel::applyRegExpFilter(const QString& value)
 }
 
 void SqlQueryModel::applyStringFilter(const QStringList& values)
+{
+    UNUSED(values);
+    // For custom query this is not supported.
+}
+
+void SqlQueryModel::applyStrictFilter(const QStringList& values)
 {
     UNUSED(values);
     // For custom query this is not supported.

@@ -48,7 +48,8 @@ class API_EXPORT InvalidDb : public Db
         QString getUniqueNewObjectName(const QString& attachedDbName);
         QString getErrorText();
         int getErrorCode();
-        QString getTypeLabel();
+        QString getTypeLabel() const;
+        QString getTypeClassName() const;
         bool initAfterCreated();
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
@@ -61,6 +62,7 @@ class API_EXPORT InvalidDb : public Db
         void setError(const QString& value);
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;
+        Db* clone() const;
 
     public slots:
         bool open();

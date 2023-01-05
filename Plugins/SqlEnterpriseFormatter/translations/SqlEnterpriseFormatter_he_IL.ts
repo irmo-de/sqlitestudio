@@ -4,8 +4,8 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../sqlenterpriseformatter.cpp" line="91"/>
-      <location filename="../sqlenterpriseformatter.cpp" line="98"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="90"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
       <translation>שם</translation>
@@ -86,7 +86,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>הכנסת כל אילוץ עמודה ב 'יצירת טבלה' לשורה חדשה</translation>
+      <translation>הכנסת כל אילוץ עמודה ב &apos;יצירת טבלה&apos; לשורה חדשה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>

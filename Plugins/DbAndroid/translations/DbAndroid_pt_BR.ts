@@ -74,12 +74,12 @@ Gostaria de selecionar outro ou deixá-lo não configurado?</translation>
   <context>
     <name>DbAndroidInstance</name>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="106"/>
+      <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
       <translation>O driver Android SQLite não suporta extensões carregáveis.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="188"/>
+      <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Conexão com banco de dados Android &apos;%1&apos; perdida.</translation>
     </message>
@@ -88,8 +88,8 @@ Gostaria de selecionar outro ou deixá-lo não configurado?</translation>
     <name>DbAndroidJsonConnection</name>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation>Não é possível conectar-se ao dispositivo %1, porque&apos;não está visível para o seu computador.</translation>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
+      <translation>Não é possível conectar-se ao dispositivo %1, porque não está visível para o seu computador.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -301,7 +301,7 @@ O dispositivo Android recusou a exclusão ou era impossível.</translation>
     <name>DbAndroidShellConnection</name>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
       <translation>Não é possível conectar-se ao dispositivo %1, porque não está visível para o seu computador.</translation>
     </message>
     <message>

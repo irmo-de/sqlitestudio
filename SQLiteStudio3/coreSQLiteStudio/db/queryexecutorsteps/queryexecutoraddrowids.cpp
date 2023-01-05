@@ -59,7 +59,9 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         unite(rowIdColsMap, addRowIdForTables(subSelect, ok, false));
         if (!ok)
             return rowIdColsMap;
+
     }
+    core->rebuildTokens();
 
     // Getting all tables we need to get ROWID for
     SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
@@ -70,7 +72,11 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     {
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT |
                            SelectResolver::FROM_CTE_SELECT))
-            continue; // we don't get ROWID from compound, distinct or aggregated subselects
+            continue; // we don't get ROWID from compound, distinct or aggregated subselects.
+
+        // Tables from inside of view don't provide ROWID, if views were not expanded.
+        if (!context->viewsExpanded && table.flags & SelectResolver::FROM_VIEW)
+            continue;
 
         if (checkInWithClause(table, select->with))
             continue; // we don't get ROWID from WITH clause, as it's likely to be recurrent and difficult. TODO: support columns from WITH clause
@@ -154,7 +160,11 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
-    SelectResolver::Table keyTable = table;
+    SelectResolver::Table destilledTable = table;
+    if (destilledTable.database == "main" && destilledTable.originalDatabase.isNull())
+        destilledTable.database = QString();
+
+    SelectResolver::Table keyTable = destilledTable;
 
     // If selecting from named subselect, where table in that subselect has no alias, we need to match
     // Table by table&database, but excluding alias.
@@ -162,7 +172,9 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     {
         keyTable.tableAlias = QString();
         if (!rowIdColsMap.contains(keyTable))
-            keyTable = table;
+        {
+            keyTable = destilledTable;
+        }
     }
 
     // Aliased matching should be performed also against pushed (to old) aliases, due to multi-level subselects.
@@ -201,7 +213,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     while (it.hasNext())
     {
         it.next();
-        if (!addResultColumns(core, table, it.key(), it.value(), aliasOnlyAsSelectColumn))
+        if (!addResultColumns(core, destilledTable, it.key(), it.value(), aliasOnlyAsSelectColumn))
             return false;
     }
 

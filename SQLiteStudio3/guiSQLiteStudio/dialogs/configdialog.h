@@ -50,6 +50,9 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         static QString getFilterString(QListWidget* widget);
         static QString getFilterString(QTableWidget* widget);
 
+    protected:
+        void showEvent(QShowEvent* event);
+
     private:
         void init();
         void load();
@@ -108,7 +111,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;
         QHash<QString,QWidget*> nameToPage;
-        BiHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
+        BiHash<QTreeWidgetItem*,QString> pluginListItemToPluginNameMap;
         QHash<PluginType*,QTreeWidgetItem*> pluginTypeToItemMap;
         QHash<Plugin*,QTreeWidgetItem*> pluginToItemMap;
         QHash<QString,QComboBox*> formatterLangToPluginComboMap;

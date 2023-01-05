@@ -21,13 +21,15 @@ class DbAndroidInstance : public AbstractDb
 
         QList<AliasedColumn> columnsForQuery(const QString& query);
         SqlQueryPtr prepare(const QString& query);
-        QString getTypeLabel();
+        QString getTypeLabel() const;
+        QString getTypeClassName() const;
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool initAfterCreated();
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;
+        Db* clone() const;
 
     protected:
         bool isOpenInternal();

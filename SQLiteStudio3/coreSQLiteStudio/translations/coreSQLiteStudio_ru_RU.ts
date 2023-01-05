@@ -4,15 +4,20 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="336"/>
-      <location filename="../db/abstractdb.cpp" line="353"/>
+      <location filename="../db/abstractdb.cpp" line="342"/>
+      <location filename="../db/abstractdb.cpp" line="359"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Невозможно выполнить запрос при закрытой базе данных.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="636"/>
+      <location filename="../db/abstractdb.cpp" line="648"/>
       <source>Error attaching database %1: %2</source>
       <translation>Ошибка во время присоединения базы данных %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb.cpp" line="906"/>
+      <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
+      <translation>Не удалось создать полную контрольную точку WAL в базе данных &apos;%1&apos;. Ошибка из движка SQLite: %2</translation>
     </message>
   </context>
   <context>
@@ -57,77 +62,77 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="155"/>
+      <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
       <translation>Новая ссылка на строку</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="162"/>
+      <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
       <translation>Старая ссылка на строку</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="167"/>
+      <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
       <translation>Новое имя таблицы</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="170"/>
+      <location filename="../completionhelper.cpp" line="174"/>
       <source>New index name</source>
       <translation>Новое имя индекса</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="173"/>
+      <location filename="../completionhelper.cpp" line="177"/>
       <source>New view name</source>
       <translation>Новое имя представления</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="176"/>
+      <location filename="../completionhelper.cpp" line="180"/>
       <source>New trigger name</source>
       <translation>Новое имя триггера</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="179"/>
+      <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
       <translation>Псевдоним таблицы или столбца</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="182"/>
+      <location filename="../completionhelper.cpp" line="186"/>
       <source>transaction name</source>
       <translation>имя транзакции</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="185"/>
+      <location filename="../completionhelper.cpp" line="189"/>
       <source>New column name</source>
       <translation>Новое имя столбца</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="188"/>
+      <location filename="../completionhelper.cpp" line="192"/>
       <source>Column data type</source>
       <translation>Тип данных столбца</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="191"/>
+      <location filename="../completionhelper.cpp" line="195"/>
       <source>Constraint name</source>
       <translation>Имя ограничения</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="204"/>
+      <location filename="../completionhelper.cpp" line="208"/>
       <source>Error message</source>
       <translation>Сообщение об ошибке</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="253"/>
+      <location filename="../completionhelper.cpp" line="257"/>
       <source>Any word</source>
       <translation>Любое слово</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="434"/>
+      <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation>База данных по умолчанию</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="435"/>
+      <location filename="../completionhelper.cpp" line="439"/>
       <source>Temporary objects database</source>
       <translation>База данных временных объектов</translation>
     </message>
@@ -135,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="908"/>
+      <location filename="../services/impl/configimpl.cpp" line="867"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Невозможно начать транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="915"/>
+      <location filename="../services/impl/configimpl.cpp" line="874"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Невозможно завершить транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
@@ -153,30 +158,30 @@
       <translation>Не удалось добавить базу данных %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>Файл базы данных не существует.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
       <source>No supporting plugin loaded.</source>
       <translation>Модуль поддержки не загружен.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
       <source>Database could not be initialized.</source>
       <translation>Невозможно инициализировать базу данных.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Не найден подходящий драйвер базы данных.</translation>
     </message>
@@ -184,52 +189,52 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
-      <location filename="../dbobjectorganizer.cpp" line="405"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
+      <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Ошибка при создании таблицы в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
       <translation>Невозможно проанализировать структуру таблицы.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="419"/>
+      <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Невозможно присоединить базу данных %1 к базе данных %2, поэтому данные таблицы %3 будут скопированы при посредничестве SQLiteStudio. Этот метод может быть медленным для больших таблиц, так что наберитесь терпения.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="439"/>
+      <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Ошибка при копировании данных из таблицы %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="458"/>
-      <location filename="../dbobjectorganizer.cpp" line="465"/>
-      <location filename="../dbobjectorganizer.cpp" line="488"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="468"/>
+      <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Ошибка при копировании данных в таблицу %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="510"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Ошибка при удалении исходного представления %1: %2
 Таблицы, индексы, триггеры и представления, скопированные в базу данных %3, сохранятся.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="517"/>
+      <location filename="../dbobjectorganizer.cpp" line="524"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Ошибка при создании представления в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="522"/>
+      <location filename="../dbobjectorganizer.cpp" line="529"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Ошибка при создании индекса в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="527"/>
+      <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Ошибка при создании триггера в целевой базе данных: %1</translation>
     </message>
@@ -348,43 +353,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="283"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>Неверное количество аргументов для функции &apos;%1&apos;. Ожидаемое количество: %2, передано: %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="396"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Функция не зарегистрирована в SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>Функция %1(%2) зарегистрирована для языка %3, однако модуль поддержки этого языка на данный момент не загружен.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="420"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Неверный шаблон регулярного выражения: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="472"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Невозможно открыть файл %1 для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="494"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Невозможно открыть файл %1 для записи: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="514"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Ошибка при записи в файл %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Неподдерживаемый скриптовый язык: %1</translation>
     </message>
@@ -439,20 +444,20 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="177"/>
-      <location filename="../importworker.cpp" line="184"/>
+      <location filename="../importworker.cpp" line="180"/>
+      <location filename="../importworker.cpp" line="187"/>
       <source>Error while importing data: %1</source>
       <translation>Ошибка при импорте данных: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="184"/>
+      <location filename="../importworker.cpp" line="187"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Прервано.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="172"/>
+      <location filename="../importworker.cpp" line="175"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Невозможно импортировать строку данных № %1. Строка пропущена. Подробности проблемы: %2</translation>
     </message>
@@ -460,33 +465,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="549"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="546"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Невозможно загрузить модуль %1, так как он конфликтует с модулем %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="557"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Невозможно загрузить модуль %1, так как не загружен необходимый ему модуль: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="569"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="566"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Невозможно загрузить модуль %1. Подробности ошибки: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="585"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="582"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Невозможно загрузить модуль %1 (ошибка при инициализации модуля).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>минимальная: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="738"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>максимальная: %1</translation>
@@ -689,7 +694,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>PopulateScript</name>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="13"/>
+      <location filename="../plugins/populatescript.cpp" line="34"/>
       <source>Script</source>
       <translation>Скрипт</translation>
     </message>
@@ -759,28 +764,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1025"/>
+      <location filename="../common/utils.cpp" line="1028"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="435"/>
       <source>Could not open database: %1</source>
       <translation>Невозможно открыть базу данных: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1168"/>
+      <location filename="../db/abstractdb3.h" line="1214"/>
       <source>Result set expired or no row available.</source>
       <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="329"/>
-      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="331"/>
+      <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
       <translation>Невозможно загрузить расширение %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="441"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
+      <source>Could not run WAL checkpoint: %1</source>
+      <translation>Не удалось запустить контрольную точку WAL: %1</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="459"/>
       <source>Could not close database: %1</source>
       <translation>Невозможно закрыть базу данных: %1</translation>
     </message>
@@ -796,12 +806,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
       <source>Parser stack overflow</source>
       <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
       <source>Syntax error</source>
       <translation>Синтаксическая ошибка</translation>
     </message>
@@ -831,123 +841,123 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Произвольный набор символов не может быть пустым.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="40"/>
+      <location filename="../plugins/populatescript.cpp" line="61"/>
       <source>Could not find plugin to support scripting language: %1</source>
       <translation>Невозможно найти модуль поддержки скриптового языка: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="58"/>
+      <location filename="../plugins/populatescript.cpp" line="79"/>
       <source>Error while executing populating initial code: %1</source>
       <translation>Ошибка при выполнении инициализирующего кода заполнения: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="80"/>
+      <location filename="../plugins/populatescript.cpp" line="101"/>
       <source>Error while executing populating code: %1</source>
       <translation>Ошибка при выполнении кода заполнения: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="112"/>
+      <location filename="../plugins/populatescript.cpp" line="133"/>
       <source>Select implementation language.</source>
       <translation>Выберите язык реализации.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="113"/>
+      <location filename="../plugins/populatescript.cpp" line="134"/>
       <source>Implementation code cannot be empty.</source>
       <translation>Заполняющий код не может быть пустым.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="347"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Невозможно определить источник данных для столбца: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="419"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Невозможно определить таблицу для столбца &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="788"/>
+      <location filename="../services/impl/configimpl.cpp" line="747"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Не удалось инициализировать конфигурационный файл. Любые изменения конфигурации и история запросов будут потеряны после перезагрузки приложения. Невозможно создать файл в следующих местах: %1.</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="311"/>
+      <location filename="../sqlitestudio.cpp" line="347"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
       <translation>Общего назначения</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="312"/>
+      <location filename="../sqlitestudio.cpp" line="348"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
       <translation>Поддержка баз данных</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="313"/>
+      <location filename="../sqlitestudio.cpp" line="349"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
       <translation>Форматирование кода</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="314"/>
+      <location filename="../sqlitestudio.cpp" line="350"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
       <translation>Скриптовые языки</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="315"/>
+      <location filename="../sqlitestudio.cpp" line="351"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation>Экспорт</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="316"/>
+      <location filename="../sqlitestudio.cpp" line="352"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation>Импорт</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="317"/>
+      <location filename="../sqlitestudio.cpp" line="353"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
       <translation>Заполнение таблиц</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="119"/>
+      <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Таблица %1 ссылается на таблицу %2, но описание внешнего ключа не будет обновлено для описания новой таблицы из-за проблем с анализом DDL таблицы %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="446"/>
+      <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Все столбцы, проиндексированные индексом %1, удалены. Индекс не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="490"/>
+      <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Возникла проблема при обработке триггера %1. Впоследствии он не будет полностью обновлён и потребует вашего внимания.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="505"/>
+      <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Все столбцы, затронутые в триггере %1, удалены. Триггер не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="537"/>
+      <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Невозможно обновить триггер %1 в соответствии с модификацией таблицы %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="556"/>
+      <location filename="../tablemodifier.cpp" line="580"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Невозможно обновить представление %1 в соответствии с модификациями таблицы %2.
 Представление останется как есть.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="718"/>
       <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="761"/>
+      <location filename="../tablemodifier.cpp" line="766"/>
+      <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Возникла проблема при обновлении конструкции %1 внутри триггера %2. Одна из вложенных конструкций %1, которая возможно ссылается на таблицу %3, не может быть корректно модифицирована. Возможно необходима ручная правка триггера.</translation>
     </message>
@@ -970,28 +980,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="193"/>
+      <location filename="../db/queryexecutor.cpp" line="187"/>
       <source>Execution interrupted.</source>
       <translation>Выполнение прервано.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="234"/>
+      <location filename="../db/queryexecutor.cpp" line="228"/>
       <source>Database is not open.</source>
       <translation>База данных не открыта.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="242"/>
+      <location filename="../db/queryexecutor.cpp" line="236"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="346"/>
-      <location filename="../db/queryexecutor.cpp" line="593"/>
+      <location filename="../db/queryexecutor.cpp" line="340"/>
+      <location filename="../db/queryexecutor.cpp" line="589"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Возникла ошибка при выполнении запроса count(*), поэтому разбивка данных по страницам отключена. Детали ошибки из базы данных: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="504"/>
+      <location filename="../db/queryexecutor.cpp" line="500"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio не удалось извлечь метаданные из запроса. Результаты нельзя будет редактировать.</translation>
     </message>
@@ -1010,33 +1020,71 @@ The view will remain as it is.</source>
     </message>
   </context>
   <context>
+    <name>SqlFileExecutor</name>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="50"/>
+      <source>Could not execute SQL, because application has failed to start transaction: %1</source>
+      <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось начать транзакцию: %1</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="81"/>
+      <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
+      <translation>Выполнение запросов из файла отменено. Все выполненные ранее из него запросы откачены.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="97"/>
+      <source>Could not open file &apos;%1&apos; for reading: %2</source>
+      <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="142"/>
+      <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
+      <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось завершить транзакцию: %1</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
+      <translation>Завершено выполнение %1 запросов за %2 секунд. %3 запросов не было выполнено из-за ошибок.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <source>Finished executing %1 queries in %2 seconds.</source>
+      <translation>Завершено выполнение %1 запросов за %2 секунд.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="160"/>
+      <source>Could not execute SQL due to error.</source>
+      <translation>Невозможно выполнить SQL-запрос из-за ошибки.</translation>
+    </message>
+  </context>
+  <context>
     <name>SqlHistoryModel</name>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="34"/>
+      <location filename="../sqlhistorymodel.cpp" line="32"/>
       <source>Database</source>
       <comment>sql history header</comment>
       <translation>База данных</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="36"/>
+      <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
       <translation>Дата выполнения</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="38"/>
+      <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
       <translation>Затраченное время</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="40"/>
+      <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
       <translation>Затронуто строк</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="42"/>
+      <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>

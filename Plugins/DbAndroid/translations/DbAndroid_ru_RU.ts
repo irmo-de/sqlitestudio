@@ -74,12 +74,12 @@ Would you like to select another one, or leave it unconfigured?</source>
   <context>
     <name>DbAndroidInstance</name>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="106"/>
+      <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
       <translation>Драйвер SQLite для Android не поддерживает подгружаемые расширения.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="188"/>
+      <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Подключение к базе данных Android &apos;%1&apos; утеряно.</translation>
     </message>
@@ -88,7 +88,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <name>DbAndroidJsonConnection</name>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
       <translation>Невозможно подключиться к устройству %1, поскольку оно невидимо на вашем компьютере.</translation>
     </message>
     <message>
@@ -301,7 +301,7 @@ Android device refused deletion, or it was impossible.</source>
     <name>DbAndroidShellConnection</name>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
-      <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
+      <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
       <translation>Невозможно подключиться к устройству %1, поскольку оно невидимо на вашем компьютере.</translation>
     </message>
     <message>

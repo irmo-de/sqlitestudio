@@ -179,6 +179,8 @@ void ViewWindow::setupDefShortcuts()
 {
     // Widget context
     setShortcutContext({
+                           COMMIT_QUERY,
+                           ROLLBACK_QUERY,
                            REFRESH_TRIGGERS,
                            ADD_TRIGGER,
                            EDIT_TRIGGER,
@@ -329,10 +331,10 @@ void ViewWindow::setupCoverWidget()
 
 void ViewWindow::createQueryTabActions()
 {
-    createAction(REFRESH_QUERY, ICONS.RELOAD, tr("Refresh the view", "view window"), this, SLOT(refreshView()), ui->queryToolbar);
+    createAction(REFRESH_QUERY, ICONS.RELOAD, tr("Refresh the view", "view window"), this, SLOT(refreshView()), ui->queryToolbar, ui->queryEdit);
     ui->queryToolbar->addSeparator();
-    createAction(COMMIT_QUERY, ICONS.COMMIT, tr("Commit the view changes", "view window"), this, SLOT(commitView()), ui->queryToolbar);
-    createAction(ROLLBACK_QUERY, ICONS.ROLLBACK, tr("Rollback the view changes", "view window"), this, SLOT(rollbackView()), ui->queryToolbar);
+    createAction(COMMIT_QUERY, ICONS.COMMIT, tr("Commit the view changes", "view window"), this, SLOT(commitView()), ui->queryToolbar, ui->queryEdit);
+    createAction(ROLLBACK_QUERY, ICONS.ROLLBACK, tr("Rollback the view changes", "view window"), this, SLOT(rollbackView()), ui->queryToolbar, ui->queryEdit);
     ui->queryToolbar->addSeparator();
     ui->queryToolbar->addAction(ui->queryEdit->getAction(SqlEditor::FORMAT_SQL));
 
@@ -586,7 +588,7 @@ void ViewWindow::deleteTrigger()
         return;
 
     DbObjectDialogs dialogs(db, this);
-    dialogs.dropObject(trigger);
+    dialogs.dropObject(DbObjectDialogs::Type::TRIGGER, trigger);
     refreshTriggers();
 }
 
@@ -599,7 +601,7 @@ void ViewWindow::executionSuccessful()
 void ViewWindow::executionFailed(const QString& errorMessage)
 {
     modifyingThisView = false;
-    notifyError(tr("Could not load data for view %1. Error details: %2").arg(view).arg(errorMessage));
+    notifyError(tr("Could not load data for view %1. Error details: %2").arg(view, errorMessage));
 }
 
 void ViewWindow::tabChanged(int tabIdx)

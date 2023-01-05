@@ -1,10 +1,9 @@
 #include "sqleditor.h"
+#include "common/mouseshortcut.h"
 #include "sqlitesyntaxhighlighter.h"
 #include "db/db.h"
-#include "log.h"
 #include "uiconfig.h"
 #include "uiutils.h"
-#include "services/config.h"
 #include "services/codesnippetmanager.h"
 #include "iconmanager.h"
 #include "completer/completerwindow.h"
@@ -19,11 +18,11 @@
 #include "dbobjectdialogs.h"
 #include "searchtextlocator.h"
 #include "services/codeformatter.h"
-#include "sqlitestudio.h"
 #include "style.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "dbtree/dbtreeview.h"
 #include "common/lazytrigger.h"
 #include "common/extaction.h"
 #include <QAction>
@@ -70,8 +69,8 @@ SqlEditor::SqlEditor(QWidget *parent) :
 
 SqlEditor::~SqlEditor()
 {
-    if (objectsInNamedDbFuture.isRunning())
-        objectsInNamedDbFuture.waitForFinished();
+    if (objectsInNamedDbWatcher->isRunning())
+        objectsInNamedDbWatcher->waitForFinished();
 
     if (queryParser)
     {
@@ -83,20 +82,25 @@ SqlEditor::~SqlEditor()
 void SqlEditor::init()
 {
     highlighter = new SqliteSyntaxHighlighter(document());
-    setFont(CFG_UI.Fonts.SqlEditor.get());
     initActions();
     setupMenu();
+
+    objectsInNamedDbWatcher = new QFutureWatcher<QHash<QString,QStringList>>(this);
+    connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
 
     textLocator = new SearchTextLocator(document(), this);
     connect(textLocator, SIGNAL(found(int,int)), this, SLOT(found(int,int)));
     connect(textLocator, SIGNAL(reachedEnd()), this, SLOT(reachedEnd()));
+    connect(textLocator, SIGNAL(newCursorPositionAfterAllReplaced(int)), this, SLOT(moveCursorTo(int)));
 
     lineNumberArea = new LineNumberArea(this);
+    changeFont(CFG_UI.Fonts.SqlEditor.get());
 
     connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth()));
     connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
     connect(this, SIGNAL(textChanged()), this, SLOT(checkContentSize()));
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorMoved()));
+    MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(fontSizeChangeRequested(int)), viewport());
 
     updateLineNumberAreaWidth();
     highlightCurrentCursorContext();
@@ -169,6 +173,8 @@ void SqlEditor::createActions()
     createAction(FIND_PREV, tr("Find previous", "sql editor"), this, SLOT(findPrevious()), this);
     createAction(REPLACE, ICONS.SEARCH_AND_REPLACE, tr("Replace", "sql editor"), this, SLOT(replace()), this);
     createAction(TOGGLE_COMMENT, tr("Toggle comment", "sql editor"), this, SLOT(toggleComment()), this);
+    createAction(INCR_FONT_SIZE, tr("Increase font size", "sql editor"), this, SLOT(incrFontSize()), this);
+    createAction(DECR_FONT_SIZE, tr("Decrease font size", "sql editor"), this, SLOT(decrFontSize()), this);
 
     actionMap[CUT]->setEnabled(false);
     actionMap[COPY]->setEnabled(false);
@@ -186,7 +192,7 @@ void SqlEditor::createActions()
 void SqlEditor::setupDefShortcuts()
 {
     setShortcutContext({CUT, COPY, PASTE, DELETE, SELECT_ALL, UNDO, REDO, COMPLETE, FORMAT_SQL, SAVE_SQL_FILE, OPEN_SQL_FILE,
-                        DELETE_LINE}, Qt::WidgetWithChildrenShortcut);
+                        DELETE_LINE, INCR_FONT_SIZE, DECR_FONT_SIZE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlEditor, Action);
 }
@@ -585,22 +591,25 @@ void SqlEditor::refreshValidObjects()
     if (!db || !db->isValid())
         return;
 
-    objectsInNamedDbFuture = QtConcurrent::run([this]()
+    Db* dbClone = db->clone();
+    QFuture<QHash<QString,QStringList>> objectsInNamedDbFuture = QtConcurrent::run([dbClone]()
     {
-        // TODO lambda may be executed when there is no longer "this", which will crash the app
-        QMutexLocker lock(&objectsInNamedDbMutex);
-        objectsInNamedDb.clear();
-
-        SchemaResolver resolver(db);
+        dbClone->openQuiet();
+        QHash<QString,QStringList> objectsByDbName;
+        SchemaResolver resolver(dbClone);
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
         QStringList objects;
         for (const QString& dbName : qAsConst(databases))
         {
             objects = resolver.getAllObjects(dbName);
-            objectsInNamedDb[dbName] << objects;
+            objectsByDbName[dbName] << objects;
         }
+        dbClone->closeQuiet();
+        delete dbClone;
+        return objectsByDbName;
     });
+    objectsInNamedDbWatcher->setFuture(objectsInNamedDbFuture);
 }
 
 void SqlEditor::setObjectLinks(bool enabled)
@@ -927,6 +936,12 @@ void SqlEditor::parseContents()
     highlightSyntax();
 }
 
+void SqlEditor::scheduleQueryParserForSchemaRefresh()
+{
+    objectsInNamedDb = objectsInNamedDbWatcher->future().result();
+    scheduleQueryParser(true, true);
+}
+
 void SqlEditor::checkForSyntaxErrors()
 {
     syntaxValidated = true;
@@ -963,7 +978,6 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QMutexLocker lock(&objectsInNamedDbMutex);
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
     for (const SqliteQueryPtr& query : queryParser->getQueries())
@@ -972,7 +986,7 @@ void SqlEditor::checkForValidObjects()
         for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
             dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
-            if (!objectsInNamedDb.contains(dbName))
+            if (!objectsInNamedDb.contains(dbName, Qt::CaseInsensitive))
                 continue;
 
             if (fullObj.type == SqliteStatement::FullObject::DATABASE)
@@ -982,7 +996,7 @@ void SqlEditor::checkForValidObjects()
                 continue;
             }
 
-            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value)))
+            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value), Qt::CaseInsensitive))
                 continue;
 
             // Valid object name
@@ -991,7 +1005,7 @@ void SqlEditor::checkForValidObjects()
     }
 }
 
-void SqlEditor::scheduleQueryParser(bool force)
+void SqlEditor::scheduleQueryParser(bool force, bool skipCompleter)
 {
     if (!document()->isModified() && !force)
         return;
@@ -1000,7 +1014,8 @@ void SqlEditor::scheduleQueryParser(bool force)
 
     document()->setModified(false);
     queryParserTrigger->schedule();
-    autoCompleteTrigger->schedule();
+    if (!skipCompleter)
+        autoCompleteTrigger->schedule();
 }
 
 int SqlEditor::sqlIndex(int idx)
@@ -1045,7 +1060,7 @@ QString SqlEditor::getSelectedText() const
 void SqlEditor::openObject(const QString& database, const QString& name)
 {
     DbObjectDialogs dialogs(db);
-    dialogs.editObject(database, name);
+    dialogs.editObject(DbObjectDialogs::Type::UNKNOWN, database, name);
 }
 
 void SqlEditor::highlightSyntax()
@@ -1383,7 +1398,9 @@ void SqlEditor::reachedEnd()
 
 void SqlEditor::changeFont(const QVariant& font)
 {
-    setFont(font.value<QFont>());
+    auto f = font.value<QFont>();
+    setFont(f);
+    lineNumberArea->setFont(f);
 }
 
 void SqlEditor::configModified()
@@ -1484,6 +1501,35 @@ void SqlEditor::wordWrappingChanged(const QVariant& value)
 void SqlEditor::currentCursorContextDelayedHighlight()
 {
     highlightCurrentCursorContext(true);
+}
+
+void SqlEditor::fontSizeChangeRequested(int delta)
+{
+    changeFontSize(delta >= 0 ? 1 : -1);
+}
+
+void SqlEditor::incrFontSize()
+{
+    changeFontSize(1);
+}
+
+void SqlEditor::decrFontSize()
+{
+    changeFontSize(-1);
+}
+
+void SqlEditor::moveCursorTo(int pos)
+{
+    QTextCursor cur = textCursor();
+    cur.setPosition(pos);
+    setTextCursor(cur);
+}
+
+void SqlEditor::changeFontSize(int factor)
+{
+    auto f = font();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.SqlEditor.set(f);
 }
 
 void SqlEditor::colorsConfigChanged()
@@ -1720,7 +1766,7 @@ const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& po
 
 const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position, bool movedLeft)
 {
-    for (const DbObject& obj : validDbObjects)
+    for (DbObject& obj : validDbObjects)
     {
         if ((!movedLeft && position > obj.from && position-1 <= obj.to) ||
             (movedLeft && position >= obj.from && position <= obj.to))
@@ -1766,4 +1812,11 @@ void SqlEditor::showEvent(QShowEvent* event)
 {
     UNUSED(event);
     setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
+}
+
+void SqlEditor::dropEvent(QDropEvent* e)
+{
+    QPlainTextEdit::dropEvent(e);
+    if (MAINWINDOW->getDbTree()->getModel()->hasDbTreeItem(e->mimeData()))
+        e->ignore();
 }

@@ -19,17 +19,17 @@
       <translation>Введите %1 для вызова справки</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="253"/>
+      <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>База данных, переданная через аргументы командной строки (%1), уже находится в списке под именем %2</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="260"/>
+      <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
       <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="286"/>
+      <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
       <translation>закрыта</translation>
     </message>
@@ -430,23 +430,23 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>При вызове без аргументов отображает текущий формат вывода результатов запроса. Если указан &lt;режим&gt;, режим меняется на переданный. Поддерживаемые режимы:
-- CLASSIC - столбцы разделяются запятой, не выравниваются,
-- FIXED   - ширина столбцов одинакова и зафиксирована, они всегда умещаются в ширину окна терминала, однако данные в столбцах могут быть обрезаны,
-- COLUMNS - аналогичен FIXED, но более умный (не используйте при огромных размерах результатов, подробнее см. ниже),
-- ROW     - каждый столбец строки выводится с новой строчки, так что отображаются полные данные.
+      <translation>При вызове без аргумента, отображает текущий формат вывода для результатов запроса. При указании &lt;mode&gt; режим сменяется на выбранный. Поддерживаются следующие режимы:
+- CLASSIC - столбцы разделяются запятой, без выравнивания,
+- FIXED   - у столбцов равная и фиксированная ширина, они всегда умещаются в окно терминала по ширине, но часть данных в столбцах может быть обрезана,
+- COLUMNS - как FIXED, но умнее (не используйте при огромных размерах результата запроса, см. подробности ниже),
+- ROW     - каждый столбец каждой строки данных отображается на отдельной строке терминала, данные отображаются полностью.
 
-Режим CLASSIC рекомендован если необходимо отобразить все данные, не затрачивая отдельные строчки на каждый столбец. Каждая строка будет содержать полные данные каждого столбца, что приведёт к отсутствию выравнивания столбцов в следующих строках. Также в режиме CLASSIC не учитывается ширина окна терминала (консоли), поэтому если столбцы шире окна, остаток строки будет выведен на новых строчках.
+Режим CLASSIC рекомендован если вы хотите увидеть все данные, но не хотите тратить новую строку в терминале для каждого столбца. Каждая строка будет отображать все данные из всех столбцов, однако столбцы не будут выровнены между собой по строкам. Режим CLASSIC также не учитывает ширину окна терминала (консоли), поэтому если значения в столбцах шире окна, выводимая строка данных будет продолжена в следующих строках окна терминала.
 
-Режим FIXED рекомендован если необходимо получить читабельный вывод, невзирая на длинные значения столбцов. Столбцы будут выровнены в аккуратную таблицу. Ширина столбцов будет рассчитана исходя из ширины окна консоли и числа столбцов.
+Режим FIXED рекомендован если вам нужен читабельный вывод и вас не беспокоят длинные значения в данных. Столбцы будут выровнены, образуя на выходе аккуратную таблицу. Ширина столбцов рассчитывается исходя из ширины окна консоли и числа столбцов.
 
-Режим COLUMNS аналогичен режиму FIXED с той разницей, что он умнее и сделает столбцы с короткими значениями поуже, оставляя больше места столбцам с длинными значениями. Первыми будут ужаты столбцы с самыми длинными заголовками (т.е. длинные заголовки будут обрезаны в первую очередь), затем будут ужиматься столбцы с самыми длинными значениями, пока таблица не впишется в окно терминала.
-ВНИМАНИЕ! Для рассчёта ширины столбцов в режиме COLUMNS считывается сразу весь результат запроса, поэтому его опасно использовать при огромных размерах результатов. Учтите, что в этом режиме весь результат запроса загружается в оперативную память.
+Режим COLUMNS похож на режим FIXED с тем исключением, что он старается поступать по-умному и делать столбцы с короткими значениями поуже, чтобы столбцам с длинными значениями досталось больше места. Сначала урезаются столбцы с самыми длинными заголовками (так что имена столбцов будут урезаны в первую очередь), затем урезаются столбцы с самыми длинными значениями, пока все столбцы не уместятся в окне терминала.
+ВНИМАНИЕ! Режим COLUMNS сразу считывает все результаты запроса чтобы рассчитать ширину столбцов, поэтому опасно использовать этот режим при работе с результатами огромных размеров. Учтите, что этот режим загружает весь результат запроса в память.
 
-Режим ROW рекомендован если необходимо отобразить все данные, при этом число выводимых строк невелико, так как в этом режиме каждый столбец выводится на отдельной строчке; например вывод единственной строки из 10 столбцов займёт 10 строчек, 10 таких строк займут 100 строчек вывода (+1 строчка на каждую строку для вывода разделителя строк).</translation>
+Режим ROW рекомендован если вам нужно видеть все данные, и вы не ожидаете большого числа строк данных в результате, поскольку в этом режиме каждый столбец выводится на отдельной строке терминала, поэтому вывод строки данных с 10 столбцами займёт 10 строк в терминале, и если таких строк с данными будет 10, то получится 100 строк вывода (+1 строка в терминале на каждую строку данных, для разделения).</translation>
     </message>
   </context>
   <context>
@@ -796,34 +796,79 @@ Expected one of: %2</source>
       <translation>строка</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="22"/>
+      <location filename="../main.cpp" line="28"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Интерфейс командной строки для SQLiteStudio, менеджера баз данных SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="26"/>
+      <location filename="../main.cpp" line="32"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Включает вывод отладочных сообщений в стандартный поток ошибок.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="27"/>
+      <location filename="../main.cpp" line="33"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Включает вывод отладочных сообщений анализатора Lemon для автодополнения SQL кода.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Выводит список установленных в SQLiteStudio модулей и осуществляет выход.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="36"/>
+      <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+      <translation>Выполняет предоставленный SQL-файл (используя все многочисленные функции исполнителя запросов SQLiteStudio) на указанном файле базы данных и выходит. При использовании этой опции обязательно указывать параметр database.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="39"/>
+      <source>SQL file</source>
+      <translation>Файл SQL</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="40"/>
+      <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+      <translation>Кодировка текста, используемая при чтении файла SQL (опция -e). Используйте -cl для получения списка доступных кодеков. По умолчанию используется %1.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="43"/>
+      <source>codec</source>
+      <translation>кодек</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="44"/>
+      <source>Lists available codecs to be used with -c option and quits.</source>
+      <translation>Выводит список доступных кодеков для использования с опцией -c и выходит.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="46"/>
+      <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+      <translation>При использовании вместе с параметром -e выполнение не останавливается при возникновении ошибки, а продолжается до конца, игнорируя все ошибки.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="57"/>
       <source>file</source>
       <translation>файл</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
       <translation>Файл базы данных для открытия</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="78"/>
+      <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+      <translation>Неверный кодек: %1. Используйте параметр -cl для получения списка доступных кодеков.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="108"/>
+      <source>Database file argument is mandatory when executing SQL file.</source>
+      <translation>Аргумент с файлом базы данных является обязательным при выполнении SQL-файла.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation>Не удалось открыть указанную базу данных для выполнения файла SQL. Вы можете воспользоваться опцией -d, чтобы узнать больше деталей.</translation>
     </message>
   </context>
 </TS>

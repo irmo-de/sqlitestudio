@@ -19,17 +19,17 @@
       <translation>Введіть %1 для виклику довідки</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="253"/>
+      <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>База даних, передана через аргументи командного рядка (%1), вже знаходиться в списку під назвою %2</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="260"/>
+      <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
       <translation>Не вдалося додати базу даних %1 до списку.</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="286"/>
+      <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
       <translation>закрито</translation>
     </message>
@@ -62,7 +62,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation>Додає базу даних, розташовану за вказаним &lt;шляхом&gt; під вказаним ім'ям &lt;ім'ям&gt; в список баз даних. &lt;ім'я&gt; - це звичайне символьне ім'я, яке в подальшому можна буде використовувати. Виберіть будь-який унікальне ім'я. Для отримання поточного списку баз даних за допомогою команди %1.</translation>
+      <translation>Додає базу даних, розташовану за вказаним &lt;шляхом&gt; під вказаним ім&apos;ям &lt;ім&apos;ям&gt; в список баз даних. &lt;ім&apos;я&gt; - це звичайне символьне ім&apos;я, яке в подальшому можна буде використовувати. Виберіть будь-який унікальне ім&apos;я. Для отримання поточного списку баз даних за допомогою команди %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
@@ -111,7 +111,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="10"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім'я бази даних на %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім&apos;я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="21"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Закриває зв'язок з базою даних. Якщо база даних вже закрита, нічого не відбувається. Якщо &lt;name&gt; буде передбачено, то назва бази даних має бути закрита (як надруковано командою %1). &lt;name&gt; не передбачено, поточна робоча база даних закрита (детальніше дивіться довідку %2).</translation>
+      <translation>Закриває зв&apos;язок з базою даних. Якщо база даних вже закрита, нічого не відбувається. Якщо &lt;name&gt; буде передбачено, то назва бази даних має бути закрита (як надруковано командою %1). &lt;name&gt; не передбачено, поточна робоча база даних закрита (детальніше дивіться довідку %2).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -430,7 +430,7 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
       <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
@@ -444,7 +444,7 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
     </message>
@@ -472,7 +472,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="12"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Неможливо викликати %1, коли база даних не вибрана. Виберіть поточну базу даних командою %2, або передайте ім'я бази даних на %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не вибрана. Виберіть поточну базу даних командою %2, або передайте ім&apos;я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
@@ -618,7 +618,7 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім'я бази даних на %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім&apos;я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
@@ -645,7 +645,7 @@ Call %2 to see list of all databases.</source>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation>Друкує перелік таблиць у даній &lt;database&gt; або в поточній базі даних. Зверніть увагу, що &lt;database&gt; має бути ім'я зареєстрованої бази даних (див. %1). Вихідний список включає в себе всі таблиці з будь-яких інших баз даних, прикріплених до запитаної бази даних.
+      <translation>Друкує перелік таблиць у даній &lt;database&gt; або в поточній базі даних. Зверніть увагу, що &lt;database&gt; має бути ім&apos;я зареєстрованої бази даних (див. %1). Вихідний список включає в себе всі таблиці з будь-яких інших баз даних, прикріплених до запитаної бази даних.
 Якщо параметр -s вказано, то системні таблиці також списані.</translation>
     </message>
     <message>
@@ -691,7 +691,7 @@ When the -s option is given, then system tables are also listed.</source>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation>друкує всі об'єкти в базі даних як дерево</translation>
+      <translation>друкує всі об&apos;єкти в базі даних як дерево</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
@@ -699,10 +699,10 @@ When the -s option is given, then system tables are also listed.</source>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation>Відображає всі об'єкти (таблиці, індекси, тригери та розріз даних) бази даних у вигляді дерева. Структура дерева подібна до того, що відображається в GUI клієнта SQLiteStudio.
+      <translation>Відображає всі об&apos;єкти (таблиці, індекси, тригери та розріз даних) бази даних у вигляді дерева. Структура дерева подібна до того, що відображається в GUI клієнта SQLiteStudio.
 При виклику з -c також будуть виведені стовпці під кожною таблицею.
-При виклику з ключем -s також буде виведено системні об'єкти (таблиці sqlite_*, індекси автоінкремента тощо).
-При виклику з необов'язковим аргументом &apos;база даних&apos; будуть виведені об'єкти лише вказаної бази даних. Під &apos;базою даних&apos; мається на увазі не зареєстроване ім'я бази даних, а внутрішнє ім'я бази даних SQLite, наприклад &apos;main&apos;, &apos;temp&apos; або ім'я приєднаної бази даних. Для відображення дерева іншої зареєстрованої бази даних спочатку змініть робочу базу даних командою %1, а потім скористайтеся командою %2.</translation>
+При виклику з ключем -s також буде виведено системні об&apos;єкти (таблиці sqlite_*, індекси автоінкремента тощо).
+При виклику з необов&apos;язковим аргументом &apos;база даних&apos; будуть виведені об&apos;єкти лише вказаної бази даних. Під &apos;базою даних&apos; мається на увазі не зареєстроване ім&apos;я бази даних, а внутрішнє ім&apos;я бази даних SQLite, наприклад &apos;main&apos;, &apos;temp&apos; або ім&apos;я приєднаної бази даних. Для відображення дерева іншої зареєстрованої бази даних спочатку змініть робочу базу даних командою %1, а потім скористайтеся командою %2.</translation>
     </message>
   </context>
   <context>
@@ -798,34 +798,79 @@ Expected one of: %2</source>
       <translation>рядок</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="22"/>
+      <location filename="../main.cpp" line="28"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Інтерфейс командного рядка для SQLiteStudio, менеджера баз даних SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="26"/>
+      <location filename="../main.cpp" line="32"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Вмикає повідомлення налагодження при звичайному виході помилки.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="27"/>
+      <location filename="../main.cpp" line="33"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Включає вивід налагоджувальних повідомлень аналізатора Lemon для автодоповнення SQL коду.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Виводить список встановлених в SQLiteStudio модулів і здійснює вихід.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="36"/>
+      <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="39"/>
+      <source>SQL file</source>
+      <translation type="unfinished">SQL file</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="40"/>
+      <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="43"/>
+      <source>codec</source>
+      <translation type="unfinished">codec</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="44"/>
+      <source>Lists available codecs to be used with -c option and quits.</source>
+      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="46"/>
+      <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="57"/>
       <source>file</source>
       <translation>файл</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
       <translation>Файл бази даних для відкриття</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="78"/>
+      <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="108"/>
+      <source>Database file argument is mandatory when executing SQL file.</source>
+      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>

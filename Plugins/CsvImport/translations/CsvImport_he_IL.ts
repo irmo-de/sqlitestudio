@@ -14,12 +14,12 @@
       <translation>לא נמצאו נתונים בקובץ %1.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="167"/>
+      <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
       <translation>הזנת תו מפריד מותאם.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="190"/>
+      <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>קובצי CSV (*.csv);;Text files (*.txt);;כל הקבצים(*)</translation>
     </message>
@@ -27,57 +27,67 @@
   <context>
     <name>csvImportOptions</name>
     <message>
-      <location filename="../CsvImportOptions.ui" line="24"/>
+      <location filename="../CsvImportOptions.ui" line="37"/>
       <source>, (comma)</source>
       <translation>, (פסיק)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="29"/>
+      <location filename="../CsvImportOptions.ui" line="42"/>
       <source>; (semicolon)</source>
       <translation>; (אתנח)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="34"/>
+      <location filename="../CsvImportOptions.ui" line="47"/>
       <source>\t (tab)</source>
       <translation>\t (טאב)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="39"/>
+      <location filename="../CsvImportOptions.ui" line="52"/>
       <source>  (whitespace)</source>
       <translation>  (מרחב לבן)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="44"/>
+      <location filename="../CsvImportOptions.ui" line="57"/>
       <source>Custom:</source>
       <translation>מותאם:</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="52"/>
+      <location filename="../CsvImportOptions.ui" line="65"/>
+      <source>Column separator:</source>
+      <translation type="unfinished">Column separator:</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="108"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="111"/>
+      <source>Interpret &quot; as a value quotation mark</source>
+      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
       <translation>&lt;p&gt;ניתן לאפשר במידה ושורת הנתונים הראשונה בקובץ ה- CSV מייצגת שמות עמודות. לא רצוי לייבא שמות עמודות לטבלה כנתונים רגילים.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="55"/>
+      <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
       <translation>שורה ראשונה מייצגת שם עמודת CSV</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="65"/>
-      <source>Field separator:</source>
-      <translation>מפריד שדה:</translation>
-    </message>
-    <message>
-      <location filename="../CsvImportOptions.ui" line="85"/>
+      <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
       <translation>אם מופעל, ערך המלל מימין יתפרש כ- NULL</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="88"/>
+      <location filename="../CsvImportOptions.ui" line="75"/>
       <source>NULL values:</source>
       <translation>ערך NULL:</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="98"/>
+      <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
       <translation>אם נתוני ה- CSV מכילים ערכי null, נא להגדיר כיצד הם מיוצגים ב- CSV.</translation>
     </message>

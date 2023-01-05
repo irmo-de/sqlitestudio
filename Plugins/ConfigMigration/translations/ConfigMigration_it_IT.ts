@@ -99,17 +99,17 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="203"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation>Impossibile leggere l'elenco dei database dal vecchio file di configurazione per migrarlo: %1</translation>
+      <translation>Impossibile leggere l&apos;elenco dei database dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="217"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Impossibile interrogare per l'ordine disponibile contenente il gruppo in un nuovo file di configurazione per migrare l'elenco del database: %1</translation>
+      <translation>Impossibile interrogare per l&apos;ordine disponibile contenente il gruppo in un nuovo file di configurazione per migrare l&apos;elenco del database: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="228"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Impossibile creare il gruppo contenente nel nuovo file di configurazione per migrare l'elenco del database: %1</translation>
+      <translation>Impossibile creare il gruppo contenente nel nuovo file di configurazione per migrare l&apos;elenco del database: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="249"/>
@@ -119,7 +119,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="261"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation>Impossibile interrogare l'ordinamento disponibile per il prossimo database in un nuovo file di configurazione per migrare l'elenco del database: %1</translation>
+      <translation>Impossibile interrogare l&apos;ordinamento disponibile per il prossimo database in un nuovo file di configurazione per migrare l&apos;elenco del database: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="272"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="290"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
-      <translation>Impossibile leggere l'elenco delle funzioni dal vecchio file di configurazione per migrarlo: %1</translation>
+      <translation>Impossibile leggere l&apos;elenco delle funzioni dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="325"/>

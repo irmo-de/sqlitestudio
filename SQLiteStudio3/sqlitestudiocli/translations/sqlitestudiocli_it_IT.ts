@@ -19,17 +19,17 @@
       <translation>Digita %1 per aiuto</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="253"/>
+      <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation>Il database passato nei parametri della riga di comando (%1) era già nell'elenco sotto nome: %2</translation>
+      <translation>Il database passato nei parametri della riga di comando (%1) era già nell&apos;elenco sotto nome: %2</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="260"/>
+      <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
-      <translation>Impossibile aggiungere il database %1 all'elenco.</translation>
+      <translation>Impossibile aggiungere il database %1 all&apos;elenco.</translation>
     </message>
     <message>
-      <location filename="../cli.cpp" line="286"/>
+      <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
       <translation>chiuso</translation>
     </message>
@@ -47,7 +47,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="9"/>
       <source>Could not add database %1 to list.</source>
-      <translation>Impossibile aggiungere il database %1 all'elenco.</translation>
+      <translation>Impossibile aggiungere il database %1 all&apos;elenco.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="14"/>
@@ -62,7 +62,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation>Aggiunge il database dato puntato da &lt;path&gt; con dato &lt;name&gt; per elencare l'elenco dei database. Il &lt;name&gt; è solo un nome simbolico a cui puoi fare riferimento in seguito. Basta scegliere un nome univoco. Per l'elenco dei database già presenti nella lista usa il comando %1.</translation>
+      <translation>Aggiunge il database dato puntato da &lt;path&gt; con dato &lt;name&gt; per elencare l&apos;elenco dei database. Il &lt;name&gt; è solo un nome simbolico a cui puoi fare riferimento in seguito. Basta scegliere un nome univoco. Per l&apos;elenco dei database già presenti nella lista usa il comando %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
@@ -122,7 +122,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>Database inesistente: %1. Usa %2 per vedere l'elenco dei database conosciuti.</translation>
+      <translation>Database inesistente: %1. Usa %2 per vedere l&apos;elenco dei database conosciuti.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
@@ -190,12 +190,12 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation>stampa l'elenco dei database registrati</translation>
+      <translation>stampa l&apos;elenco dei database registrati</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Stampa la lista dei database registrati in SQLiteStudio. Ogni database nella lista può essere in stato di aperto o chiuso e %1 te lo dice. Anche il database di lavoro corrente (aka database predefinito) è contrassegnato nella lista con &apos;*&apos; all'inizio del suo nome. Vedi la guida per il comando %2 per conoscere il database predefinito.</translation>
+      <translation>Stampa la lista dei database registrati in SQLiteStudio. Ogni database nella lista può essere in stato di aperto o chiuso e %1 te lo dice. Anche il database di lavoro corrente (aka database predefinito) è contrassegnato nella lista con &apos;*&apos; all&apos;inizio del suo nome. Vedi la guida per il comando %2 per conoscere il database predefinito.</translation>
     </message>
   </context>
   <context>
@@ -207,7 +207,7 @@ Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Non è stato impostato alcun database funzionante.
 Esegui il comando %1 per impostare il database di lavoro.
-Esegui %2 per vedere l'elenco di tutti i database.</translation>
+Esegui %2 per vedere l&apos;elenco di tutti i database.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
@@ -279,7 +279,7 @@ Esegui %2 per vedere l'elenco di tutti i database.</translation>
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
       <translation>Questo è molto simile a &apos;dir&apos; comando conosciuto da Windows e &apos;ls&apos; comando da sistemi Unix.
 
-Puoi passare &lt;pattern&gt; con caratteri jolly per filtrare l'output.</translation>
+Puoi passare &lt;pattern&gt; con caratteri jolly per filtrare l&apos;output.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
@@ -292,12 +292,12 @@ Puoi passare &lt;pattern&gt; con caratteri jolly per filtrare l'output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation>chiude l'applicazione</translation>
+      <translation>chiude l&apos;applicazione</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation>Esce dall'applicazione. Le impostazioni sono memorizzate nel file di configurazione e saranno ripristinate al prossimo avvio.</translation>
+      <translation>Esce dall&apos;applicazione. Le impostazioni sono memorizzate nel file di configurazione e saranno ripristinate al prossimo avvio.</translation>
     </message>
   </context>
   <context>
@@ -315,12 +315,12 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-      <translation>Usa %1 per conoscere alcuni comandi supportati dall'interfaccia a linea di comando (CLI) di Sqlitestudio.
-Per vedere l'elenco dei comandi supportati, digita %2 senza alcun argomento.
+      <translation>Usa %1 per conoscere alcuni comandi supportati dall&apos;interfaccia a linea di comando (CLI) di Sqlitestudio.
+Per vedere l&apos;elenco dei comandi supportati, digita %2 senza alcun argomento.
 
-Quando passi il nome &lt;command&gt;, puoi non scrivere il carattere prefisso speciale ('%3').
+Quando passi il nome &lt;command&gt;, puoi non scrivere il carattere prefisso speciale (&apos;%3&apos;).
 
-Puoi sempre eseguire qualsiasi comando con l'opzione&apos;--help&apos; per vedere l'aiuto per quel comando. E' una alternativa al dover scrivere: %1 &lt;command>.</translation>
+Puoi sempre eseguire qualsiasi comando con l&apos;opzione&apos;--help&apos; per vedere l&apos;aiuto per quel comando. E&apos; una alternativa al dover scrivere: %1 &lt;command&gt;.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
@@ -336,7 +336,7 @@ Puoi sempre eseguire qualsiasi comando con l'opzione&apos;--help&apos; per veder
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
       <source>Type &apos;%1&apos; for list of available commands.</source>
-      <translation>Digita &apos;%1&apos; per l'elenco dei comandi disponibili.</translation>
+      <translation>Digita &apos;%1&apos; per l&apos;elenco dei comandi disponibili.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
@@ -370,9 +370,9 @@ When the -l or --limit option is passed, it sets the new history entries limit. 
 Use -ql or --querylimit option to see the current limit value.</source>
       <translation>Quando non è stato passato alcun argomento, questo comando stampa la cronologia della riga di comando. Ogni voce della cronologia è separata da una linea orizzontale, quindi le voci multilinea sono più facili da leggere.
 
-Quando viene passata l'opzione -c o --clear, la cronologia viene cancellata.
-Quando l'opzione -l o --limit viene passata, imposta il limite delle nuove voci della cronologia. Richiede un ulteriore argomento che dice a quante voci vuoi che la cronologia sia limitata.
-Usa l'opzione -ql o --querylimit per vedere il valore limite corrente.</translation>
+Quando viene passata l&apos;opzione -c o --clear, la cronologia viene cancellata.
+Quando l&apos;opzione -l o --limit viene passata, imposta il limite delle nuove voci della cronologia. Richiede un ulteriore argomento che dice a quante voci vuoi che la cronologia sia limitata.
+Usa l&apos;opzione -ql o --querylimit per vedere il valore limite corrente.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
@@ -430,23 +430,23 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>Quando viene chiamato senza argomento, indica il formato di output corrente per i risultati di una interrogazione. Quando il &lt;mode&gt; viene passato, la modalità viene cambiata in quella fornita. Le modalità supportate sono:
-- CLASSIC - le colonne sono separate da una virgola, non allineate,
-- FISSATO - le colonne hanno larghezza uguale e fissa, si adattano sempre alla larghezza della finestra del terminale, ma i dati in colonne possono essere tagliati,
-- COLUMNS - come FIXED, ma più intelligente (non usare con enormi set di risultati, vedere i dettagli qui sotto),
-- ROW - ogni colonna della riga viene visualizzata in una nuova riga, quindi vengono visualizzati i dati completi.
+      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
+- CLASSIC - columns are separated by a comma, not aligned,
+- FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
+- COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
+- ROW     - each column from the row is displayed in new line, so the full data is displayed.
 
-La modalità CLASSIC è consigliata se si desidera visualizzare tutti i dati, ma si vuole sprecare le linee per ogni colonna. Ogni riga visualizzerà i dati completi per ogni colonna, ma ciò significa anche che le colonne non saranno allineate l'una all'altra nelle righe successive. La modalità CLASSIC inoltre non rispetta la larghezza della finestra terminale (console), quindi se i valori nelle colonne sono più larghi della finestra, la riga verrà continuata nelle righe successive.
+The CLASSIC mode is recommended if you want to see all the data, but you don&apos;t want to waste lines for each column. Each row will display full data for every column, but this also means, that columns will not be aligned to each other in next rows. The CLASSIC mode also doesn&apos;t respect the width of your terminal (console) window, so if values in columns are wider than the window, the row will be continued in next lines.
 
-La modalità FIXED è consigliata se si desidera un output leggibile e si ci si cura per i valori di dati lunghi. Le colonne saranno allineate, rendendo l'output una bella tabella. La larghezza delle colonne è calcolata a partire dalla larghezza della finestra della console e da un numero di colonne.
+The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
-La modalità COLUMNS è simile alla modalità FIXED, tranne che cerca di essere intelligente e rendere le colonne con valori più corti più strette, mentre le colonne con valori più lunghi ottengono più spazio. Prima di ridurre le colonne con intestazioni più lunghe (quindi i nomi delle intestazioni devono essere tagliati come primo), quindi le colonne con i valori più lunghi vengono ridimensionate, fino al momento in cui tutte le colonne si inseriscono nella finestra del terminale.
-ATTENZIONE! La modalità COLUMNS legge tutti i risultati dalla query in una sola volta al fine di valutare i widget della colonna, quindi è pericoloso usare questa modalità quando si lavora con enormi set di risultati. Tieni presente che questa modalità caricherà l'intero risultato impostato in memoria.
+The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
-La modalità ROW è consigliata se è necessario vedere valori interi e non ci si aspetta molte righe da visualizzare, perché questa modalità visualizza una linea di uscita per ogni colonna, così si otterranno 10 linee per singola riga con 10 colonne, quindi se avete 10 righe, otterrete 100 linee in uscita (+1 linea extra per ogni riga, per separare le righe l'una dall'altra).</translation>
+The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
     </message>
   </context>
   <context>
@@ -464,7 +464,7 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>Se non è stato passato nessun argomento, indica quale è la rappresentazione attuale del valore NULL (cioè ciò che è stampato al posto dei valori NULL nei risultati della query). Se l'argomento è passato, allora viene usato come nuova stringa da usarsi per la rappresentazione NULL.</translation>
+      <translation>Se non è stato passato nessun argomento, indica quale è la rappresentazione attuale del valore NULL (cioè ciò che è stampato al posto dei valori NULL nei risultati della query). Se l&apos;argomento è passato, allora viene usato come nuova stringa da usarsi per la rappresentazione NULL.</translation>
     </message>
   </context>
   <context>
@@ -477,7 +477,7 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation>Impossibile aggiungere il database %1 all'elenco.</translation>
+      <translation>Impossibile aggiungere il database %1 all&apos;elenco.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
@@ -497,7 +497,7 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation>Apre la connessione al database. Se non è stato passato alcun argomento aggiuntivo, allora la connessione è aperta al database predefinito corrente (vedi aiuto per %1 per i dettagli). Tuttavia, se un argomento è stato passato, può essere il &lt;name&gt; del database registrato da aprire, o può essere il &lt;path&gt; al file del database da aprire. Nel secondo caso, il &lt;path&gt; viene registrato nella lista con un nome generato, ma solo per il periodo della sessione attuale dell'applicazione. Dopo aver riavviato l'applicazione, tale database non viene ripristinato nell'elenco.</translation>
+      <translation>Apre la connessione al database. Se non è stato passato alcun argomento aggiuntivo, allora la connessione è aperta al database predefinito corrente (vedi aiuto per %1 per i dettagli). Tuttavia, se un argomento è stato passato, può essere il &lt;name&gt; del database registrato da aprire, o può essere il &lt;path&gt; al file del database da aprire. Nel secondo caso, il &lt;path&gt; viene registrato nella lista con un nome generato, ma solo per il periodo della sessione attuale dell&apos;applicazione. Dopo aver riavviato l&apos;applicazione, tale database non viene ripristinato nell&apos;elenco.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
@@ -550,7 +550,7 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>Rimuove il database &lt;name&gt; dall'elenco dei database registrati. Se il database non era nella lista (vedere il comando %1), un messaggio di errore viene stampato e nessuna operazione verrà eseguita.</translation>
+      <translation>Rimuove il database &lt;name&gt; dall&apos;elenco dei database registrati. Se il database non era nella lista (vedere il comando %1), un messaggio di errore viene stampato e nessuna operazione verrà eseguita.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -568,7 +568,7 @@ Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Non è stato impostato alcun database funzionante.
 Esegui il comando %1 per impostare il database di lavoro.
-Esegui %2 per vedere l'elenco di tutti i database.</translation>
+Esegui %2 per vedere l&apos;elenco di tutti i database.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="30"/>
@@ -613,7 +613,7 @@ Esegui %2 per vedere l'elenco di tutti i database.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>Database inesistente: %1. Usa %2 per vedere l'elenco dei database conosciuti.</translation>
+      <translation>Database inesistente: %1. Usa %2 per vedere l&apos;elenco dei database conosciuti.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
@@ -639,14 +639,14 @@ Esegui %2 per vedere l'elenco di tutti i database.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation>stampa l'elenco delle tabelle nel database</translation>
+      <translation>stampa l&apos;elenco delle tabelle nel database</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation>Stampa l'elenco delle tabelle nel &lt;database&gt; specificato o nel database di lavoro corrente. Nota, che il &lt;database&gt; dovrebbe essere il nome del database registrato (vedi %1). L'elenco di output include tutte le tabelle di qualsiasi altro database allegato al database interrogato.
-Quando viene fornita l'opzione -s, vengono elencate anche le tabelle di sistema.</translation>
+      <translation>Stampa l&apos;elenco delle tabelle nel &lt;database&gt; specificato o nel database di lavoro corrente. Nota, che il &lt;database&gt; dovrebbe essere il nome del database registrato (vedi %1). L&apos;elenco di output include tutte le tabelle di qualsiasi altro database allegato al database interrogato.
+Quando viene fornita l&apos;opzione -s, vengono elencate anche le tabelle di sistema.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
@@ -699,10 +699,10 @@ Quando viene fornita l'opzione -s, vengono elencate anche le tabelle di sistema.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation>Stampa tutti gli oggetti (tabelle, indici, trigger e viste) che si trovano nel database come albero. L'albero è molto simile a quello che si può vedere nel client GUI di SQLiteStudio.
-Quando viene fornita l'opzione -c, anche le colonne saranno elencate sotto ogni tabella.
-Quando viene fornita l'opzione -s, anche gli oggetti di sistema verranno stampati (tabelle sqlite_*, indici di incremento automatico, ecc).
-L'argomento database è opzionale e, se fornito, verrà stampato solo il database specificato. Questo non è un nome di database registrato, ma invece è un nome di database SQLite interno, come &apos;main&apos;, &apos;temp&apos; o qualsiasi nome allegato al database. Per stampare un albero per altri database registrati, chiama %1 prima per cambiare il database di lavoro e poi usa il comando %2.</translation>
+      <translation>Stampa tutti gli oggetti (tabelle, indici, trigger e viste) che si trovano nel database come albero. L&apos;albero è molto simile a quello che si può vedere nel client GUI di SQLiteStudio.
+Quando viene fornita l&apos;opzione -c, anche le colonne saranno elencate sotto ogni tabella.
+Quando viene fornita l&apos;opzione -s, anche gli oggetti di sistema verranno stampati (tabelle sqlite_*, indici di incremento automatico, ecc).
+L&apos;argomento database è opzionale e, se fornito, verrà stampato solo il database specificato. Questo non è un nome di database registrato, ma invece è un nome di database SQLite interno, come &apos;main&apos;, &apos;temp&apos; o qualsiasi nome allegato al database. Per stampare un albero per altri database registrati, chiama %1 prima per cambiare il database di lavoro e poi usa il comando %2.</translation>
     </message>
   </context>
   <context>
@@ -741,17 +741,17 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Cambia il database di lavoro corrente in &lt;name&gt;. Se il database &lt;name&gt; non è registrato nell'applicazione, il messaggio di errore viene stampato e non viene apportata alcuna modifica.
+      <translation>Cambia il database di lavoro corrente in &lt;name&gt;. Se il database &lt;name&gt; non è registrato nell&apos;applicazione, il messaggio di errore viene stampato e non viene apportata alcuna modifica.
 
-Cos'è il database di lavoro attuale?
+Cos&apos;è il database di lavoro attuale?
 Quando digiti una query SQL da eseguire, viene eseguita nel database predefinito, che è noto anche come database di lavoro corrente. La maggior parte dei comandi correlati al database può funzionare anche usando il database predefinito, se non è stato fornito alcun database nei loro argomenti. Il database corrente è sempre identificato dal prompt a riga di comando. Il database predefinito è sempre definito (a meno che non ci sia alcun database nella lista).
 
 Il database predefinito può essere selezionato in vari modi:
 - usando il comando %1,
-- passando il nome del file di database ai parametri di avvio dell'applicazione,
-- passando il nome del database registrato ai parametri di avvio dell'applicazione,
+- passando il nome del file di database ai parametri di avvio dell&apos;applicazione,
+- passando il nome del database registrato ai parametri di avvio dell&apos;applicazione,
 - ripristinando il database predefinito precedentemente selezionato dalla configurazione salvata,
-- o quando il database predefinito non è stato selezionato da nessuno dei precedenti, allora il primo database dell'elenco dei database registrati diventa quello predefinito.</translation>
+- o quando il database predefinito non è stato selezionato da nessuno dei precedenti, allora il primo database dell&apos;elenco dei database registrati diventa quello predefinito.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="63"/>
@@ -789,7 +789,7 @@ Atteso uno di: %2</translation>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation>L'opzione %1 richiede un argomento.</translation>
+      <translation>L&apos;opzione %1 richiede un argomento.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
@@ -798,34 +798,79 @@ Atteso uno di: %2</translation>
       <translation>stringa</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="22"/>
+      <location filename="../main.cpp" line="28"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Interfaccia a riga di comando per SQLiteStudio, un gestore SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="26"/>
+      <location filename="../main.cpp" line="32"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Abilita i messaggi di debug sullo standard error output.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="27"/>
+      <location filename="../main.cpp" line="33"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Abilita i messaggi di debug dell'analizzatore Lemon per l'assistente di codice SQL.</translation>
+      <translation>Abilita i messaggi di debug dell&apos;analizzatore Lemon per l&apos;assistente di codice SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Elenca i plugin installati in SQLiteStudio ed esce.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="36"/>
+      <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="39"/>
+      <source>SQL file</source>
+      <translation type="unfinished">SQL file</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="40"/>
+      <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="43"/>
+      <source>codec</source>
+      <translation type="unfinished">codec</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="44"/>
+      <source>Lists available codecs to be used with -c option and quits.</source>
+      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="46"/>
+      <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="57"/>
       <source>file</source>
       <translation>file</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
       <translation>File del database da aprire</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="78"/>
+      <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="108"/>
+      <source>Database file argument is mandatory when executing SQL file.</source>
+      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>

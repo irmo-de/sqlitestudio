@@ -4,15 +4,20 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="336"/>
-      <location filename="../db/abstractdb.cpp" line="353"/>
+      <location filename="../db/abstractdb.cpp" line="342"/>
+      <location filename="../db/abstractdb.cpp" line="359"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="636"/>
+      <location filename="../db/abstractdb.cpp" line="648"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb.cpp" line="906"/>
+      <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
+      <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
   </context>
   <context>
@@ -57,77 +62,77 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="155"/>
+      <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
       <translation>Nova referência de linha</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="162"/>
+      <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
       <translation>Referência de linha antiga</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="167"/>
+      <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
       <translation>Nome da nova tabela</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="170"/>
+      <location filename="../completionhelper.cpp" line="174"/>
       <source>New index name</source>
       <translation>Nome do novo índice</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="173"/>
+      <location filename="../completionhelper.cpp" line="177"/>
       <source>New view name</source>
       <translation>Nome da nova visualização</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="176"/>
+      <location filename="../completionhelper.cpp" line="180"/>
       <source>New trigger name</source>
       <translation>Nome da nova trigger</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="179"/>
+      <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
       <translation>Apelido da tabela ou coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="182"/>
+      <location filename="../completionhelper.cpp" line="186"/>
       <source>transaction name</source>
       <translation>nome da transação</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="185"/>
+      <location filename="../completionhelper.cpp" line="189"/>
       <source>New column name</source>
       <translation>Nome da nova coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="188"/>
+      <location filename="../completionhelper.cpp" line="192"/>
       <source>Column data type</source>
       <translation>Tipo de dados de coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="191"/>
+      <location filename="../completionhelper.cpp" line="195"/>
       <source>Constraint name</source>
       <translation>Nome da constraint</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="204"/>
+      <location filename="../completionhelper.cpp" line="208"/>
       <source>Error message</source>
       <translation>Mensagem de Erro</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="253"/>
+      <location filename="../completionhelper.cpp" line="257"/>
       <source>Any word</source>
       <translation>Qualquer palavra</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="434"/>
+      <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation>Banco de dados padrão</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="435"/>
+      <location filename="../completionhelper.cpp" line="439"/>
       <source>Temporary objects database</source>
       <translation>Banco de dados de objetos temporários</translation>
     </message>
@@ -135,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="908"/>
+      <location filename="../services/impl/configimpl.cpp" line="867"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível iniciar a transação do banco de dados para excluir o histórico do SQL. Portanto, ela não será excluída.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="915"/>
+      <location filename="../services/impl/configimpl.cpp" line="874"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível submeter a transação do banco de dados para excluir o histórico do SQL. Portanto, não será excluída.</translation>
     </message>
@@ -153,30 +158,30 @@
       <translation>Não foi possível adicionar o banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation>Banco de dados %1 não pode ser atualizado, devido a um erro: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>Arquivo de banco de dados não existe.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
       <source>No supporting plugin loaded.</source>
       <translation>Nenhum plugin de suporte carregado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
       <source>Database could not be initialized.</source>
       <translation>Banco de dados não pode ser inicializado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Nenhum plugin de driver de base de dados adequado encontrado.</translation>
     </message>
@@ -184,52 +189,52 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
-      <location filename="../dbobjectorganizer.cpp" line="405"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
+      <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Erro ao criar tabela no banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
       <translation>Não foi possível analisar a tabela.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="419"/>
+      <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este método pode ser lento para grande tabelas, por favor seja paciente. </translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="439"/>
+      <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Erro ao copiar dados da tabela %1:%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="458"/>
-      <location filename="../dbobjectorganizer.cpp" line="465"/>
-      <location filename="../dbobjectorganizer.cpp" line="488"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="468"/>
+      <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Erro ao copiar dados para a tabela %1:%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="510"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erro ao soltar a visão da fonte %1: %2
 Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 permanecerão.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="517"/>
+      <location filename="../dbobjectorganizer.cpp" line="524"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Erro ao criar a visualização no banco de dados destino: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="522"/>
+      <location filename="../dbobjectorganizer.cpp" line="529"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Erro ao criar o índice no banco de dados destino: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="527"/>
+      <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Erro ao criar gatilho no banco de dados de destino: %1</translation>
     </message>
@@ -348,43 +353,43 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="283"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>Número inválido de argumentos para a função &apos;%1&apos;. Esperado %2, mas tem %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="396"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Nenhuma função registrada no SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>A função %1(%2) foi registrada no idioma %3, mas o plugin que suporta essa linguagem não está atualmente carregado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="420"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Expressão regular inválida: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="472"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="494"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para escrita: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="514"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Erro ao gravar o arquivo %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Idioma do script não suportado: %1</translation>
     </message>
@@ -439,20 +444,20 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="177"/>
-      <location filename="../importworker.cpp" line="184"/>
+      <location filename="../importworker.cpp" line="180"/>
+      <location filename="../importworker.cpp" line="187"/>
       <source>Error while importing data: %1</source>
       <translation>Erro ao importar dados: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="184"/>
+      <location filename="../importworker.cpp" line="187"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Interrompido.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="172"/>
+      <location filename="../importworker.cpp" line="175"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Não foi possível importar a linha de dados número %1. A linha foi ignorada. Detalhes do problema: %2</translation>
     </message>
@@ -460,33 +465,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="549"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="546"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="557"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque sua dependência não foi carregada: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="569"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="566"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Não foi possível carregar o plugin %1. Detalhes do erro: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="585"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="582"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Não é possível carregar o plugin %1 (erro durante a inicialização do plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="738"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>max: %1</translation>
@@ -689,7 +694,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateScript</name>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="13"/>
+      <location filename="../plugins/populatescript.cpp" line="34"/>
       <source>Script</source>
       <translation>Script</translation>
     </message>
@@ -759,28 +764,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1025"/>
+      <location filename="../common/utils.cpp" line="1028"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="435"/>
       <source>Could not open database: %1</source>
       <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1168"/>
+      <location filename="../db/abstractdb3.h" line="1214"/>
       <source>Result set expired or no row available.</source>
       <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="329"/>
-      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="331"/>
+      <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
       <translation>Não foi possível carregar a extensão %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="441"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
+      <source>Could not run WAL checkpoint: %1</source>
+      <translation>Não foi possível executar o ponto de verificação do WAL: %1</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="459"/>
       <source>Could not close database: %1</source>
       <translation>Não foi possível fechar o banco de dados: %1</translation>
     </message>
@@ -796,12 +806,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>
@@ -831,123 +841,123 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>O conjunto de caracteres personalizado não pode estar vazio.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="40"/>
+      <location filename="../plugins/populatescript.cpp" line="61"/>
       <source>Could not find plugin to support scripting language: %1</source>
       <translation>Não foi possível encontrar o plugin para suportar o idioma do script: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="58"/>
+      <location filename="../plugins/populatescript.cpp" line="79"/>
       <source>Error while executing populating initial code: %1</source>
       <translation>Erro ao executar o preenchimento do código inicial: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="80"/>
+      <location filename="../plugins/populatescript.cpp" line="101"/>
       <source>Error while executing populating code: %1</source>
       <translation>Erro ao executar o código de execução: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="112"/>
+      <location filename="../plugins/populatescript.cpp" line="133"/>
       <source>Select implementation language.</source>
       <translation>Selecionar idioma de implementação.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="113"/>
+      <location filename="../plugins/populatescript.cpp" line="134"/>
       <source>Implementation code cannot be empty.</source>
       <translation>Código de implementação não pode ser vazio.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="347"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Não foi possível resolver a fonte de dados para a coluna: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="419"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="788"/>
+      <location filename="../services/impl/configimpl.cpp" line="747"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Não foi possível inicializar o arquivo de configuração. Quaisquer alterações de configuração e histórico de consultas serão perdidos após a reinicialização do aplicativo. Não foi possível criar um arquivo nos seguintes locais: %1.</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="311"/>
+      <location filename="../sqlitestudio.cpp" line="347"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
       <translation>Objetivo geral</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="312"/>
+      <location filename="../sqlitestudio.cpp" line="348"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
       <translation>Suporte do banco de dados</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="313"/>
+      <location filename="../sqlitestudio.cpp" line="349"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
       <translation>Formatador de código</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="314"/>
+      <location filename="../sqlitestudio.cpp" line="350"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
       <translation>Linguagens dos scripts</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="315"/>
+      <location filename="../sqlitestudio.cpp" line="351"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation>Exportando</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="316"/>
+      <location filename="../sqlitestudio.cpp" line="352"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation>Importando</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="317"/>
+      <location filename="../sqlitestudio.cpp" line="353"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation>Preenchendo a tabela</translation>
+      <translation>Preencher a tabela</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="119"/>
+      <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabela %1 é tabela de referência %2, mas a definição de chave estrangeira não será atualizada para uma nova definição de tabela devido a problemas ao analisar DDL da tabela %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="446"/>
+      <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Todas as colunas indexadas pelo índice %1 desapareceram. O índice não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="490"/>
+      <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Há um problema com a trigger %1. Ela pode não ser totalmente atualizada e precisará de sua atenção.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="505"/>
+      <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Todas as colunas cobertas pela trigger %1 desapareceram. A trigger não será recriada após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="537"/>
+      <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Não é possível atualizar trigger %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="556"/>
+      <location filename="../tablemodifier.cpp" line="580"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Não é possível atualizar a exibição %1 de acordo com as modificações da tabela %2 .
 A visualização permanecerá como é.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="718"/>
       <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="761"/>
+      <location filename="../tablemodifier.cpp" line="766"/>
+      <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual da trigger pode ser necessária.</translation>
     </message>
@@ -970,28 +980,28 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="193"/>
+      <location filename="../db/queryexecutor.cpp" line="187"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="234"/>
+      <location filename="../db/queryexecutor.cpp" line="228"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="242"/>
+      <location filename="../db/queryexecutor.cpp" line="236"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="346"/>
-      <location filename="../db/queryexecutor.cpp" line="593"/>
+      <location filename="../db/queryexecutor.cpp" line="340"/>
+      <location filename="../db/queryexecutor.cpp" line="589"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="504"/>
+      <location filename="../db/queryexecutor.cpp" line="500"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
@@ -1010,33 +1020,71 @@ A visualização permanecerá como é.</translation>
     </message>
   </context>
   <context>
+    <name>SqlFileExecutor</name>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="50"/>
+      <source>Could not execute SQL, because application has failed to start transaction: %1</source>
+      <translation>Não foi possível executar SQL, porque a aplicação falhou ao iniciar a transação: %1</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="81"/>
+      <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
+      <translation>Execução do arquivo cancelada. Quaisquer consultas executadas até agora foram desfeitas.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="97"/>
+      <source>Could not open file &apos;%1&apos; for reading: %2</source>
+      <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="142"/>
+      <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
+      <translation>Não foi possível executar SQL, porque o aplicativo falhou ao confirmar a transação: %1</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
+      <translation>Concluiu a execução de consultas %1 em %2 segundos. %3 não executado devido a erros.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <source>Finished executing %1 queries in %2 seconds.</source>
+      <translation>Terminou a consulta %1 em %2 segundos.</translation>
+    </message>
+    <message>
+      <location filename="../sqlfileexecutor.cpp" line="160"/>
+      <source>Could not execute SQL due to error.</source>
+      <translation>Não foi possível executar SQL devido a um erro.</translation>
+    </message>
+  </context>
+  <context>
     <name>SqlHistoryModel</name>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="34"/>
+      <location filename="../sqlhistorymodel.cpp" line="32"/>
       <source>Database</source>
       <comment>sql history header</comment>
       <translation>Banco de dados</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="36"/>
+      <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
       <translation>Data de execução</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="38"/>
+      <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
       <translation>Tempo gasto</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="40"/>
+      <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
       <translation>Linhas afetadas</translation>
     </message>
     <message>
-      <location filename="../sqlhistorymodel.cpp" line="42"/>
+      <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>

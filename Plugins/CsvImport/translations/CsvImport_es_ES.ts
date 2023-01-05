@@ -14,12 +14,12 @@
       <translation>No se pudo encontrar ningún dato en el archivo %1.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="167"/>
+      <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
       <translation>Ingresa el carácter separador personalizado.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="190"/>
+      <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>Archivos CSV (*.csv);;Archivos de texto (*.txt);;Todos los archivos (*)</translation>
     </message>
@@ -27,57 +27,67 @@
   <context>
     <name>csvImportOptions</name>
     <message>
-      <location filename="../CsvImportOptions.ui" line="24"/>
+      <location filename="../CsvImportOptions.ui" line="37"/>
       <source>, (comma)</source>
       <translation>, (coma)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="29"/>
+      <location filename="../CsvImportOptions.ui" line="42"/>
       <source>; (semicolon)</source>
       <translation>; (punto y coma)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="34"/>
+      <location filename="../CsvImportOptions.ui" line="47"/>
       <source>\t (tab)</source>
       <translation>\t (tabulación)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="39"/>
+      <location filename="../CsvImportOptions.ui" line="52"/>
       <source>  (whitespace)</source>
       <translation>  (espacio en blanco)</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="44"/>
+      <location filename="../CsvImportOptions.ui" line="57"/>
       <source>Custom:</source>
       <translation>Personalizado:</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="52"/>
+      <location filename="../CsvImportOptions.ui" line="65"/>
+      <source>Column separator:</source>
+      <translation type="unfinished">Column separator:</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="108"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="111"/>
+      <source>Interpret &quot; as a value quotation mark</source>
+      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+    </message>
+    <message>
+      <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Activa esto si la primera línea de datos en tu archivo CSV representa los nombres de las columnas. No quieres que los nombres de las columnas sean importados en la tabla como datos regulares.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="55"/>
+      <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
       <translation>La primera línea del CSV representa los nombres de las columnas</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="65"/>
-      <source>Field separator:</source>
-      <translation>Separador de campos:</translation>
-    </message>
-    <message>
-      <location filename="../CsvImportOptions.ui" line="85"/>
+      <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
       <translation>Si se activa, el texto proporcionado a la derecha se interpretará como un NULO</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="88"/>
+      <location filename="../CsvImportOptions.ui" line="75"/>
       <source>NULL values:</source>
       <translation>Valores NULOS:</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="98"/>
+      <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
       <translation>Si los datos de tu CSV contienen valores nulos, define cómo se representan en el CSV.</translation>
     </message>

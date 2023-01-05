@@ -1,5 +1,6 @@
 #include "formview.h"
 #include "common/unused.h"
+#include "datagrid/fkcombobox.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
 #include "widgetresizer.h"
@@ -63,15 +64,15 @@ void FormView::setModel(SqlQueryModel* value)
 
 void FormView::load()
 {
-    reloadInternal();
-    dataMapper->toFirst();
+    shouldReload = true;
+    indexForReload = 0;
 }
 
 void FormView::reload()
 {
-    int idx = dataMapper->getCurrentIndex();
+    shouldReload = true;
+    indexForReload = dataMapper->getCurrentIndex();
     reloadInternal();
-    dataMapper->setCurrentIndex(idx);
 }
 
 void FormView::focusFirstEditor()
@@ -84,9 +85,14 @@ void FormView::focusFirstEditor()
 
 void FormView::reloadInternal()
 {
+    if (!shouldReload)
+        return;
+
+    shouldReload = false;
+
     // Cleanup
     dataMapper->clearMapping();
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
     {
         contents->layout()->removeWidget(widget);
         delete widget;
@@ -98,8 +104,8 @@ void FormView::reloadInternal()
     // Recreate
     dataMapper->setModel(model.data());
     int i = 0;
-    for (SqlQueryModelColumnPtr column : model->getColumns())
-        addColumn(i++, column->displayName, column->dataType, (column->editionForbiddenReason.size() > 0));
+    for (SqlQueryModelColumnPtr& column : model->getColumns())
+        addColumn(i++, column.data());
 }
 
 bool FormView::isModified() const
@@ -107,12 +113,14 @@ bool FormView::isModified() const
     return valueModified;
 }
 
-void FormView::addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly)
+MultiEditor* FormView::addColumn(int colIdx, SqlQueryModelColumn* column)
 {
+    bool readOnly = (column->editionForbiddenReason.size() > 0);
+
     // Group with label
-    QString groupLabel = name;
-    if (!dataType.toString().isEmpty())
-        groupLabel += " (" + dataType.toString() + ")";
+    QString groupLabel = column->displayName;
+    if (!column->dataType.toString().isEmpty())
+        groupLabel += " (" + column->dataType.toString() + ")";
 
     // MultiEditor
     MultiEditor* multiEditor = new MultiEditor();
@@ -127,7 +135,24 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
     connect(multiEditor, SIGNAL(modified()), this, SLOT(editorValueModified()));
 
     // MultiEditor editors
-    multiEditor->setDataType(dataType);
+    if (!column->getFkConstraints().isEmpty())
+    {
+        Db* db = model->getDb();
+        QString sql = FkComboBox::getSqlForFkEditor(db, column, QVariant());
+        bool countingError = false;
+        qlonglong rowCount = FkComboBox::getRowCountForFkEditor(db, sql, &countingError);
+        if (!countingError && rowCount <= FkComboBox::MAX_ROWS_FOR_FK)
+            multiEditor->enableFk(db, column);
+        else
+        {
+            qDebug() << "FkCombo excluded from FormView for column" << column->column << "due to"
+                     << (countingError ?
+                             "error with row counting query" :
+                             "too many rows in the FK table: " + QString::number(rowCount));
+        }
+    }
+
+    multiEditor->setDataType(column->dataType);
 
     // Resizer
     WidgetResizer* resizer = new WidgetResizer(Qt::Vertical);
@@ -135,6 +160,8 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
     resizer->setWidgetMinimumSize(0, minimumFieldHeight);
     widgets << resizer;
     contents->layout()->addWidget(resizer);
+
+    return multiEditor;
 }
 
 bool FormView::isCurrentRowModifiedInGrid()
@@ -266,4 +293,10 @@ QToolBar* FormView::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
     return nullptr;
+}
+
+void FormView::showEvent(QShowEvent* event)
+{
+    UNUSED(event);
+    reloadInternal();
 }

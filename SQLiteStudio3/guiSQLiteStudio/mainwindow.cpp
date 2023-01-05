@@ -483,14 +483,13 @@ void MainWindow::restoreSession()
     if (sessionValue.contains("style"))
     {
         QString styleName = sessionValue["style"].toString();
-        if (!setStyle(styleName))
-        {
-            styleName = currentStyle();
-            CFG_UI.General.Style.set(styleName);
-        }
+        setStyle(styleName);
     }
     else
         THEME_TUNER->tuneCurrentTheme();
+
+    QString styleName = currentStyle();
+    CFG_UI.General.Style.set(styleName);
 
     if (sessionValue.contains("geometry"))
         restoreGeometry(sessionValue["geometry"].toByteArray());
@@ -863,14 +862,12 @@ void MainWindow::quit()
 
 void MainWindow::updateMultipleSessionsSetting(const QVariant& newValue)
 {
-    QSettings sett;
-    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, newValue);
+    Config::getSettings()->setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, newValue);
 }
 
 void MainWindow::updateMultipleSessionsSetting()
 {
-    QSettings sett;
-    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, CFG_UI.General.AllowMultipleSessions.get());
+    Config::getSettings()->setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, CFG_UI.General.AllowMultipleSessions.get());
 }
 
 #ifdef PORTABLE_CONFIG

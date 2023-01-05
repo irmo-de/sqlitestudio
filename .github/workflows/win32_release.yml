@@ -1,6 +1,6 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3390200'
+    SQLITE_VERSION: '3400000'
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
@@ -32,15 +32,15 @@ jobs:
 
             - name: Cache Qt
               id: cache-qt
-              uses: actions/cache@v1
+              uses: actions/cache@v3
               with:
                 path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
                 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v2
+              uses: jurplel/install-qt-action@v3
               with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                cache: true
                 version: ${{ env.QT_VERSION }}
                 host: 'windows'
                 arch: ${{ env.QT_ARCH }}
@@ -48,13 +48,13 @@ jobs:
                 dir: 'D:/'
                 setup-python: 'false'
 
-            - uses: actions/setup-python@v2
+            - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x86'
                 
             - name: Clone repo
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                 ref: ${{ github.event.client_payload.branch }}
 

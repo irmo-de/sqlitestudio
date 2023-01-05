@@ -602,7 +602,16 @@ class API_EXPORT Db : public QObject, public Interruptable
          * This is usually the same as DbPlugin::getTitle(), but getTitle() is used in list of plugins in configuration dialog,
          * while getTypeLabel() is used on databases list.
          */
-        virtual QString getTypeLabel() = 0;
+        virtual QString getTypeLabel() const = 0;
+
+        /**
+         * @brief Gets C++ class name implementing this particular Db instance.
+         * @return Class name.
+         *
+         * It can be used to distinguish between different drivers of Db instances. While getTypeLabel() can theoretically return
+         * same labels for two different drivers, this method will always return distinct class name.
+         */
+        virtual QString getTypeClassName() const = 0;
 
         /**
          * @brief Initializes resources once the all derived Db classes are constructed.
@@ -706,6 +715,15 @@ class API_EXPORT Db : public QObject, public Interruptable
          * If function returns false, use getErrorText() to discover details.
          */
         virtual bool loadExtension(const QString& filePath, const QString& initFunc = QString()) = 0;
+
+        /**
+         * @brief Creates instance of same (derived) class with same construction parameters passed.
+         * @return Created instance.
+         *
+         * This is useful when one needs to operate on this database out of DbManager context,
+         * so ownership, connection/disconnection, deletion, etc. all belongs to the caller of this method.
+         */
+        virtual Db* clone() const = 0;
 
     signals:
         /**
@@ -825,7 +843,7 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool closeQuiet() = 0;
 
         /**
-         * @brief Deregisters all funtions registered in the database and registers new (possibly the same) functions.
+         * @brief Deregisters all functions registered in the database and registers new (possibly the same) functions.
          *
          * This slot is called from openAndSetup() and then every time user modifies custom SQL functions and commits changes to them.
          * It deregisters all functions registered before in this database and registers new functions, currently defined for
