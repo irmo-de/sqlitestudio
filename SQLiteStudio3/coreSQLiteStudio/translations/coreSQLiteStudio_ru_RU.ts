@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="342"/>
-      <location filename="../db/abstractdb.cpp" line="359"/>
+      <location filename="../db/abstractdb.cpp" line="349"/>
+      <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Невозможно выполнить запрос при закрытой базе данных.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="648"/>
+      <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
       <translation>Ошибка во время присоединения базы данных %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="906"/>
+      <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Не удалось создать полную контрольную точку WAL в базе данных &apos;%1&apos;. Ошибка из движка SQLite: %2</translation>
     </message>
@@ -485,13 +485,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Невозможно загрузить модуль %1 (ошибка при инициализации модуля).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>минимальная: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>максимальная: %1</translation>
@@ -806,12 +806,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
       <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
       <source>Syntax error</source>
       <translation>Синтаксическая ошибка</translation>
     </message>
@@ -980,28 +980,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="187"/>
+      <location filename="../db/queryexecutor.cpp" line="194"/>
       <source>Execution interrupted.</source>
       <translation>Выполнение прервано.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="228"/>
+      <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Database is not open.</source>
       <translation>База данных не открыта.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="236"/>
+      <location filename="../db/queryexecutor.cpp" line="243"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="340"/>
-      <location filename="../db/queryexecutor.cpp" line="589"/>
+      <location filename="../db/queryexecutor.cpp" line="347"/>
+      <location filename="../db/queryexecutor.cpp" line="596"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Возникла ошибка при выполнении запроса count(*), поэтому разбивка данных по страницам отключена. Детали ошибки из базы данных: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="500"/>
+      <location filename="../db/queryexecutor.cpp" line="507"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio не удалось извлечь метаданные из запроса. Результаты нельзя будет редактировать.</translation>
     </message>

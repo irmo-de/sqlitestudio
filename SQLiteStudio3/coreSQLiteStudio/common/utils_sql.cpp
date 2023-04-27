@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <QMetaType>
 
-QString invalidIdCharacters = "[]()\"'@*.,+-=/#$%&|:; \t\n<>";
+QString invalidIdCharacters = "[](){}\"'@*.,+-=/#$%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
@@ -46,7 +46,9 @@ bool doesObjectNeedWrapping(const QString& str)
     //if (isObjWrapped(str))
     //    return false;
 
-    if (isKeyword(str))
+    // The "soft keyword" check added, as they don't require wrapping.
+    // For example: SELECT replace('abc', 'a', '1');
+    if (isKeyword(str) && !isSoftKeyword(str))
         return true;
 
     for (int i = 0; i < str.size(); i++)
@@ -582,8 +584,49 @@ QString getQueryWithPosition(const QStringList& queries, int position, int* star
     return QString();
 }
 
+int getCursorFinalPositionForQueries(const QString& queries, int position)
+{
+    const static QSet<QChar> whitespaceChars = {' ', '\t'};
+
+    int len = queries.length();
+    if (position >= len || position < 1)
+        return position;
+
+    if (!whitespaceChars.contains(queries[position]) && queries[position] != '\xa')
+        return position;
+
+    // First checking characters at & after cursor - are they just whitespaces until end of line?
+    int newPos = position;
+    while (newPos < len)
+    {
+        QChar c = queries[newPos++];
+        if (whitespaceChars.contains(c))
+            continue;
+        else if (c == '\xa')
+            break;
+        else
+            return position;
+    }
+
+    // Okay, only whitespaces after cursor, so let's check whats before cursor,
+    // until the ';' - is it just whitespaces too?
+    newPos = position;
+    while (newPos > 1 && whitespaceChars.contains(queries[newPos - 1]))
+        newPos--;
+
+    if (queries[newPos - 1] == ';')
+    {
+        // Jackpot! Our cursor is just somewhere in whitespaces after the query.
+        // Let's consider that prior query as current.
+        return newPos - 1;
+    }
+
+    return position;
+}
+
 QString getQueryWithPosition(const QString& queries, int position, int* startPos)
 {
+    position = getCursorFinalPositionForQueries(queries, position);
     QStringList queryList = splitQueries(queries);
     return getQueryWithPosition(queryList, position, startPos);
 }

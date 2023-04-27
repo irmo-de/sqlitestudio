@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="342"/>
-      <location filename="../db/abstractdb.cpp" line="359"/>
+      <location filename="../db/abstractdb.cpp" line="349"/>
+      <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="648"/>
+      <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="906"/>
+      <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
@@ -485,13 +485,13 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não é possível carregar o plugin %1 (erro durante a inicialização do plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>max: %1</translation>
@@ -806,12 +806,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>
@@ -980,28 +980,28 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="187"/>
+      <location filename="../db/queryexecutor.cpp" line="194"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="228"/>
+      <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="236"/>
+      <location filename="../db/queryexecutor.cpp" line="243"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="340"/>
-      <location filename="../db/queryexecutor.cpp" line="589"/>
+      <location filename="../db/queryexecutor.cpp" line="347"/>
+      <location filename="../db/queryexecutor.cpp" line="596"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="500"/>
+      <location filename="../db/queryexecutor.cpp" line="507"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>

@@ -127,6 +127,7 @@ void SqlEditor::init()
     connect(this, &QWidget::customContextMenuRequested, this, &SqlEditor::customContextMenuRequested);
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
     connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(configModified()));
+    connect(STYLE, SIGNAL(paletteChanged()), this, SLOT(colorsConfigChanged()));
 }
 
 void SqlEditor::removeErrorMarkers()
@@ -229,7 +230,7 @@ void SqlEditor::setDb(Db* value)
 {
     db = value;
     refreshValidObjects();
-    scheduleQueryParser(true);
+    scheduleQueryParser(true, true);
 }
 
 void SqlEditor::setAutoCompletion(bool enabled)
@@ -309,7 +310,16 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
     }
     else
         cur.insertText("--");
+}
 
+bool SqlEditor::getAlwaysEnforceErrorsChecking() const
+{
+    return alwaysEnforceErrorsChecking;
+}
+
+void SqlEditor::setAlwaysEnforceErrorsChecking(bool newAlwaysEnforceErrorsChecking)
+{
+    alwaysEnforceErrorsChecking = newAlwaysEnforceErrorsChecking;
 }
 
 bool SqlEditor::getHighlightingSyntax() const
@@ -725,7 +735,7 @@ void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selectio
         return;
 
     QTextEdit::ExtraSelection selection;
-    selection.format.setBackground(CFG_UI.Colors.SyntaxCurrentQueryBg.get());
+    selection.format.setBackground(STYLE->extendedPalette().editorCurrentQueryBase());
 
     cursor.setPosition(boundries.first);
     cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
@@ -750,8 +760,8 @@ void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::Extr
 {
     QTextEdit::ExtraSelection selection;
 
-    selection.format.setBackground(CFG_UI.Colors.SyntaxParenthesisBg.get());
-    selection.format.setForeground(CFG_UI.Colors.SyntaxParenthesisFg.get());
+    selection.format.setBackground(Cfg::getSyntaxParenthesisBg());
+    selection.format.setForeground(Cfg::getSyntaxParenthesisFg());
 
     QTextCursor cursor = textCursor();
 
@@ -918,7 +928,7 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
-    if (!richFeaturesEnabled)
+    if (!richFeaturesEnabled && !alwaysEnforceErrorsChecking)
         return;
 
     QString sql = toPlainText();
@@ -931,9 +941,13 @@ void SqlEditor::parseContents()
     }
 
     queryParser->parse(sql);
-    checkForValidObjects();
+    if (richFeaturesEnabled)
+        checkForValidObjects();
+
     checkForSyntaxErrors();
-    highlightSyntax();
+
+    if (richFeaturesEnabled)
+        highlightSyntax();
 }
 
 void SqlEditor::scheduleQueryParserForSchemaRefresh()
@@ -1086,8 +1100,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
-
-        selection.format.setBackground(CFG_UI.Colors.SyntaxCurrentLineBg.get());
+        selection.format.setBackground(STYLE->extendedPalette().editorLineBase());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();

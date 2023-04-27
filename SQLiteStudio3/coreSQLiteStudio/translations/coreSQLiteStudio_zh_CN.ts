@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="342"/>
-      <location filename="../db/abstractdb.cpp" line="359"/>
+      <location filename="../db/abstractdb.cpp" line="349"/>
+      <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
       <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="648"/>
+      <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="906"/>
+      <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -485,13 +485,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法加载插件 %1（初始化插件时发生错误）。</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>最小：%1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>最大：%1</translation>
@@ -806,12 +806,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>不完整的查询。</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
       <translation>解析堆栈溢出</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
       <source>Syntax error</source>
       <translation>语法错误</translation>
     </message>
@@ -980,28 +980,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="187"/>
+      <location filename="../db/queryexecutor.cpp" line="194"/>
       <source>Execution interrupted.</source>
       <translation>执行被中断。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="228"/>
+      <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Database is not open.</source>
       <translation>数据库没有打开。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="236"/>
+      <location filename="../db/queryexecutor.cpp" line="243"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>只能同时执行一个查询。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="340"/>
-      <location filename="../db/queryexecutor.cpp" line="589"/>
+      <location filename="../db/queryexecutor.cpp" line="347"/>
+      <location filename="../db/queryexecutor.cpp" line="596"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>执行 count(*) 查询时出错，因此将禁用数据分页。数据库错误详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="500"/>
+      <location filename="../db/queryexecutor.cpp" line="507"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio 无法从查询中提取元数据。结果将不可编辑。</translation>
     </message>

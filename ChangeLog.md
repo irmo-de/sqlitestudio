@@ -1,6 +1,34 @@
 # ChangeLog
 
+### 3.4.4
+- ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
+- ADDED: #4697 Added a 'Restore original hotkey' buttons at keyboard shortcuts page of configuration dialog.
+- ADDED: Added sqlar extension to the default set of extensions provided with binary packages.
+- CHANGE: #4689 Sorting order is not cleared when table data is refreshed. To removed sorting order user can either double-click on header (once or twice) to restore no sorting for a column, or use context menu to clear any sorting.
+- CHANGE: #4735 Order of functions loading has changed. Now it's: built-in, extension-provided, user-defined. The last loaded has the highest precedense.
+- CHANGE: #4732 SQLite updated to 3.41.2 (except for SQLCipher, which is still on 3.39.4 at the moment).
+- CHANGE: #4683 Custom syntax highlighting colors now use theme-based colors by default (to work well with dynamically changing color palette in night/day theme changes) and can be explicitly enabled in configuration.
+- BUGFIX: #4676 #4716 #4693 #4701 #4669 #4721 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
+- BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
+- BUGFIX: #4694 Fixed messages for toolbar buttons in Code Snippets window & fixed loading translations for plugins.
+- BUGFIX: #4698 Fixed handling object names with '{' and '}' in their names.
+- BUGFIX: #4681 Fixed risk of null reference call in the SqliteOrderBy.
+- BUGFIX: #4707 Fixed database file selection dialog, so it doesn't complaint about read-only files.
+- BUGFIX: #4679 Fixed issue with case sensivity of CTE alias.
+- BUGFIX: #4697 Changed default hotkey for rolling back pending changes in table data from Ctrl+Backspace to Alt+Shit+Backspace. Default hotkey affects new users and will not change automatically for those who upgrade from older SQLiteStudio.
+- BUGFIX: #4739 Fixed committing changes in Extensions Manager if modifying valid extension settings, while there is another invalid, yet untouched extension on the list.
+- BUGFIX: #4715 Fixed the UPDATE OF column popup on MacOSX.
+- BUGFIX: #4754 Fixed Windows uninstaller to not create separate uninstall entries in Windows registry per each SQLiteStudio version and added SQLiteStudio icon for the uninstall entry in Windows Add/Remove programs.
+- BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
+
+### 3.4.3
+- CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.
+- BUGFIX: #4660 Removed unnecessary linking to curses library in Linux build file.
+- BUGFIX: #4658 Fixed crash when SQL parser stack gets overflown.
+
 ### 3.4.2
+- ADDED: #4653 For dealing with small fractional numbers there is an option now to change Grid View representation of these numbers to a scientific notation - the option is in Configuration/Data Browsing.
+- CHANGE: #4535 Improved current query highlighter, so it considers query on the left of the cursor as current in a more intuitive way.
 - BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
 - BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.
 - BUGFIX: #3767 Fixed copying objects between unencrypted and encrypted databases, also fixed copying tables with generated columns.
@@ -24,6 +52,13 @@
 - BUGFIX: #4384 Fixed DDL modifications of Foreign Key referencing table, so the FK constraint is not retained if referenced column was dropped.
 - BUGFIX: #4636 Fixed importing CSV with multi-word column names in the header line of CSV.
 - BUGFIX: #4365 Fixed support for triggers with same name as tables in the same database (which is allowed by SQLite).
+- BUGFIX: #4641 Fixed a serious bug with filtering data grid view with more complex queries/views, including expression-based column names with multi-word aliases.
+- BUGFIX: #4272 Fixed undesired code assistant after starting application with SQL Editor contents suggesting auto completion.
+- BUGFIX: #4643 Fixed executing query with apostrophe (doubled) inside of a string literal value.
+- BUGFIX: #4546 Fixed exporting results of a query that is a huge SQL statement.
+- BUGFIX: #4642 Fixed crash when removing a last database from the application and then modifying contents of SQL Editor.
+- BUGFIX: #4064 Fixed support for ":memory:" database.
+- BUGFIX: #4254 Fixed few issues with CLI help messages.
 - BUGFIX: #4639 Fixed typo.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 

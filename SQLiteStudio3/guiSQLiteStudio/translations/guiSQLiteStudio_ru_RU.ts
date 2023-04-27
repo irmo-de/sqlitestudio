@@ -75,8 +75,8 @@
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
-      <source>MacOS X application boundle distribution.</source>
-      <translation>Пакет приложения MacOS X.</translation>
+      <source>MacOS X application bundle distribution.</source>
+      <translation type="unfinished">MacOS X application bundle distribution.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
@@ -148,23 +148,23 @@
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
-      <source>Commit all function changes</source>
-      <translation>Подтвердить все изменения функций</translation>
+      <source>Commit all snippet changes</source>
+      <translation type="unfinished">Commit all snippet changes</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
-      <source>Rollback all function changes</source>
-      <translation>Откатить все изменения функций</translation>
+      <source>Rollback all snippet changes</source>
+      <translation type="unfinished">Rollback all snippet changes</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
-      <source>Create new function</source>
-      <translation>Создать новую функцию</translation>
+      <source>Create new snippet</source>
+      <translation type="unfinished">Create new snippet</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
-      <source>Delete selected function</source>
-      <translation>Удалить выбранную функцию</translation>
+      <source>Delete selected snippet</source>
+      <translation type="unfinished">Delete selected snippet</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
@@ -828,7 +828,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2031"/>
+      <location filename="../dialogs/configdialog.ui" line="2067"/>
       <source>Configuration</source>
       <translation>Конфигурация</translation>
     </message>
@@ -995,625 +995,615 @@
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="436"/>
-      <location filename="../dialogs/configdialog.ui" line="511"/>
+      <location filename="../dialogs/configdialog.ui" line="456"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Максимальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="439"/>
+      <location filename="../dialogs/configdialog.ui" line="459"/>
       <source>Number of memorized table populating configurations</source>
       <translation>Количество запоминаемых конфигураций заполнения таблицы</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="540"/>
+      <location filename="../dialogs/configdialog.ui" line="553"/>
       <source>Data column width</source>
       <translation>Ширина столбца данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="546"/>
+      <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Когда пользователь вводит новое значение в столбец, и оно не умещается в ячейке при текущей ширине столбца, приложение расширит столбец, чтобы уместить новое значение, но не превышая лимит, указанный в опции выше.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="549"/>
+      <location filename="../dialogs/configdialog.ui" line="562"/>
       <source>Enlarge column when entering value longer than current width</source>
       <translation>Расширить столбец при вводе значения длиннее текущей ширины</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="565"/>
+      <location filename="../dialogs/configdialog.ui" line="578"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
       <translation>&lt;p&gt;При загрузке данных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="478"/>
+      <location filename="../dialogs/configdialog.ui" line="449"/>
       <source>Number of data rows per page:</source>
       <translation>Количество строк данных на странице:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="485"/>
+      <location filename="../dialogs/configdialog.ui" line="479"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если данная опция активирована и пользователь наводит указатель мыши на ячейку в любом режиме просмотра данных (результаты запроса, данные таблицы, данные представления), то будет отображена всплывающая подсказка с информацией о ячейке, в том числе информация о типе данных столбца, ограничениях, значение ROWID и прочее.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="488"/>
+      <location filename="../dialogs/configdialog.ui" line="482"/>
       <source>Show column and row details tooltip in data view</source>
       <translation>Показывать всплывающую подсказку с информацией о столбце и строке при просмотре данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="465"/>
+      <location filename="../dialogs/configdialog.ui" line="524"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="468"/>
+      <location filename="../dialogs/configdialog.ui" line="527"/>
       <source>Keep NULL value when entering empty value</source>
       <translation>Сохранять значение NULL при вводе пустой строки</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="498"/>
+      <location filename="../dialogs/configdialog.ui" line="492"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Активируйте эту опцию, чтобы всегда подставлять значение DEFAULT (значение по умолчанию) при записи NULL в столбец, у которого определено значение DEFAULT, даже если столбец может содержать NULL.&lt;/p&gt;&lt;p&gt;Отключите эту опцию для подстановки значения DEFAULT только в случае записи NULL в столбец с ограничением NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="501"/>
+      <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
       <translation>Использовать значение DEFAULT (если оно определено) при записи NULL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="524"/>
+      <location filename="../dialogs/configdialog.ui" line="466"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если результаты запроса содержат десятки (или сотни) столбцов, они вполне вероятно могут исчерпать всю свободную память компьютера, одномоментно загрузив несколько гигабайт данных. В таких случаях, для защиты компьютера SQLiteStudio может попытаться ограничить количество результатов, отображаемых на одной странице. Если вы уверены, что не работаете с большими объемами в базе данных, то можете отключить это ограничение и всегда видеть заданное в настройках количество строк на странице.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="527"/>
+      <location filename="../dialogs/configdialog.ui" line="469"/>
       <source>Limit number of rows for in case of dozens of columns</source>
       <translation>Ограничить число строк в случае десятков столбцов</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="610"/>
+      <location filename="../dialogs/configdialog.ui" line="623"/>
       <source>Inserting new row in data grid</source>
       <translation>Вставка новой строки в таблице данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="616"/>
+      <location filename="../dialogs/configdialog.ui" line="629"/>
       <source>Before currently selected row</source>
       <translation>Перед текущей выделенной строкой</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="632"/>
+      <location filename="../dialogs/configdialog.ui" line="645"/>
       <source>After currently selected row</source>
       <translation>После текущей выделенной строки</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="645"/>
+      <location filename="../dialogs/configdialog.ui" line="658"/>
       <source>At the end of data view</source>
       <translation>В конец области просмотра данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="661"/>
+      <location filename="../dialogs/configdialog.ui" line="674"/>
       <source>Table windows</source>
       <translation>Окна таблиц</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="667"/>
+      <location filename="../dialogs/configdialog.ui" line="680"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если опция активирована, окна таблиц будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="670"/>
+      <location filename="../dialogs/configdialog.ui" line="683"/>
       <source>Open Table Windows with the data tab for start</source>
       <translation>Открывать окна таблиц на вкладке данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="680"/>
+      <location filename="../dialogs/configdialog.ui" line="693"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах таблиц будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="683"/>
+      <location filename="../dialogs/configdialog.ui" line="696"/>
       <source>Place data tab as first tab in a Table Window</source>
       <translation>Помещать вкладку данных в окнах таблиц первой</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="696"/>
+      <location filename="../dialogs/configdialog.ui" line="709"/>
       <source>View windows</source>
       <translation>Окна представлений</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="702"/>
+      <location filename="../dialogs/configdialog.ui" line="715"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если опция активирована, окна представлений будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="705"/>
+      <location filename="../dialogs/configdialog.ui" line="718"/>
       <source>Open View Windows with the data tab for start</source>
       <translation>Открывать окна представлений на вкладке данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="715"/>
+      <location filename="../dialogs/configdialog.ui" line="728"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах представлений будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="718"/>
+      <location filename="../dialogs/configdialog.ui" line="731"/>
       <source>Place data tab as first tab in a View Window</source>
       <translation>Помещать вкладку данных в окнах представлений первой</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="762"/>
+      <location filename="../dialogs/configdialog.ui" line="775"/>
       <source>Data types</source>
       <translation>Типы данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="800"/>
+      <location filename="../dialogs/configdialog.ui" line="813"/>
       <source>Available editors:</source>
       <translation>Доступные редакторы:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="816"/>
+      <location filename="../dialogs/configdialog.ui" line="829"/>
       <source>Editors selected for this data type:</source>
       <translation>Выбранные редакторы для этого типа данных:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="852"/>
+      <location filename="../dialogs/configdialog.ui" line="865"/>
       <source>Schema editing</source>
       <translation>Редактирование схемы</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="864"/>
+      <location filename="../dialogs/configdialog.ui" line="877"/>
       <source>Number of DDL changes kept in history.</source>
       <translation>Количество сохраняемых в истории изменений DDL.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="877"/>
+      <location filename="../dialogs/configdialog.ui" line="890"/>
       <source>DDL history size:</source>
       <translation>Размер истории DDL:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="884"/>
+      <location filename="../dialogs/configdialog.ui" line="897"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation>Не показывать диалог предпросмотра DDL при подтверждении изменений схемы</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="897"/>
+      <location filename="../dialogs/configdialog.ui" line="910"/>
       <source>SQL queries</source>
       <translation>SQL запросы</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="909"/>
-      <location filename="../dialogs/configdialog.ui" line="958"/>
+      <location filename="../dialogs/configdialog.ui" line="922"/>
+      <location filename="../dialogs/configdialog.ui" line="971"/>
       <source>Number of queries kept in the history.</source>
       <translation>Количество сохраняемых в истории запросов.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="945"/>
+      <location filename="../dialogs/configdialog.ui" line="958"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если в окне редактора SQL более одного запроса, то (если эта опция включена) будет выполняться только один запрос - тот, на котором стоит курсор клавиатуры. В противном случае будут выполнены все запросы. Вы всегда можете указать запросы, подлежащие выполнению, выделив эти запросы перед запуском. Вы также можете использовать специальные сочетания клавиш для выполнения запросов в том или ином режиме (сейчас настроено на %1 для выполнения одного запроса и %2 для выполнения всех запросов).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="961"/>
+      <location filename="../dialogs/configdialog.ui" line="974"/>
       <source>History size:</source>
       <translation>Размер истории:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="922"/>
-      <location filename="../dialogs/configdialog.ui" line="932"/>
+      <location filename="../dialogs/configdialog.ui" line="935"/>
+      <location filename="../dialogs/configdialog.ui" line="945"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio предварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="948"/>
+      <location filename="../dialogs/configdialog.ui" line="961"/>
       <source>Execute only the query under the cursor</source>
       <translation>Выполнять только запрос под курсором</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="925"/>
+      <location filename="../dialogs/configdialog.ui" line="938"/>
       <source>Number of memorized query parameters</source>
       <translation>Количество запоминаемых параметров запроса</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="584"/>
+      <location filename="../dialogs/configdialog.ui" line="537"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По умолчанию (когда эта опция отключена) вещественное число отображается в виде десятичных цифр с разделителем дробной части. В некоторых случаях, когда число очень маленькое (несколько нулей после разделителя), такое представление может привести к неточности его отображения. В таком случае вы можете включить эту опцию для использования экспоненциальной записи чисел (например &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="540"/>
+      <source>Use scientific notation for real numbers in the grid view</source>
+      <translation>Использовать экспоненциальную запись вещественных чисел в табличном виде</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="597"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При загрузке данных в табличном виде ширина столбцов автоматически подстраивается. Это значение ограничивает ширину для автоподстройки, но пользователь может вручную расширить столбец сверх этого лимита. Этот лимит также используется при расширении столбца после ввода нового, более длинного значения пользователем (см. опцию ниже).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="587"/>
+      <location filename="../dialogs/configdialog.ui" line="600"/>
       <source>Limit automatic data column width to (in pixels):</source>
       <translation>Ограничить автоматическую ширину столбца данных (в пикселях):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="594"/>
+      <location filename="../dialogs/configdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Исходная ширина столбцов будет установлена так, чтобы как минимум уместилось полное имя столбца в заголовке. При этом учитывается ограничение на автоматическую ширину столбца, указанное в пикселях (опция выше).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="597"/>
+      <location filename="../dialogs/configdialog.ui" line="610"/>
       <source>Keep at least the width to show complete column name</source>
       <translation>Как минимум уместить полное имя столбца в ширину</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="968"/>
+      <location filename="../dialogs/configdialog.ui" line="981"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если опция включена, строки длиннее ширины окна редактора будут перенесены и горизонтальная прокрутка не потребуется.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="971"/>
+      <location filename="../dialogs/configdialog.ui" line="984"/>
       <source>Wrap lines in SQL editor</source>
       <translation>Переносить строки в редакторе SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="981"/>
+      <location filename="../dialogs/configdialog.ui" line="994"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подсвечивать весь запрос, на котором стоит курсор клавиатуры. Это запрос, который будет выполнен при нажатии кнопки или сочетания клавиш &amp;quot;Выполнить запрос&amp;quot; (если не настроено иначе).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="984"/>
+      <location filename="../dialogs/configdialog.ui" line="997"/>
       <source>Highlight current query</source>
       <translation>Подсвечивать текущий запрос</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="997"/>
+      <location filename="../dialogs/configdialog.ui" line="1010"/>
       <source>Updates</source>
       <translation>Обновления</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1003"/>
+      <location filename="../dialogs/configdialog.ui" line="1016"/>
       <source>Automatically check for updates at startup</source>
       <translation>Автоматически проверять обновления при запуске</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1016"/>
+      <location filename="../dialogs/configdialog.ui" line="1029"/>
       <source>Session</source>
       <translation>Сессия</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1022"/>
+      <location filename="../dialogs/configdialog.ui" line="1035"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation>Восстановить предыдущую сессию (активные MDI окна) после запуска</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1032"/>
+      <location filename="../dialogs/configdialog.ui" line="1045"/>
       <source>Allow multiple instances of the application at the same time</source>
       <translation>Разрешить одновременную работу нескольких экземпляров приложения</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1045"/>
+      <location filename="../dialogs/configdialog.ui" line="1058"/>
       <source>Status Field</source>
       <translation>Окно статуса</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1051"/>
+      <location filename="../dialogs/configdialog.ui" line="1064"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Если пользователь вручную закрыл окно статуса, включение данной опции гарантирует, что при появлении новых сообщений окно статуса будет автоматически открыто. Если опция отключена, окно статуса может быть заново открыто только пользователем вручную через меню &quot;Вид&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1054"/>
+      <location filename="../dialogs/configdialog.ui" line="1067"/>
       <source>Always open Status panel when new message is printed</source>
       <translation>Всегда открывать окно статуса при появлении нового сообщения</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1109"/>
+      <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
       <translation>Синтаксическая расцветка кода</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1115"/>
+      <location filename="../dialogs/configdialog.ui" line="1128"/>
       <source>Keyword foreground</source>
       <translation>Цвет ключевого слова</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1170"/>
+      <location filename="../dialogs/configdialog.ui" line="1218"/>
       <source>Regular foreground</source>
       <translation>Стандартный цвет</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1193"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Строки в SQL заключены в символы одинарных кавычек. В других языках строка может быть заключена в двойные кавычки или как-нибудь иначе.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1196"/>
+      <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
       <translation>Цвет строки</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1235"/>
+      <location filename="../dialogs/configdialog.ui" line="1228"/>
       <source>Comment foreground</source>
       <translation>Цвет комментария</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1258"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Допустимыми объектами являются имена таблиц, индексов, триггеров или представлений, которые имеются в базе данных SQLite. Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1261"/>
+      <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Valid objects foreground</source>
       <translation>Цвет распознанных объектов</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1268"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;В редакторе SQL текущий запрос подсвечивается этим фоном, чтобы указать пользователю, какой запрос будет выполняться в данный момент.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1271"/>
+      <location filename="../dialogs/configdialog.ui" line="1407"/>
       <source>Current query background</source>
       <translation>Фон текущего запроса</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1278"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подстановочные параметры определяют места, куда позже будут вставлены значения, переданные пользователем. Они указываются в одной из форм:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1281"/>
+      <location filename="../dialogs/configdialog.ui" line="1371"/>
       <source>Bind parameter foreground</source>
       <translation>Цвет подстановочных параметров</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1288"/>
+      <location filename="../dialogs/configdialog.ui" line="1397"/>
       <source>Current line background</source>
       <translation>Фон текущей строки</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1311"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При перемещении курсора клавиатуры к любой скобке в коде, приложение выделит эту скобку и соответствующую ей другую этим цветом фона.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1314"/>
+      <location filename="../dialogs/configdialog.ui" line="1417"/>
       <source>Matched parenthesis background</source>
       <translation>Фон парных скобок</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1327"/>
+      <location filename="../dialogs/configdialog.ui" line="1312"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Вы можете полностью отключить подсветку текущего запроса на странице Общих настроек.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1372"/>
+      <location filename="../dialogs/configdialog.ui" line="1254"/>
       <source>Number foreground</source>
       <translation>Цвет числа</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1379"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Данные типа BLOB — это бинарные данные, представляемые в виде шестнадцатеричных чисел, например:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="1382"/>
+      <location filename="../dialogs/configdialog.ui" line="1325"/>
       <source>BLOB value foreground</source>
       <translation>Цвет данных типа BLOB</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1389"/>
+      <location filename="../dialogs/configdialog.ui" line="1427"/>
       <source>Matched parenthesis foreground</source>
       <translation>Цвет парных скобок</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1433"/>
+      <location filename="../dialogs/configdialog.ui" line="1464"/>
       <source>Reset to defaults</source>
       <translation>Сбросить к исходным</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1459"/>
+      <location filename="../dialogs/configdialog.ui" line="1490"/>
       <source>Filter shortcuts by name or key combination</source>
-      <translation>Фильтруйте горячие клавиши по имени или комбинации клавиш</translation>
+      <translation>Фильтр горячих клавиш по имени или комбинации клавиш</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1500"/>
+      <location filename="../dialogs/configdialog.ui" line="1531"/>
       <source>Action</source>
       <translation>Действие</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1505"/>
+      <location filename="../dialogs/configdialog.ui" line="1536"/>
       <source>Key combination</source>
       <translation>Комбинация клавиш</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1549"/>
-      <location filename="../dialogs/configdialog.ui" line="2021"/>
+      <location filename="../dialogs/configdialog.ui" line="1585"/>
+      <location filename="../dialogs/configdialog.ui" line="2057"/>
       <source>Language</source>
       <translation>Язык</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1555"/>
+      <location filename="../dialogs/configdialog.ui" line="1591"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>Для смены языка потребуется перезапустить приложение.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1572"/>
+      <location filename="../dialogs/configdialog.ui" line="1608"/>
       <source>Compact layout</source>
       <translation>Компактный режим</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1578"/>
+      <location filename="../dialogs/configdialog.ui" line="1614"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;В компактном режиме все поля и отступы в интерфейсе минимизированы для отображения большего количества данных. Интерфейс станет чуть менее эстетичным, однако это позволит уместить больше данных на экране.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1581"/>
+      <location filename="../dialogs/configdialog.ui" line="1617"/>
       <source>Use compact layout</source>
       <translation>Включить компактный режим</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1597"/>
+      <location filename="../dialogs/configdialog.ui" line="1633"/>
       <source>Main window dock areas</source>
       <translation>Области прикрепления вокруг главного окна</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1603"/>
+      <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Left and right areas occupy corners</source>
       <translation>Углы занимают правая и левая области</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1623"/>
+      <location filename="../dialogs/configdialog.ui" line="1659"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>Углы занимают верхняя и нижняя области</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1745"/>
+      <location filename="../dialogs/configdialog.ui" line="1781"/>
       <source>Hide built-in plugins</source>
       <translation>Скрыть встроенные модули</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1774"/>
+      <location filename="../dialogs/configdialog.ui" line="1810"/>
       <source>Current style:</source>
       <translation>Текущий стиль:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1791"/>
+      <location filename="../dialogs/configdialog.ui" line="1827"/>
       <source>Preview</source>
       <translation>Предпросмотр</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1801"/>
+      <location filename="../dialogs/configdialog.ui" line="1837"/>
       <source>Enabled</source>
       <translation>Активно</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1977"/>
+      <location filename="../dialogs/configdialog.ui" line="2013"/>
       <source>Disabled</source>
       <translation>Неактивно</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2026"/>
+      <location filename="../dialogs/configdialog.ui" line="2062"/>
       <source>Active formatter plugin</source>
       <translation>Активный модуль форматирования</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2064"/>
+      <location filename="../dialogs/configdialog.ui" line="2100"/>
       <source>SQL editor font</source>
       <translation>Шрифт редактора SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2080"/>
+      <location filename="../dialogs/configdialog.ui" line="2116"/>
       <source>Database list font</source>
       <translation>Шрифт списка баз данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2096"/>
+      <location filename="../dialogs/configdialog.ui" line="2132"/>
       <source>Database list additional label font</source>
       <translation>Шрифт дополнительных меток в списке баз данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2112"/>
+      <location filename="../dialogs/configdialog.ui" line="2148"/>
       <source>Data view font</source>
       <translation>Шрифт просмотра данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2128"/>
+      <location filename="../dialogs/configdialog.ui" line="2164"/>
       <source>Status field font</source>
       <translation>Шрифт окна статуса</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2165"/>
+      <location filename="../dialogs/configdialog.ui" line="2201"/>
       <source>Code assistant settings</source>
       <translation>Настройки автодополнения</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2171"/>
+      <location filename="../dialogs/configdialog.ui" line="2207"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если эта опция включена, окно автодополнения будет вызываться в случае, когда пользователь например набирает &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; чтобы предложить вставить имя столбца. Если опция отключена, пользователь должен нажать комбинацию клавиш для вызова автодополнения.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2174"/>
+      <location filename="../dialogs/configdialog.ui" line="2210"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation>Автоматически показывать окно автодополнения когда вводится точка после имени объекта</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="899"/>
+      <location filename="../dialogs/configdialog.cpp" line="900"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Описание:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="900"/>
+      <location filename="../dialogs/configdialog.cpp" line="901"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Категория:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="902"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Версия:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="903"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Автор:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Внутреннее имя:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="905"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Зависимости:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Конфликты:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="910"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Plugin details</source>
       <translation>Сведения о модуле</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1452"/>
+      <location filename="../dialogs/configdialog.cpp" line="1479"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Модули загружаются и выгружаются сразу после активации/деактивации, однако изменения в списке загружаемых при старте модулей не будут сохранены пока вы не примените изменения в окне конфигурации.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1516"/>
+      <location filename="../dialogs/configdialog.cpp" line="1543"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (встроенный)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1529"/>
+      <location filename="../dialogs/configdialog.cpp" line="1556"/>
       <source>Details</source>
       <translation>Сведения</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1541"/>
+      <location filename="../dialogs/configdialog.cpp" line="1568"/>
       <source>No plugins in this category.</source>
       <translation>В этой категории модулей нет.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1643"/>
+      <location filename="../dialogs/configdialog.cpp" line="1670"/>
       <source>Add new data type</source>
       <translation>Добавить новый тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1647"/>
+      <location filename="../dialogs/configdialog.cpp" line="1674"/>
       <source>Rename selected data type</source>
       <translation>Переименовать выбранный тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1651"/>
+      <location filename="../dialogs/configdialog.cpp" line="1678"/>
       <source>Delete selected data type</source>
       <translation>Удалить выбранный тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1655"/>
+      <location filename="../dialogs/configdialog.cpp" line="1682"/>
       <source>Help for configuring data type editors</source>
       <translation>Справка по настройке редакторов типов данных</translation>
     </message>
     <message>
+      <location filename="../dialogs/configdialog.cpp" line="1772"/>
+      <source>Clear hotkey for this action</source>
+      <translation type="unfinished">Clear hotkey for this action</translation>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.cpp" line="1784"/>
-      <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation>Здесь вы можете настроить цвета для подсветки синтаксиса. Они общие для разных языков - не только для SQL, но и для JavaScript и других.</translation>
+      <source>Restore original hotkey for this action</source>
+      <translation type="unfinished">Restore original hotkey for this action</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.cpp" line="1827"/>
+      <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
+      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
     </message>
   </context>
   <context>
@@ -3087,7 +3077,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <location filename="../dialogs/exportdialog.cpp" line="185"/>
-      <location filename="../dialogs/exportdialog.cpp" line="208"/>
+      <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select database to export.</source>
       <translation>Выберите базу данных для экспорта.</translation>
     </message>
@@ -3102,42 +3092,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Введи корректный запрос для экспорта.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="209"/>
+      <location filename="../dialogs/exportdialog.cpp" line="210"/>
       <source>Select at least one object to export.</source>
       <translation>Выберите хотя бы один объект для экспорта.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="232"/>
+      <location filename="../dialogs/exportdialog.cpp" line="233"/>
       <source>You must provide a file name to export to.</source>
       <translation>Необходимо указать имя файла, в который будет произведён экспорт.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="239"/>
+      <location filename="../dialogs/exportdialog.cpp" line="240"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>Указанный путь является существующим каталогом. Его невозможно перезаписать.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="245"/>
+      <location filename="../dialogs/exportdialog.cpp" line="246"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>Каталог &apos;%1&apos; не существует.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="251"/>
+      <location filename="../dialogs/exportdialog.cpp" line="252"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>Файл &apos;%1&apos; существует и будет перезаписан.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="431"/>
+      <location filename="../dialogs/exportdialog.cpp" line="432"/>
       <source>All files (*)</source>
       <translation>Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="434"/>
+      <location filename="../dialogs/exportdialog.cpp" line="435"/>
       <source>Pick file to export to</source>
       <translation>Выберите файл для экспорта</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="782"/>
+      <location filename="../dialogs/exportdialog.cpp" line="783"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>Внутренняя ошибка во время экспорта. Пожалуйста, вышлите отчёт об этой ошибке.</translation>
     </message>
@@ -3256,7 +3246,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter functions</source>
-      <translation type="unfinished">Filter functions</translation>
+      <translation>Фильтр функций</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
@@ -5267,191 +5257,191 @@ find next</source>
       <translation>Перенос по словам</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="154"/>
+      <location filename="../sqleditor.cpp" line="155"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>Вырезать</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="155"/>
+      <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>Копировать</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="156"/>
+      <location filename="../sqleditor.cpp" line="157"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>Вставить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="157"/>
+      <location filename="../sqleditor.cpp" line="158"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>Удалить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>Выделить всё</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>Отменить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>Повторить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>Завершить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>Форматировать SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>Сохранить SQL в файл</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation>Выбрать файл для сохранения SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="165"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>Загрузить SQL из файла</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>Удалить строчку</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>Переместить блок вниз</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>Переместить блок вверх</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>Копировать блок вниз</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>Копировать блок вверх</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Find</source>
       <comment>sql editor</comment>
       <translation>Найти</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>Найти далее</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>Найти предыдущее</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>Заменить</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation>Комментировать/раскомментировать</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="177"/>
+      <location filename="../sqleditor.cpp" line="178"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="287"/>
+      <location filename="../sqleditor.cpp" line="288"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для записи: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="297"/>
+      <location filename="../sqleditor.cpp" line="298"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>SQL-код сохранён в файле %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="509"/>
+      <location filename="../sqleditor.cpp" line="519"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>Дополнение синтаксиса может быть использовано только после назначения корректной базы данных редактору SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1130"/>
+      <location filename="../sqleditor.cpp" line="1143"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Размер содержимого редактора SQL слишком велико, поэтому обнаружение ошибок и подсветка существующих объектов временно отключена.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1165"/>
+      <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
       <translation>Сохранить в файл</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1180"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Скрипты SQL (*.sql);;Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1181"/>
+      <location filename="../sqleditor.cpp" line="1194"/>
       <source>Open file</source>
       <translation>Открыть файл</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1191"/>
+      <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1396"/>
+      <location filename="../sqleditor.cpp" line="1409"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Достигнут конец документа. Нажмите Найти снова для перезапуска поиска.</translation>
     </message>
@@ -5495,7 +5485,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="58"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="64"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Cannot edit this cell. Details: %1</source>
       <translation>Невозможно редактировать данную ячейку. Подробности: %1</translation>
     </message>
@@ -5506,17 +5496,17 @@ find next</source>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>Структура этой таблицы изменилась с момента последней загрузки данных. Перезагрузите данные для продолжения.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="201"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
       <translation>Редактирование значений большой длины непосредственно в табличном режиме не рекомендуется. Возможны проблемы с производительностью и удобством работы. Для работы с такими большими значениями рекомендуется использовать режим формы либо отдельное окно редактирования значения (доступно в контекстном меню по щелчку правой кнопкой мыши).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="315"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
       <translation>Внешний ключ для столбца %2 имеет более чем %1 возможных значений. Это слишком много для отображения в выпадающем списке. Вам необходимо ввести значение вручную.</translation>
     </message>
@@ -5525,93 +5515,93 @@ find next</source>
     <name>SqlQueryModel</name>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="669"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="105"/>
       <source>Cannot execute query on undefined or invalid database.</source>
       <translation>Невозможно выполнить запрос к неопознанной или некорректной базе данных.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="112"/>
       <source>Cannot execute empty query.</source>
       <translation>Невозможно выполнить пустой запрос.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
       <source>Uncommitted data</source>
       <translation>Неподтверждённые данные</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
       <translation>Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="544"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
       <translation>Невозможно подтвердить данные для ячейки, которая ссылается на уже закрытую базу данных.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="552"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
       <source>Could not begin transaction on the database. Details: %1</source>
       <translation>Невозможно начать транзакцию в базе данных. Подробности: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="597"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
       <translation>При завершении транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="630"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
       <source>An error occurred while rolling back the transaction: %1</source>
       <translation>При отмене транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="824"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation>Попытка подтверждения данных для нередактируемой ячейки (которая тем не менее была изменена и ожидает подтверждения). Это программная ошибка. Пожалуйста, отправьте о ней отчёт.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="849"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
       <translation>При подтверждении данных произошла ошибка: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="983"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation>Количество строк на странице было уменьшено до %1 из-за большого количества столбцов (%2) в окне данных.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1407"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1465"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1406"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>Ошибка при выполнении SQL запроса к базе данных &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1461"/>
       <source>Error while loading query results: %1</source>
       <translation>Ошибка при загрузке результатов запроса: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Insert multiple rows</source>
       <translation>Вставить несколько строк</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Number of rows to insert:</source>
       <translation>Количество вставляемых строк:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1998"/>
       <source>Delete rows</source>
       <translation>Удалить строки</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Вы собираетесь удалить недавно вставленные строки, которые ещё не были подтверждены. Номера строк: %1
@@ -5905,42 +5895,42 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Руководство по редактированию расширений</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="240"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="247"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation>Файл по указанному пути не существует или не читается.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="246"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="253"/>
       <source>Unable to load extension: %1</source>
       <translation>Невозможно загрузить расширение: %1</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="360"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="367"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation>Некорректное имя инициализирующей функции. Имя функции может состоять только из английских букв, цифр и подчёркивания.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="436"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation>Динамически подключаемые библиотеки (*.dll);;Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="431"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="438"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation>Общие объекты (*.so);;Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="433"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="440"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation>Динамические библиотеки (*.dylib);;Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="435"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
       <source>All files (*)</source>
       <translation>Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="437"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
       <source>Open file</source>
       <translation>Открыть файл</translation>
     </message>
