@@ -21,7 +21,7 @@
     <message>
       <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation>קובצי CSV (*.csv);;Text files (*.txt);;כל הקבצים(*)</translation>
+      <translation>קובצי CSV (*.csv);;קובצי מלל (txt.*);;כל הקבצים (*)</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="47"/>
       <source>\t (tab)</source>
-      <translation>\t (טאב)</translation>
+      <translation>\t (טאבלר)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
@@ -59,12 +59,12 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;אם מאופשר, התו &amp;quot; יתפרש כמרכאות ערכי CSV תיקניות, דבר זה יגרום לכך שההתייחסות למחרוזת תהיה כאל כערך יחיד עד לתו (הסיום) הבא &amp;quot;. אם מושבת, התו &amp;quot; יטופל ככל תו אחר. לרוב הבחירה הטובה תהיה מצב מאופשר.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation>לפרש &quot; כערך מרכאות</translation>
+      <translation>לפרש &quot; כערך תו מרכאות</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
@@ -79,7 +79,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>אם מופעל, ערך המלל מימין יתפרש כ- NULL</translation>
+      <translation>אם אופשר, ערך מלל שמוצג מימין יתפרש כ־NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="75"/>
